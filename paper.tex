@@ -1,0 +1,84 @@
+%
+% ABM Musa, PhD thesis, 2017
+%
+
+% save \@xfloat (modified by uicthesi class)
+\makeatletter
+\let\orig@xfloat\@xfloat
+\makeatother
+
+% UIC thesis template
+\documentclass{uicthesi}
+
+% restore \@xfloat and reset baselinestretch in another way
+% (thanks to: http://www.latex-community.org/forum/viewtopic.php?f=45&t=20816)
+\usepackage{etoolbox}
+\makeatletter
+\let\@xfloat\orig@xfloat
+\patchcmd{\@xfloat}{\columnwidth}{\columnwidth\def\baselinestretch{\@ne}}{}{}
+\makeatother
+
+% package for rotating tables sideways
+\usepackage{rotating}
+
+% color definitions for TRR12's table
+\usepackage[table]{xcolor}
+\definecolor{tableShade}{HTML}{e8e8e8}
+
+% package for using multi-part figures
+%\usepackage{subfigure}
+\usepackage{subfig}
+\usepackage{graphicx}
+
+% package for aligning equations
+\usepackage{amsmath}
+
+% package for providing line-breakable underlining
+\usepackage{ulem}
+
+\usepackage{url}
+\usepackage{tabularx}
+
+
+\title{Multi-Sensor Preprocessing for Traffic Light Detection}
+\author{Nishat Anjum Khan}
+\pdegrees{B.S., Bangladesh University of Engineering and Technology, 2014}
+\degree{Master of Science in Electrical and Computer Engineering}
+\committee{Dr. Rashid Ansari, Chair and Advisor\\Dr. Ahmet Enis Cetin\\Dr. Mojtaba Soltanalian}
+
+\begin{document}
+\maketitle
+
+
+\newcommand{\todo}[1]{\textcolor{blue}{TODO: #1}}
+\newcommand{\warn}[1]{\textcolor{red}{WARNING: #1}}
+\newcommand{\note}[1]{\textcolor{cyan}{NOTE: #1}}
+
+
+\copyrightpage
+
+\input{dedication}
+%\input{acknowledgements}
+%\input{contribution_of_authors}
+
+%\preface
+%The preface is purely optional at UIC.
+
+\tableofcontents
+\listoftables
+\listoffigures
+
+
+\input{summary}
+\input{intro}
+\input{system}
+\input{concl}
+
+\bibformb
+%\bibliographystyle{abbrv}
+\bibliography{ref}
+
+\newpage
+\input{vita}
+
+\end{document}
