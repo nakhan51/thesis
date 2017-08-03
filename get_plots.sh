@@ -15,4 +15,5 @@ cp ~/research/videonav/plots/Detectedgreencircles.jpg images/
 cp ~/research/videonav/plots/Detectedredcircles.jpg images/
 cp ~/research/videonav/plots/RedGreenfiltering.jpg images/
 cp ~/research/videonav/plots/RedGreenfiltering_red.jpg images/
-
+cp ~/research/videonav/plots/frame301.jpg images/
+cp ~/research/videonav/plots/frame502.jpg images/
