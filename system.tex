@@ -32,13 +32,16 @@ At first we recorded videos along with the sensor data, gyroscope, accelerometer
 These data have syncronization with our recorded videoframes, since we logged in sensor data while recording.
 Now to detect the traffic light, we use three features of traffic light.
 Those are the color, shape of traffic light and traffic light location in a black box.
-For detection using the color and shape features,we need to filter out the frames with the red and green pixel value.
+
+The first step of detection algorithm is color filtering of videoframes.
+The most distinctive feature of traffic bulb is it's bright color.
+Color filtering step filter out these candidate pixel from the videoframes.
 For this purpose we convert the BGR color space to HSV space first.
 In BGR space, to detect specific color we need to depend on three different values (B,G,R)
 HSV space has the property to find out the color based on only single value,hue.
 The range of hue values of each color are well defined that help us to filter out our desired pixels.
 In OpenCV the hue range is from 0 to 180.
-We fix the range for red and green analysing the color range of traffic bulbs.
+We fix the range for red and green analyzing the color range of traffic bulbs.
 \ref{t:hue_range} shows the hue range for red and green pixel.
 
 \begin{table}[h!]
@@ -55,29 +58,99 @@ We fix the range for red and green analysing the color range of traffic bulbs.
   \end{tabular}
 \end{table}
 
-Before use these filter images to detect circle, we use gaussian blur filter, in order to avoid false detection.
+\begin{figure*}[!ht]
+\centering
+\subfloat[Frame with red lights] {\includegraphics[width=3in]{images/frame301.pdf}}
+\subfloat[Frame with green lights] {\includegraphics[width=3in]{images/frame502.pdf}}
+
+\caption{Original videoframes.}
+\label{f:org_img}
+\end{figure*}
+
+\begin{figure*}[!ht]
+\centering
+\subfloat[Frame with red lights] {\includegraphics[width=3in]{images/RedGreenfiltering_red.pdf}}
+\subfloat[Frame with green lights] {\includegraphics[width=3in]{images/RedGreenfiltering.pdf}}
+
+\caption{Red green pixel filtering.}
+\label{f:fil_img}
+\end{figure*}
+
+\ref{f:org_img}(a) shows the videoframe with red traffic signal light and (b) shows the frame with green traffic signal light.
+\ref{f:fil_img} shows the image with only red and green pixel.
+(a) shows the filtering output with red traffic light and (b) shows the fltering output with green traffic lights.
+The color filtering process is computationally lightweighted and it zeros out most of the pixels that reduce comutational time to next steps.
+
+The next step of this detection algorithm is to detect the shape of traffic bulb (circle).
+These filter images has only the desired pixel values.
+To detect circle on this filtered images, we use gaussian blur filter, in order to avoid false detection.
 After this, we use the circle Hough Transform \cite{hough_circle} to detect the circles.
 But, noise from the original images can fool the hough transform to detect false and more circles.
 As a solution to this poblem, before converting our original BGR space frame to HSV space, a median filter is used.
-Now to detect if traffic light is in the black box, the other feature of our detection, we scan a rectangle frame  around the traffic light.
-Traffic lights locate in a black box, which can place in horizontally or vertically in street.
-To make our approch more global we scan all around the traffic light to check the intensity.
+
+\begin{figure*}[!ht]
+\centering
+\subfloat[Frame with red lights] {\includegraphics[width=3in]{images/Detectedredcircles.pdf}}
+\subfloat[Frame with green lights] {\includegraphics[width=3in]{images/Detectedgreencircles.pdf}}
+
+\caption{Red green traffic bulb detection.}
+\label{f:cir_img}
+\end{figure*}
+
+\ref{f:cir_img} shows the circle detection output.
+(a) shows the red traffic light detection.
+In this image we have other red pixel values except the traffic signal light.
+But Hough circle transform can detect the circle precisely.
+(b) shows the green traffic light detection output with Hough transform method.
+
+At this point we have knoledge about the traffic bulb location and size (radius).
+Now to detect if traffic bulb is in the black box, the other feature of our detection, we tried two heuristic filters.
+Our first approach is to check pixels intensity of a circular area around the traffic bulb.
+We use midpoint circle algorithm to find out the pixels value on a circle perimeter which is larger than our traffic bulb size.
+our system give a matrix with the count of pixels which has the intensity of a black color of all those points.
 The intensity of black color can detect to check the Value of HSV space.
 For black color, range of Value is very low, less than 40-45.
-\ref{f:norec_filter} shows there is one green false positive between two red traffic light.
-\ref{f:rec_filter} shows the output after using our heuristic black box checking filter.
+If this count is greater than our threshold we select that circle as our traffic bulb.
+But we face some false detection problem with this approch.
+Since the intensity of traffic bulb color is high and it spreads out also.
+So we can not get successful result with this approch.
 
-
-\begin{figure}
+\begin{figure*}[h]
 \centering
-\includegraphics[width=5.2in]{plots/norec_filter.jpg}
+\subfloat[Red traffic bulb] {\includegraphics[width=2.2in]{images/redlight.jpg}}
+\subfloat[Green traffic bulb] {\includegraphics[width=2.2in]{images/greenlight.jpg}}\\
+
+\caption{Red and green traffic bulb intensity.}
+\label{f:bulb_int}
+\end{figure*}
+
+\ref{f:bulb_int} shows the red and green traffic bulb intensity.
+We can see that the color spreads out around the exact circle area.
+So the black color intensity measurement around the bulb circle area using midpoint circle algorithm is not giving actual result.
+
+Our second approch is to scan a rectangle frame  around the traffic light.
+Traffic bulbss locate in a black box, which can place in horizontally or vertically in street.
+To make our approch more global we scan all around the traffic light to check the intensity.
+Our system give a matrix of the no of pixels that has the intensity same as black color.
+If this pixel no is more than our threshold value we consider that the detected circle is in the traffic signal black box and we finally detect that circle as our traffic bulb.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=4.2in]{images/norec_filter.pdf}
 \caption{Output not using black box checking filter.}
 \label{f:norec_filter}
 \end{figure}
 
-\begin{figure}
+\ref{f:norec_filter} shows there is one green false positive between two red traffic light.
+That false green circle actually a street nameplate and around that there is no black box.
+So when we use our black box checing filter we can remove this false positive detection.
+\ref{f:rec_filter} shows the output after using our heuristic black box checking filter.
+
+
+
+
+\begin{figure}[ht!]
 \centering
-\includegraphics[width=5.2in]{plots/rec_filter.jpg}
+\includegraphics[width=4.2in]{images/rec_filter.pdf}
 \caption{Output using black box checking filter.}
 \label{f:rec_filter}
 \end{figure}
@@ -93,9 +166,9 @@ Apart from this, when our system can not detect any circle in our specific ROI a
 
 \begin{figure*}[!ht]
 \centering
-\subfloat[Initial ROI] {\includegraphics[width=4.2in]{plots/rec_mv.jpg}}\\
-\subfloat[Movement with change of sensor data] {\includegraphics[width=4.2in]{plots/rec_mv1.jpg}}\\
-\subfloat[Movement with change of sensor data] {\includegraphics[width=4.2in]{plots/rec_mv2.jpg}}
+\subfloat[Initial ROI] {\includegraphics[width=4.2in]{images/rec_mv.jpg}}\\
+\subfloat[Movement with change of sensor data] {\includegraphics[width=4.2in]{images/rec_mv1.jpg}}\\
+\subfloat[Movement with change of sensor data] {\includegraphics[width=4.2in]{images/rec_mv2.jpg}}
 
 \caption{ROI movement with the change of sensor data.}
 \label{f:rec_mv}
@@ -108,12 +181,14 @@ And this process is contuing to every frame.
 
 \begin{figure*}[!ht]
 \centering
-\subfloat {\includegraphics[width=4.2in]{plots/rec_enl.jpg}}\\
-\subfloat {\includegraphics[width=4.2in]{plots/rec_enl1.jpg}}
+\subfloat {\includegraphics[width=4.2in]{images/rec_enl.jpg}}\\
+\subfloat {\includegraphics[width=4.2in]{images/rec_enl1.jpg}}
 
 \caption{Enlarged ROI to detect traffic light successfully.}
 \label{f:rec_enl}
 \end{figure*}
+
+
 
 
 
