@@ -1,0 +1,64 @@
+..\chapter{Background}
+In this chapter we will discuss the background of our system.
+The main approch of our system is to improve the traffic light detection using smartphone sensor.
+In first part of this chapter we will discuss the inertial sensor of Android and eular angle using sensor fusion.
+Later we will discuss the traffic bulb detection process.
+
+\section{Accelerometer}
+Accelerometer is one of the motion sensor in smartphone.
+Smartphone now a days have three axis accelerometer,which can measure acceleration along this three axis and return a vector in the reference frame.
+Accelerometer can not measure free fall acceleration rather it measure the forces that are applied to the sensor itself.
+For example, when phone is on the table, it will measure acceleration of g, the acceleration due to gravity, because this is proportional to the accelerometer experienced weight.
+
+\ref{}... shows the reference coordination system of accelerometer in Android phone.
+The device measures acceleration ax,ay and az along the three axis of android reference frame.
+The acceleration az points towards the outside of screen face, that is perpendicular to the phone plane.
+The acceleration ax and ay are along to phone plane.
+
+\section{Gyroscope}
+Gyroscope measure the rate of rotation or the angular velocity of rotation along the three axis of smartphone's reference frame.
+This is also a motion sensor of smartphone like accelerometer.
+These gyroscope use MEMS (micro-electro-mechanical sensing) technology, contain vibrating elements to measure Coriolis effect.
+When smartphone rotates, there is a change of direction of vibrating elements because of the Coriolis force.
+MEMS gyroscope measure these variation along the three axis to estimate the rate of rotation.
+Gyroscope output is quite smooth, and very responsive to small rotations.
+
+\ref{}... shows the reference coordination system of gyroscope in Android phone.
+The device measures rate of rotaion wx,wy and wz along the three axis of android reference frame.
+The angular velocity of rotation wz points towards the outside of screen face, that is perpendicular to the phone plane, which is the angular velocity of phone's rotaion in X-Y plane.
+The rate of rotation wx and wy is along with the phone plane, which is the angular velocity of phone's rotaion in Y-Z plane and Z-X plane respectively.
+
+\section{Geomagnetic field sensor}
+Geomagnetic field sensor is a position sensor of smartphone.
+It helps to determine the device's physical position in the world's reference frame.
+Geomagnetic field sensor mesure the change of magnetioc field and estimates the magnetic field at earth's point to find the declination from the true North.
+It provides the geomagnetic field strength along the three coordination axis of refernce frame.
+
+
+\section{Orientation}
+Each sensor defined in previous section has it's own strength and weakness.
+Gyroscope is fast, accurate and reliable.
+It is very responsive to small rotation so it can track the change of rotation at every timestamp.
+But gyroscope data can not measure gravity.
+So with accelerometer it can provide a better rotation or motion of the sensor in application's frame reference.
+But to have the position of the device in world's reference frame, we need to fused this data with geomagnetic field sensor.
+Another motion sensor in android, rotation vector, use this three sensor data to report the orientation of the device in vector form along the axis of reference frame.
+
+This rotation vector provides the axis of the system and the angle of rotation from these axis.
+From this angle and axis data, we can get the orientation of the system in terms of pitch, roll and azimuth.
+Pitch is the degree of rotation about the X axis.
+This is the angle between the plane parallel to device and parallel to the ground.
+If device top edge incle to the ground the pitch will be positive and vice versa.
+The range of pitch value is -180 degrees to 180 degrees.
+Roll is the degree of rotation abot Y axix.
+This is the angle between the plane perpendicular to device and perpendicular to ground.
+If device's left edge inclenes to the ground roll value is positive.
+The range of roll value is -90 degrees to 90 degrees.
+Azimuth is the degree of rotation about Z axis.
+If the device is faced to the earth's North the azimuth is 0 degree.
+Azimuth is 90 degree at earth's East, 180 degree to earth's South and 270 degree to earth's West.
+
+
+
+
+
