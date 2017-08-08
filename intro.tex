@@ -1,28 +1,45 @@
 \chapter{Introduction}
 
-This dissertation addresses the problem of efficient traffic light detection using the sensor hint of a smartphones.
+This dissertation addresses the problem of traffic light detection efficiently using the inertial sensor hints of a smartphone.
 
-Smartphone usage is growing in past years.
-This growth of smartphones and GPS using provides a great oppertunity on navigation.
-There is a lots of work on navigation for the automatic car.
-For the pedestrian navigation, there is very limited work.
+Smartphone usage has been growing rapidly over the past several years. 
+All smartphones today come with Global Positioning System (GPS), inertial sensors, and cameras. 
+GPS provides reasonably high accuracy localization in outdoors. 
+Outdoor localization by GPS is fundamental to many higher level applications such as navigation, driving assistance, and autonomous driving.
 
-For the automatic cars and pedestraian navigation, though we hava GPS data of smartphones, we need to know the environment.
-Traffic light detection is a very crutial part for this navigation.
-Traffic light detection only a part of the navigation, so it's important to have lower comutatational time for this.
-Sensor hint of smartphone can improve the compuutational time and detect the traffic light efficiently.
+GPS is not sufficient for many higher level applications such as autonomous driving and pedestrian navigation by visually impaired for two reasons.
+First, GPS accuracy is not high enough, especially in urban environments for reliable localization for these applications. 
+Second, in addition to high accuracy localization, the perception of the environment is paramount for effective decision making. 
 
-Our system focus on the detection of traffic light as a part of the navigation for the visually impaired people.
-The contribution of this work are:
+Detection of traffic lights in public streets is an important part of perception for both autonomous driving and navigation by visually impaired.  
+There has a significant research \todo{cite} on traffic light detection in the context of autonomous driving. 
+However, in the context of pedestrian navigation by the visually impaired, the existing research is limited. 
+
+Traffic light detection during pedestrian navigation is more challenging compared to autonomous driving because of several reasons. 
+First, unlike a car mounted camera, the movement of a handheld or body-mounted camera is shaky due to natural walking gaits. 
+%This can result in periodic blurred frames and motion blur. 
+Second, the viewpoint of a pedestrian's camera can move a lot compared to the straight viewpoint of a camera on a vehicle.
+Third, the traffic lights are mostly perpendicular to a vehicle, where they are angled for a pedestrian. 
+
+In this work, we address these challenges and build a system to detect traffic light for pedestrian navigation.
+Here, we combine sensor fusion and image processing to efficiently detect traffic lights. 
+
+The primary contributions of this work are:
+
 \begin{itemize}
+\item Computation time improvement by a factor of 10x (on average) for traffic light detection using the inertial sensor hints. 
+\item Experimental study of the sensor fusion for the reliable estimation of a smartphone's pose. 
+\item Efficient heuristic filters for reducing the false positive rate in traffic light detection.
+\item Evaluation of our system with real-world traffic light video in various lighting conditions. 
+\item Evaluation of our system with other public datasets.
   
-\item Our system uses the sensor hint to improve the computation time. We can improve 10x computational time.
-\item We use heuristic filter to check the traffic bulb in a black box that improve the accuracy.
-\item We experiment and implement our system in the real time.  
+%% \item Our system uses the sensor hint to improve the computation time. We can improve 10x computational time.
+%% \item We use heuristic filter to check the traffic bulb in a black box that improve the accuracy.
+%% \item We experiment and implement our system in the real time.  
 
 \end{itemize}
 
-The reminder of this dissertation is structed as fllows.
-Background of the inertial sensor of smartphones and the image processing for traffic light detection is provided in chapter \ref{c:background}.
-Some previous and ongoing work related to our system is described in chapter .
-We describe the overall operation of our system in chapter \ref{c:system} followed by the evaluation result in chapter .
+The remainder of this dissertation is structured as follows.
+We discuss the background of inertial sensors of smartphones and image processing for traffic light detection in chapter \ref{c:background}.
+We describe our system architecture in chapter \ref{c:system}.
+In chapter \todo{refer}, we present the end-to-end evaluation.
