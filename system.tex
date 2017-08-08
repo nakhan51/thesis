@@ -34,6 +34,7 @@ These data have syncronization with our recorded videoframes, since we logged in
 Now to detect the traffic light, we use three features of traffic light.
 Those are the color, shape of traffic light and traffic light location in a black box.
 
+\subsection{Color filtering}
 The first step of detection algorithm is color filtering of videoframes.
 The most distinctive feature of traffic bulb is it's bright color.
 Color filtering step filter out these candidate pixel from the videoframes.
@@ -82,6 +83,7 @@ We fix the range for red and green analyzing the color range of traffic bulbs.
 (a) shows the filtering output with red traffic light and (b) shows the fltering output with green traffic lights.
 The color filtering process is computationally lightweighted and it zeros out most of the pixels that reduce comutational time to next steps.
 
+\subsection{Circularity check}
 The next step of this detection algorithm is to detect the shape of traffic bulb (circle).
 These filter images has only the desired pixel values.
 To detect circle on this filtered images, we use gaussian blur filter, in order to avoid false detection.
@@ -104,6 +106,7 @@ In this image we have other red pixel values except the traffic signal light.
 But Hough circle transform can detect the circle precisely.
 (b) shows the green traffic light detection output with Hough transform method.
 
+\subsection{Heuristic filter}
 At this point we have knoledge about the traffic bulb location and size (radius).
 Now to detect if traffic bulb is in the black box, the other feature of our detection, we tried two heuristic filters.
 Our first approach is to check pixels intensity of a circular area around the traffic bulb.
@@ -116,9 +119,10 @@ But we face some false detection problem with this approch.
 Since the intensity of traffic bulb color is high and it spreads out also.
 So we can not get successful result with this approch.
 
-\begin{figure*}[h]
+\begin{figure*}[ht]
 \centering
 \subfloat[Red traffic bulb] {\includegraphics[width=2.2in]{images/redlight.jpg}}
+\hfill
 \subfloat[Green traffic bulb] {\includegraphics[width=2.2in]{images/greenlight.jpg}}\\
 
 \caption{Red and green traffic bulb intensity.}
@@ -134,7 +138,7 @@ Traffic bulbss locate in a black box, which can place in horizontally or vertica
 To make our approch more global we scan all around the traffic light to check the intensity.
 Our system give a matrix of the no of pixels that has the intensity same as black color.
 If this pixel no is more than our threshold value we consider that the detected circle is in the traffic signal black box and we finally detect that circle as our traffic bulb.
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=4.2in]{images/norec_filter.pdf}
 \caption{Output not using black box checking filter.}
@@ -156,8 +160,22 @@ So when we use our black box checing filter we can remove this false positive de
 \label{f:rec_filter}
 \end{figure}
 
-For improvize our detection we also use the smartphone sensor data.
-So when we detect a traffic light in our video frame successfully using the color,shape of traffic light and the characteristics of traffic bilb being in a box, we have idea of the position of the traffic light.
+\subsection{Sensor hints}
+\subsubsection{Syncronization sensor data}
+To improve our detection we also use the smartphone's sensor data hints.
+Our system logged the sensor data while recording the video.
+From the logged data we know the time for sensor data registered.
+We have the time when video is recorded.
+After that, we synchronized our data with the video using the starting time of the video and the frame rate.
+So, using the frame rate and starting time we know the time for each frame, and from the logged sensor data, we know the sensor value correspond to the time.
+Using this time and our frame time we interpolated sensor hints if we miss any data correspond to that frame.
+Finally, we get the synchronized sensor data with our recorded video.
+
+\ref{} shows the interface of our android app.
+So when we start recording the pitch, roll and azimuth display in the screen and also start registering in a file.
+
+\subsubsection{Region of interest area selection}
+Now, when we detect a traffic light in our video frame successfully using the color,shape of traffic light and the characteristics of traffic bilb being in a box, we have idea of the position of the traffic light.
 With this idea we subdevide our videoframe making a region of interest area.
 When we move to the next frame, we have a prior knowledge of traffic light position and we know the sensor data, pitch, roll and azimuth of this frame.
 Using these sensor data of curent frame and the previous frame we have the idea of movement of traffic light.
@@ -194,11 +212,6 @@ And this process is contuing to every frame.
 
 
 
-\begin{figure}
-\centering
-\includegraphics[width=5.2in]{plots/cdf_time.pdf}
-\caption{CDF of frame processing time.}
-\label{f:cdf_time}
-\end{figure}
+
 
 
