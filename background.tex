@@ -2,30 +2,32 @@
 \label{c:background}
 In this chapter we will discuss the background of our system.
 The main approch of our system is to improve the traffic light detection using smartphone sensor.
-In first part of this chapter we will discuss the inertial sensor of Android and eular angle using sensor fusion.
+In first part of this chapter we will discuss the inertial sensor of Android and sensor fusion.
 Later we will discuss the traffic bulb detection process.
 
-\section{Accelerometer}
+\section{Inertial sensor of smartphone}
+\subsection{Accelerometer}
 Accelerometer is one of the motion sensor in smartphone.
 Smartphone now a days have three axis accelerometer,which can measure acceleration along this three axis and return a vector in the reference frame.
 Accelerometer can not measure free fall acceleration rather it measure the forces that are applied to the sensor itself.
 For example, when phone is on the table, it will measure acceleration of g, the acceleration due to gravity, because this is proportional to the accelerometer experienced weight.
 
 Figure \ref{f:acc} shows the reference coordination system of accelerometer in Android phone.
-The device measures acceleration ax,ay and az along the three axis of android reference frame.
-The acceleration az points towards the outside of screen face, that is perpendicular to the phone plane.
-The acceleration ax and ay are along to phone plane.
+The device measures acceleration $a_x$, $a_y$ and $a_z$ along the three axis of android reference frame.
+The acceleration $a_z$ points towards the outside of screen face, that is perpendicular to the phone plane.
+The acceleration $a_x$ and $a_y$ are along to phone plane.
 
 \begin{figure*}[!ht]
 \centering
-\subfloat[Accelerator coordination] {\label{f:acc}\includegraphics[width=3in]{figures/coord_acceleration.pdf}}
-\subfloat[Gyroscope coordination] {\label{f:gyro}\includegraphics[width=3in]{figures/coord_omega.pdf}}
+\subfloat[Accelerator coordination] {\label{f:acc}\includegraphics[width=2.5in]{figures/coord_acceleration.pdf}}
+\hfill
+\subfloat[Gyroscope coordination] {\label{f:gyro}\includegraphics[width=2.5in]{figures/coord_omega.pdf}}
 
 \caption{Smartphone reference coordination system.}
 \label{f:coord_dia}
 \end{figure*}
 
-\section{Gyroscope}
+\subsection{Gyroscope}
 Gyroscope measure the rate of rotation or the angular velocity of rotation along the three axis of smartphone's reference frame.
 This is also a motion sensor of smartphone like accelerometer.
 These gyroscope use MEMS (micro-electro-mechanical sensing) technology, contain vibrating elements to measure Coriolis effect.
@@ -34,18 +36,18 @@ MEMS gyroscope measure these variation along the three axis to estimate the rate
 Gyroscope output is quite smooth, and very responsive to small rotations.
 
 Figure \ref{f:gyro} shows the reference coordination system of gyroscope in Android phone.
-The device measures rate of rotaion wx,wy and wz along the three axis of android reference frame.
-The angular velocity of rotation wz points towards the outside of screen face, that is perpendicular to the phone plane, which is the angular velocity of phone's rotaion in X-Y plane.
-The rate of rotation wx and wy is along with the phone plane, which is the angular velocity of phone's rotaion in Y-Z plane and Z-X plane respectively.
+The device measures rate of rotaion $\omega_x$, $\omega_y$ and $\omega_z$ along the three axis of android reference frame.
+The angular velocity of rotation $\omega_z$ points towards the outside of screen face, that is perpendicular to the phone plane, which is the angular velocity of phone's rotaion in X-Y plane.
+The rate of rotation $\omega_x$ and $\omega_y$ is along with the phone plane, which is the angular velocity of phone's rotaion in Y-Z plane and Z-X plane respectively.
 
-\section{Geomagnetic field sensor}
+\subsection{Geomagnetic field sensor}
 Geomagnetic field sensor is a position sensor of smartphone.
 It helps to determine the device's physical position in the world's reference frame.
 Geomagnetic field sensor mesure the change of magnetioc field and estimates the magnetic field at earth's point to find the declination from the true North.
 It provides the geomagnetic field strength along the three coordination axis of refernce frame.
 
 
-\section{Orientation}
+\subsection{Orientation}
 Each sensor defined in previous section has it's own strength and weakness.
 Gyroscope is fast, accurate and reliable.
 It is very responsive to small rotation so it can track the change of rotation at every timestamp.
@@ -59,7 +61,7 @@ From this angle and axis data, we can get the orientation of the system in terms
 
 \begin{figure}
 \centering
-\includegraphics[width=4.2in]{figures/roll_pitch_yaw.pdf}
+\includegraphics[width=3.8in]{figures/roll_pitch_yaw.pdf}
 \caption{Orientation of the smartphone}
 \label{f:rpy_dia}
 \end{figure}
