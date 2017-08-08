@@ -4,8 +4,9 @@
 #cp ~/research/videonav/plots/walk_cdf_time.pdf plots/
 #cp ~/research/videonav/sysdia.pdf figures/
 
-cp ~/research/videonav/plots/sunny.jpg images/
-cp ~/research/videonav/plots/cloudy.jpg images/
+cp ~/research/videonav/plots/sunny_cdf_filter.pdf plots/
+#cp ~/research/videonav/plots/sunny.jpg images/
+#cp ~/research/videonav/plots/cloudy.jpg images/
 
 #cp ~/research/videonav/plots/rec_filter.jpg images/
 #cp ~/research/videonav/plots/norec_filter.jpg images/

@@ -1,7 +1,7 @@
 \chapter{Evaluation}
-\label{c:eval}
+\label{c:evalu}
 
-This chapter discuss the n-to-n evaluation of our system.
+This chapter discuss the end-to-end evaluation of our system.
 
 \section{Evaluation dataset}
 \label{s:eval}
@@ -12,9 +12,9 @@ The right one is cloudy and the left one is sunny.
 
 \begin{figure}[!ht]
 \centering
-\subfloat[Sunny] {\includegraphics[width=3in]{images/sunny.jpg}}
+\subfloat[Sunny] {\includegraphics[width=3.1in]{images/sunny.jpg}}
 \hfill
-\subfloat[Cloudy] {\includegraphics[width=3in]{images/cloudy.jpg}}
+\subfloat[Cloudy] {\includegraphics[width=3.1in]{images/cloudy.jpg}}
 
 \caption{Scene variation of recorded video.}
 \label{f:dataset}
@@ -33,14 +33,28 @@ The right one is cloudy and the left one is sunny.
     Walk with sensor movement-Sunny day & 5905 & 3 mins 16 secs  \\
     Walk with sensor movement-Cloudy day & 6205 & 3 mins 26 secs \\
     Walk regular movement & 6022 & 3 mins 20 secs \\
-    Static with sensor movement & 1810 & 1 min 
+    Static with sensor movement & 1810 & 1 min \\
     \hline
   \end{tabular}
 \end{table}
 
 \section{Computation time}
 We collected data at different time of the day as we discussed in \ref{s:eval}.
-In this section we discuss the processing time of these dataset with the sensor hint and without it.
+In this section we will discuss the processing time of these datasets with the sensor hint and without it.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=5.2in]{plots/sunny_cdf_filter.pdf}
+\caption{CDF of processing time for heuristic filter.}
+\label{f:cdf_fil}
+\end{figure}
+
+\ref{f:cdf_fil} shows the processing time for the heuristic filter we discuss at \ref{c:sys}.
+The processing time depends on the number of circle detected on the frame.
+If circle count is high, filtering need for all of these circles, so processing time will be higher.
+\ref{f:cdf_fil} shows that the median processing time is 1.5 secs for the filtering. 
+
+
 
 \begin{figure}[h!]
 \centering
