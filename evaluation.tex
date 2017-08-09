@@ -54,7 +54,12 @@ The processing time depends on the number of circle detected on the frame.
 If circle count is high, filtering need for all of these circles, so processing time will be higher.
 \ref{f:cdf_fil} shows that the median processing time is 1.5 secs for the filtering. 
 
-
+\begin{figure}[h!]
+\centering
+\includegraphics[width=5.2in]{plots/sunny_cdf_time.pdf}
+\caption{CDF of frame processing time for walking dataset in sunny weather.}
+\label{f:cdf_sunny}
+\end{figure}
 
 \begin{figure}[h!]
 \centering
@@ -71,7 +76,50 @@ We can improve the processing time 8.15x.
 The median of the processing time witt sensor and heuristic filter is 19ms.
 Though we can improve the processing time 5.57x with the filter but it increases the accuracy, which we will describe at section \ref{s:acc}
 
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=5.2in]{plots/sunny_recarea.pdf}
+\caption{Processing time with the increase of the rectangle area.}
+\label{f:recarea}
+\end{figure}
+
+
 \section{Accuracy}
 \label{s:acc}
+
+
+\begin{table}[h!]
+  \centering
+  \caption{Accuracy with the sensor hints.}
+  \label{t:dataset}
+  \begin{tabular}{  l  c  r  }
+   
+     & Static with sensor movement  \\
+    \hline
+    True Positive & 97.1182  \\
+    False Positive & 3.55427 \\
+    False Negative & 0.0960615 \\
+    \hline
+  \end{tabular}
+\end{table}
+
+
+\begin{table}[h!]
+  \centering
+  \caption{Accuracy with no  sensor hints.}
+  \label{t:dataset}
+  \begin{tabular}{  l  c  r  }
+   
+     & Static with sensor movement  \\
+    \hline
+    True Positive & 89.8175  \\
+    False Positive & 5.18732 \\
+    False Negative & 13.3525 \\
+    \hline
+  \end{tabular}
+\end{table}
+ 
+
 
 

@@ -1,24 +1,24 @@
 \chapter{System}
 \label{c:system}
-In this chapter, we discuss about the system overview for traffic light detection.
-This system detect the color of traffic light in a recorded videoframe.
+In this chapter, we discuss the system overview for traffic light detection.
+This system detects the color of a traffic light in a recorded video frame.
 We captured video using a smartphone along with the sensor data.
 
 \section{System architecture}
 \label{s:archi}
-We use three features of traffic light, color,shape, and traffic bulb in a black box and the sensor feature of a smartphone as a system architecture for traffic light detection.
+We use three features of the traffic light, color, shape, and traffic bulb in a black box and the sensor feature of a smartphone as a system architecture for traffic light detection.
 While recording the video we logged in the sensor data.
 The first step of detection is the color filtering of the recorded videos.
 Each video frames is consist of different colors.
-In this step each frame is filtered with only red and green pixel.
+In this step, each frame is filtered with only red and green pixel.
 The traffic bulb shape is mostly circle.
 To detect this characteristic we use Hough Circle  transformation\cite{hough_circle}.
-Based on the traffic light detection position in videoframes, we fix region of interest area, which is a subpart of videoframes.
-After that, on next videoframes the ROI change in respect to the sensor data. 
+Based on the traffic light detection position in video frames, we fix the region of interest area, which is a subpart of video frames.
+After that, on next video frames the ROI change in respect to the sensor data. 
 
 \subsection{Diagram}
 
-Section \ref{s:archi} discesses the overall architecture of our system.
+Section \ref{s:archi} discusses the overall architecture of our system.
 
 \ref{f:sys_dia} shows the overview of the system.
 
@@ -29,21 +29,21 @@ Section \ref{s:archi} discesses the overall architecture of our system.
 \label{f:sys_dia}
 \end{figure}
 
-At first we recorded videos along with the sensor data, gyroscope, accelerometer, pitch,roll, and azimuth.
-These data have syncronization with our recorded videoframes, since we logged in sensor data while recording.
-Now to detect the traffic light, we use three features of traffic light.
-Those are the color, shape of traffic light and traffic light location in a black box.
+At first, we recorded videos along with the sensor data, gyroscope, accelerometer, pitch, roll, and azimuth.
+These data have synchronization with our recorded video frames since we logged in sensor data while recording.
+Now to detect the traffic light, we use three features of the traffic light.
+Those are the color, shape of a traffic light and traffic light location in a black box.
 
 \subsection{Color filtering}
-The first step of detection algorithm is color filtering of videoframes.
-The most distinctive feature of traffic bulb is it's bright color.
-Color filtering step filter out these candidate pixel from the videoframes.
-For this purpose we convert the BGR color space to HSV space first.
-In BGR space, to detect specific color we need to depend on three different values (B,G,R)
-HSV space has the property to find out the color based on only single value,hue.
+The first step of detection algorithm is color filtering of video frames.
+The most distinctive feature of traffic bulb is its bright color.
+Color filtering step filters out these candidate pixels from the video frames.
+For this purpose, we convert the BGR color space to HSV space first.
+In BGR space, to detect specific color we need to depend on three different values (B, G, R)
+HSV space has the property to find out the color based on the only single value of hue.
 The range of hue values of each color are well defined that help us to filter out our desired pixels.
-In OpenCV the hue range is from 0 to 180.
-We fix the range for red and green analyzing the color range of traffic bulbs.
+In OpenCV, the hue range is from 0 to 180.
+We fix the range for the red and green analyzing the color range of traffic bulbs.
 \ref{t:hue_range} shows the hue range for red and green pixel.
 
 \begin{table}[h!]
@@ -78,18 +78,18 @@ We fix the range for red and green analyzing the color range of traffic bulbs.
 \label{f:fil_img}
 \end{figure*}
 
-\ref{f:org_img}(a) shows the videoframe with red traffic signal light and (b) shows the frame with green traffic signal light.
+\ref{f:org_img}(a) shows the video frame with red traffic signal light and (b) shows the frame with green traffic signal light.
 \ref{f:fil_img} shows the image with only red and green pixel.
-(a) shows the filtering output with red traffic light and (b) shows the fltering output with green traffic lights.
-The color filtering process is computationally lightweighted and it zeros out most of the pixels that reduce comutational time to next steps.
+(a) shows the filtering output with a red traffic light and (b) shows the filtering output with green traffic lights.
+The color filtering process is computationally lightweight and it zeros out most of the pixels that reduce computational time to next steps.
 
 \subsection{Circularity check}
 The next step of this detection algorithm is to detect the shape of traffic bulb (circle).
-These filter images has only the desired pixel values.
-To detect circle on this filtered images, we use gaussian blur filter, in order to avoid false detection.
+These filter images have only the desired pixel values.
+To detect circle on this filtered images, we use Gaussian blur filter, in order to avoid false detection.
 After this, we use the circle Hough Transform \cite{hough_circle} to detect the circles.
-But, noise from the original images can fool the hough transform to detect false and more circles.
-As a solution to this poblem, before converting our original BGR space frame to HSV space, a median filter is used.
+But, noise from the original images can fool the Hough transform to detect false and more circles.
+As a solution to this problem, before converting our original BGR space frame to HSV space, a median filter is used.
 
 \begin{figure*}[!ht]
 \centering
@@ -102,22 +102,22 @@ As a solution to this poblem, before converting our original BGR space frame to 
 
 \ref{f:cir_img} shows the circle detection output.
 (a) shows the red traffic light detection.
-In this image we have other red pixel values except the traffic signal light.
+In this image, we have other red pixel values except for the traffic signal light.
 But Hough circle transform can detect the circle precisely.
 (b) shows the green traffic light detection output with Hough transform method.
 
 \subsection{Heuristic filter}
-At this point we have knoledge about the traffic bulb location and size (radius).
+At this point, we have knowledge about the traffic bulb location and size (radius).
 Now to detect if traffic bulb is in the black box, the other feature of our detection, we tried two heuristic filters.
 Our first approach is to check pixels intensity of a circular area around the traffic bulb.
-We use midpoint circle algorithm to find out the pixels value on a circle perimeter which is larger than our traffic bulb size.
-our system give a matrix with the count of pixels which has the intensity of a black color of all those points.
+We use midpoint circle algorithm to find out the pixels value on a circular perimeter which is larger than our traffic bulb size.
+our system gives a matrix with the count of pixels which has the intensity of a black color of all those points.
 The intensity of black color can detect to check the Value of HSV space.
-For black color, range of Value is very low, less than 40-45.
+For black color, the range of the Value is very low, less than 40-45.
 If this count is greater than our threshold we select that circle as our traffic bulb.
-But we face some false detection problem with this approch.
+But we face some false detection problem with this approach.
 Since the intensity of traffic bulb color is high and it spreads out also.
-So we can not get successful result with this approch.
+So we can not get a successful result with this approach.
 
 \begin{figure*}[ht]
 \centering
@@ -131,12 +131,12 @@ So we can not get successful result with this approch.
 
 \ref{f:bulb_int} shows the red and green traffic bulb intensity.
 We can see that the color spreads out around the exact circle area.
-So the black color intensity measurement around the bulb circle area using midpoint circle algorithm is not giving actual result.
+So the black color intensity measurement around the bulb circle area using midpoint circle algorithm is not giving an actual result.
 
-Our second approch is to scan a rectangle frame  around the traffic light.
-Traffic bulbss locate in a black box, which can place in horizontally or vertically in street.
-To make our approch more global we scan all around the traffic light to check the intensity.
-Our system give a matrix of the no of pixels that has the intensity same as black color.
+Our second approach is to scan a rectangle frame  around the traffic light.
+Traffic bulbs locate in a black box, which can place in horizontally or vertically in street.
+To make our approach more global we scan all around the traffic light to check the intensity.
+Our system gives a matrix of the no of pixels that have the intensity same as black color.
 If this pixel no is more than our threshold value we consider that the detected circle is in the traffic signal black box and we finally detect that circle as our traffic bulb.
 \begin{figure}[!ht]
 \centering
@@ -147,7 +147,7 @@ If this pixel no is more than our threshold value we consider that the detected 
 
 \ref{f:norec_filter} shows there is one green false positive between two red traffic light.
 That false green circle actually a street nameplate and around that there is no black box.
-So when we use our black box checing filter we can remove this false positive detection.
+So when we use our black box checking filter we can remove this false positive detection.
 \ref{f:rec_filter} shows the output after using our heuristic black box checking filter.
 
 
@@ -165,23 +165,23 @@ So when we use our black box checing filter we can remove this false positive de
 To improve our detection we also use the smartphone's sensor data hints.
 Our system logged the sensor data while recording the video.
 From the logged data we know the time for sensor data registered.
-We have the time when video is recorded.
+We have the time when the video is recorded.
 After that, we synchronized our data with the video using the starting time of the video and the frame rate.
-So, using the frame rate and starting time we know the time for each frame, and from the logged sensor data, we know the sensor value correspond to the time.
-Using this time and our frame time we interpolated sensor hints if we miss any data correspond to that frame.
+So, using the frame rate and starting time we know the time for each frame, and from the logged sensor data, we know the sensor value corresponds to the time.
+Using this time and our frame time we interpolated sensor hints if we miss any data corresponding to that frame.
 Finally, we get the synchronized sensor data with our recorded video.
 
 \ref{} shows the interface of our android app.
 So when we start recording the pitch, roll and azimuth display in the screen and also start registering in a file.
 
 \subsubsection{Region of interest area selection}
-Now, when we detect a traffic light in our video frame successfully using the color,shape of traffic light and the characteristics of traffic bilb being in a box, we have idea of the position of the traffic light.
-With this idea we subdevide our videoframe making a region of interest area.
-When we move to the next frame, we have a prior knowledge of traffic light position and we know the sensor data, pitch, roll and azimuth of this frame.
-Using these sensor data of curent frame and the previous frame we have the idea of movement of traffic light.
-With this change of movement the ROI also moves to the direction of change.
+Now, when we detect a traffic light in our video frame successfully using the color, shape of the traffic light and the characteristics of traffic bulb being in a box, we have the idea of the position of the traffic light.
+With this idea we subdivide our video frame making a region of interest area.
+When we move to the next frame, we have a prior knowledge of traffic light position and we know the sensor data, pitch, roll, and azimuth of this frame.
+Using these sensor data of the current frame and the previous frame we have the idea of the movement of the traffic light.
+With this change of movement, the ROI also moves to the direction of change.
 \ref{f:rec_mv}shows the movement of ROI with the change of pitch and azimuth of our recorded video.
-Apart from this, when our system can not detect any circle in our specific ROI area, it updates the ROI and try to detect the light.
+Apart from this, when our system can not detect any circle in our specific ROI area, it updates the ROI and tries to detect the light.
 
 \begin{figure*}[!ht]
 \centering
@@ -194,9 +194,9 @@ Apart from this, when our system can not detect any circle in our specific ROI a
 \end{figure*}
 
 
-With the successful detection, our region of interest again change with the light position and pitch and azimuth value.
+With the successful detection, our region of interest again changes with the light position and pitch and azimuth value.
 For unsuccessful detection, ROI enlarged until it process the full frame and then go to the next frame to detect traffic light.
-And this process is contuing to every frame.
+And this process is continuing to every frame.
 
 \begin{figure*}[!ht]
 \centering
