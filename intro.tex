@@ -23,11 +23,17 @@ Third, the traffic lights are mostly perpendicular to a vehicle, where they are 
 
 In this work, we address these challenges and build a system to detect traffic light for pedestrian navigation.
 Here, we combine sensor fusion and image processing to efficiently detect traffic lights. 
+The benefit of sensor fusion is two-fold.
+Sensor fusion allows us to process only subpart of a video frame.
+We can predict where the traffic lights will move in a video frame using the estimated motion and orientation of the smartphone and can process only that region of the frame. 
+This results in an order of magnitude improvement in image processing time on average. 
+Additionally, traffic light detection in a sub-image reduces the false positive rate since spurious detections are eliminated from the regions of a frame where the traffic lights are not located.
 
 The primary contributions of this work are:
 
 \begin{itemize}
 \item Computation time improvement by a factor of 10x (on average) for traffic light detection using the inertial sensor hints. 
+\item Accuracy improvement in traffic light detection by processing only the relevant region of a video frame. 
 \item Experimental study of the sensor fusion for the reliable estimation of a smartphone's pose. 
 \item Efficient heuristic filters for reducing the false positive rate in traffic light detection.
 \item Evaluation of our system with real-world traffic light video in various lighting conditions. 
