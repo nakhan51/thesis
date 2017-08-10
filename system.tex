@@ -1,10 +1,10 @@
-\chapter{System}
+\chapter{System Architecture}
 \label{c:system}
 In this chapter, we discuss the system overview for traffic light detection.
 This system detects the color of a traffic light in a recorded video frame.
 We captured video using a smartphone along with the sensor data.
 
-\section{System architecture}
+\section{Overview}
 \label{s:archi}
 We use three features of the traffic light, color, shape, and traffic bulb in a black box and the sensor feature of a smartphone as a system architecture for traffic light detection.
 While recording the video we logged in the sensor data.
@@ -16,7 +16,7 @@ To detect this characteristic we use Hough Circle  transformation\cite{hough_cir
 Based on the traffic light detection position in video frames, we fix the region of interest area, which is a subpart of video frames.
 After that, on next video frames the ROI change in respect to the sensor data. 
 
-\subsection{Diagram}
+%\subsection{Diagram}
 
 Section \ref{s:archi} discusses the overall architecture of our system.
 
