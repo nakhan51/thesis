@@ -107,6 +107,7 @@ But Hough circle transform can detect the circle precisely.
 (b) shows the green traffic light detection output with Hough transform method.
 
 \subsection{Heuristic filter}
+\label{s:filter}
 At this point, we have knowledge about the traffic bulb location and size (radius).
 Now to detect if traffic bulb is in the black box, the other feature of our detection, we tried two heuristic filters.
 Our first approach is to check pixels intensity of a circular area around the traffic bulb.
@@ -175,6 +176,7 @@ Finally, we get the synchronized sensor data with our recorded video.
 So when we start recording the pitch, roll and azimuth display in the screen and also start registering in a file.
 
 \subsubsection{Region of interest area selection}
+\label{s:roi}
 Now, when we detect a traffic light in our video frame successfully using the color, shape of the traffic light and the characteristics of traffic bulb being in a box, we have the idea of the position of the traffic light.
 With this idea we subdivide our video frame making a region of interest area.
 When we move to the next frame, we have a prior knowledge of traffic light position and we know the sensor data, pitch, roll, and azimuth of this frame.
