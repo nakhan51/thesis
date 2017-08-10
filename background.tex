@@ -40,7 +40,7 @@ Here, $a_z$ points perpendicular with respect to the smartphone's screen and $a_
 The accelerometer is another motion sensor in a smartphone.
 The gyroscope measures the rate of rotation or the angular velocity of rotation along the three axes of a smartphone's reference frame.
 %This is also a motion sensor of smartphone like an accelerometer.
-The gyroscope is a MEMS (Micro-Electro-Mechanical Sensing) sensor that uses vibrating elements to measure Coriolis effect \todo{cite}.
+The gyroscope is a MEMS (Micro-Electro-Mechanical Sensing) sensor that uses vibrating elements to measure Coriolis effect \cite{coriolis}.
 When a smartphone rotates, there is a change of direction in the vibrating elements because of the Coriolis force.
 A MEMS gyroscope measures these variations along the three axes to estimate the rate of rotation.
 Gyroscopes are very responsive to small rotations and can measure the variation in the rate of rotation smoothly.
@@ -56,26 +56,38 @@ The gyroscope measures the angular velocity with respect to the reference frame 
 Geomagnetic field sensor is a position sensor of the smartphone.
 It helps to determine the smartphone's physical position in the Earth's reference frame.
 %Geomagnetic field sensor measures the change of the magnetic field and estimates the magnetic field at earth's point to find the declination from the true North.
-Geomagnetic field sensor measures the change of the magnetic field and estimates the declination of a smartphone with respect to the true North. \todo {what is declination. Also, is there any difference between true north and magnetic north?}
-It provides the geomagnetic field strength along the three coordination axes of the reference frame.
-\todo {how three axis is relevant? Isn't it a single number describing rotation compared to the north}
+Geomagnetic field sensor measures the change of the magnetic field and estimates the declination,\note{the angle between geographical North and the magnetic North,}\note{is it needed?} of a smartphone with respect to the true North. \todo {what is declination. Also, is there any difference between true north and magnetic north?}
+The magnetic field in a certain point is directional and has its magnitude.
+This geomagnetic field sensor of Android provides a vector along the three axes, that describes the strength and the direction of the magnetic field relative to the phone.
+X coordinate represents the magnetic field strength in the direction of North magnetic pole roughly.
+So, a positive X value means that the part of the magnetic field points to the North and negative X value means it points to the South.
+Similarly, Y coordinate represents the magnetic field strength to East magnetic pole and Z coordinate represents the direction of phone facing.
+\todo {how three axis is relevant? Isn't it a single number describing rotation compared to the north.} \note{fixed?}
 
 \subsection{Orientation}
 Each sensor described in the previous section has its own strength and weakness.
 The gyroscope is fast, accurate and reliable.
 It is also very responsive to a small rotation.
 As a result, it can track the change of rotation rapidly.
-However, the gyroscope can not measure gravity. \todo{should go after accelerometer?}
-So with the accelerometer, it can provide a better rotation or motion of the sensor in application's frame reference. \todo{how accelerometer helps here?}
+We can get the orientation from the gyroscope integrating the gyroscope values, which will produce the accumulation of error.
+The error can cause the orientation completely off.
+That's why we need to use the accelerometer to inject the correction term that keeps orientation correct with respect to gravity and remove the drift.
+\note{fixed}
+%However, the gyroscope can not measure gravity.
+\todo{should go after accelerometer?}
+So with the accelerometer, it can provide a better rotation or motion of the sensor in application's frame reference.
+\note{fixed?}\todo{how accelerometer helps here?}
 Additionally, to obtain the position of a smartphone in the Earth's reference frame, we need to combine the gyroscope and accelerometer data with geomagnetic field sensor.
 
-Android Sensor API \todo {cite} provides the orientation of the phone with respect the reference frame described before by fusing the data from the accelerometer, gyroscope, and magnetic sensor. 
+So, in summary, we get orientation from gyroscope, accelerometer improves this with the correction due to gravity and geomagnetic field sensor  provides correction due to the magnetic North.
+
+Android Sensor API \cite {api_android} provides the orientation of the phone with respect the reference frame described before by fusing the data from the accelerometer, gyroscope, and magnetic sensor. 
 This orientation contains the pitch, roll, and azimuth of the smartphone. 
 %Another motion sensor in android, rotation vector, use this three sensor data to report the orientation of the device in vector form along the axis of the reference frame.
 
 %This rotation vector provides the axis of the system and the angle of rotation from these axes.
 %
-
+\note{new figure with horizontal phone image}
 \begin{figure}
 \centering
 \includegraphics[width=3.8in]{figures/roll_pitch_yaw.pdf}
@@ -85,17 +97,35 @@ This orientation contains the pitch, roll, and azimuth of the smartphone.
 
 \ref{f:rpy_dia} shows the orientation of a smartphone with respect to the smartphone's coordination frame.
 Here, the pitch is the degree of rotation about the X axis.
-Pitch is the angle between the plane parallel to the smartphone and parallel to the ground. \todo{clarify, parallel twice is ambiguous.}
-If the smartphone's top edge inclines to the ground the pitch will be positive and vice versa.
+This value is positive when the positive Z axis rotates toward the positive Y axis and it is negative when positive Z axis rotates toward the negative Y axis.
+%Pitch is the angle between the plane parallel to the smartphone and parallel to the ground.
+\note{fixed?}
+\todo{clarify, parallel twice is ambiguous.}
+%If the smartphone's top edge inclines to the ground the pitch will be positive and vice versa.
+\note{fixed?}
 \todo{overall below is confusing to read. May be table is better}
-The range of pitch value is -180 degrees to 180 degrees.
 Roll is the rotation angle with respect to the Y axis.
-This is the angle between the plane perpendicular to device and perpendicular to the ground.
-If device's left edge inclines to the ground roll value is positive.
-The range of roll is from -90 degrees to 90 degrees.
+This value is positive when the positive Z axis rotates toward the positive X axis and it is negative when positive Z axis rotates towards the negative X axis.
 Azimuth is the rotation angle with respect to the Z axis.
-If the device is faced to the Earth's North then the azimuth is 0 degree.
-Azimuth is 90 degree at the Earth's east, 180 degrees at the Earth's south, and 270 degrees at the Earth's west.
+This is the angle between the magnetic North and the Y axis.
+For example, if the phone's Y axis is aligned to the magnetic North the azimuth is 0.
+
+\ref{t:rpy} shows the range of pitch, roll, and the azimuth value.
+\begin{table}[h!]
+  \centering
+  \caption{The range of pitch, roll, and azimuth.}
+  \label{t:rpy}
+  \begin{tabular}{  l | c  }
+    
+    Range for pitch value & -180 degrees to 180 degrees \\
+    \hline
+    Range for roll value & -90 degrees to 90 degrees  \\
+    \hline 
+    Range for azimuth value & 0 degree to 360 degrees \\
+    & 0 degree when Y axis align with the magnetic North \\
+    
+  \end{tabular}
+\end{table}
 
 
 \section {Image Processing}
@@ -103,29 +133,13 @@ We process each video frame using computer vision techniques to detect traffic l
 Below, we provide a brief overview of these techniques. 
 
 \subsection{Color Space}
-RGB \todo{cite} and HSV \todo{cite} are two primary color spaces that are used in image processing and computer vision.
+RGB \cite{rgb} and HSV \cite{hsv} are two primary color spaces that are used in image processing and computer vision.
 RGB defines a color as a combination of the three primary colors red (R), green (G), and Blue (B).
 Hence, RGB is an additive color space.
 %RGB color space describes colors with the amount of red, green and blue color presents on that frame.
-\ref{f:rgb} shows the model of RGB space.
-It shows that any color of this cube is a combination of red, blue, and green.
 
-HSV color space describes color in terms of Hue, Saturation, and Value.
-HSV color space is similar to the way human perceive a color.
-It separates the color information from the intensity/brightness.
-The hue is the continuous representation of the color type. \todo{confusing}
-In HSV, hue is an angle from 0 to 360 degree. 
-\todo{make a table?}
-However, the OpenCV \todo{cite} represents color values using the range from 0 to 255. 
-Hence, the OpenCV converts the original range to 0-180.
-Every color can be represented by a different value of Hue.
-Saturation represents the vibrancy of the color.
-The ranges for saturation is from 0 to 255.
-The lower value of saturation represents gray tone in a color and higher value of a saturation represents a primary color.
-The Value represents the brightness of a color.
-The range of the Value is from 0 to 255.
-A lower Value means less bright color and vice-versa.
-A Value of 0 represents the black color.
+\ref{f:rgb} shows the model of RGB space \cite{rgb}.
+It shows that any color of this cube is a combination of red, blue, and green.
 
 \begin{figure}[htbp]
 \begin{minipage}[t]{0.45\linewidth}
@@ -141,14 +155,46 @@ A Value of 0 represents the black color.
 \end{minipage} 
 \end{figure}
 
-\ref{f:hsv} shows the cylindrical model of HSV color space.
+HSV color space describes color in terms of Hue, Saturation, and Value.
+HSV color space is similar to the way human perceive a color.
+It separates the color information from the intensity/brightness.
+Every color can be represented by a different value of Hue.
+
+Saturation represents the vibrancy of the color.
+The lower value of saturation represents the gray tone in a color and higher value of a saturation represents a primary color.
+
+The Value represents the brightness of a color.
+A lower Value means less bright color and vice-versa.
+
+\ref{t:hsv} shows the ranges for hue, saturation, and value.
+It shows that original hue range is 0-360, however, the OpenCV \cite{opencv} represents color values using the range from 0 to 255. 
+Hence, the OpenCV converts the hue original range to 0-180.
+
+\begin{table}[h!]
+  \centering
+  \caption{The range of hue, saturation, and value.}
+  \label{t:hsv}
+  \begin{tabular}{  l | c  }
+    
+    Range for Hue & 0 degree to 360 degrees \\
+    & at OpenCV - 0 degree to 180 degrees\\
+    \hline
+    Range for Saturation & 0 to 255 \\
+    \hline 
+    Range for Value & 0 to 255 \\
+    
+  \end{tabular}
+\end{table}
+
+
+\ref{f:hsv} shows the cylindrical model of HSV color space \cite{hsv}.
 Here, the Hue is the central part.
 The radius of this cylinder represents Saturation and the height of the cylinder represents the Value.
 
 \subsection{Hough Circle Transform}
 Our system detects the circular bulb in a traffic light using the Hough circle algorithm \cite{houghcir_alg}.
 The Hough circle algorithm first detect the edges in a video frame.
-It uses Canny method \todo {cite} for edge detection.
+It uses Canny method \cite{canny} for edge detection.
 \todo{can you make it more clear?}
 Then, at every edge pixel, it generates a circle.
 To find the intersection of these circles, Hough method uses an accumulator matrix.

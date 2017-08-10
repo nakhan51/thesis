@@ -38,12 +38,25 @@ The right one is cloudy and the left one is sunny.
 \end{table}
 
 \section{Annotation}
-TODO
+To measure our system performance quantitatively, we need the ground truth for traffic light.
+We annotate the traffic light's position manually at each video frames to get the ground truth.
+We remark the traffic light state: red or green and the location of traffic light.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=5.2in]{images/annotation.png}
+\caption{Interface for manual annotation.}
+\label{f:annotate}
+\end{figure}
+
+\ref{f:annotate} shows the interface for manual annotation.
+The green box gives the location of the traffic light and we annotate 0 for red traffic light and 1 for green.
 
 \section{Computation time}
 We collected data at different time of the day as we discussed in \ref{s:eval}.
-In this section we will discuss the processing time of these datasets with the sensor hint and without it.
+In this section we discuss the processing time of these datasets with the sensor hint and without it.
 
+\subsection{Processing time for heuristic filter}
 \begin{figure}[h!]
 \centering
 \includegraphics[width=5.2in]{plots/sunny_cdf_filter.pdf}
@@ -51,7 +64,7 @@ In this section we will discuss the processing time of these datasets with the s
 \label{f:cdf_fil}
 \end{figure}
 
-\ref{f:cdf_fil} shows the processing time for the heuristic filter we discuss at \ref{c:sys}.
+\ref{f:cdf_fil} shows the processing time for the heuristic filter we discuss at \ref{s:filter}.
 The processing time depends on the number of circle detected on the frame.
 If circle count is high, filtering need for all of these circles, so processing time will be higher.
 \ref{f:cdf_fil} shows that the median processing time is 1.5 secs for the filtering. 
@@ -70,12 +83,17 @@ If circle count is high, filtering need for all of these circles, so processing 
 \label{f:cdf_time}
 \end{figure}
 
-\ref{f:cdf_time} shows the CDF of the processing time.
+\subsection{Processing time for video frames}
+\ref{f:cdf_time} shows the CDF of the frame processing time.
 It shows that the median of the processing time without sensor and any heuristic filter is 106ms.
 Wheather, the median of the processing time with sensor and without heuristic filter is 13ms.
 We can improve the processing time 8.15x.
 The median of the processing time witt sensor and heuristic filter is 19ms.
 Though we can improve the processing time 5.57x with the filter but it increases the accuracy, which we will describe at section \ref{s:acc}
+
+\subsection{Processing time for subpart images}
+In section \ref{s:roi}, we discuss the change of region of interest area with the sensor hints.
+The failed detection in a subpart images induces to increase the subpart area. 
 
 \begin{figure}[h!]
 \centering
@@ -83,7 +101,9 @@ Though we can improve the processing time 5.57x with the filter but it increases
 \caption{Processing time with the increase of the rectangle area.}
 \label{f:recarea}
 \end{figure}
-
+\ref{f:recarea} shows the processing time with the increase of the subpart area of video frames.
+As we can see, when area of subpart images increase processing time is increasing.
+At the same area, if the amount of candidate pixels is high or the detected circle count is high, processing time is also varying.
 
 \section{Accuracy}
 \label{s:acc}
