@@ -23,7 +23,7 @@ Figure \ref{f:sys_dia} shows the overview of our system.
 Using our smartphone app, we simultaneously record video and inertial sensor data.
 Initially, we process the full region of the video frames to detect the traffic lights.
 Once we successfully detect traffic lights in a video frame, we process only sub-parts of the subsequent frames using the sensor hints. 
-For the subsequent frames, using the orientation change, we predict the region where the the traffic lights are likely to move using and process only that region for detecting the traffic lights.
+For the subsequent frames, using the orientation change, we predict the region where the the traffic lights are likely to move and process only that region for detecting the traffic lights.
 However, the prediction of region-of-interest (ROI) using the sensor hints can sometimes be incorrect.
 In such cases, we gradually increase the area of the ROI until we detect traffic lights in that enlarged area. 
 Note that the increment of the ROI can go up to the whole frame if there is no traffic lights in the frame or the traffic light detection algorithm fails to detect the existing traffic lights. 
@@ -64,7 +64,7 @@ Below, we discuss about these procedures in detail.
 The first step in our image processing pipeline is color space conversion.
 We convert the BGR color space to HSV space.
 To detect a specific color in BGR space, we need to use three different components (B, G, R).
-However, HSV space has the property that we can detect a color based the single component hue.
+However, HSV space has the property that we can detect a color based the single component, hue.
 The range of hue values of each color are well defined and we utilze this range to keep the pixels of a desired color.
 
 
@@ -110,6 +110,17 @@ Table \ref{t:hue_range} shows the hue range for red and green colors.
 \ref{f:fil_img} shows the image with only red and green pixel.
 (a) shows the filtering output with a red traffic light and (b) shows the filtering output with green traffic lights.
 The color filtering process is computationally lightweight and it zeros out most of the pixels that reduce computational time to next steps.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=5.2in]{plots/cdf_clrfil_full.pdf}
+\caption{CDF for computational time comparison of the full videoframes with and without color filtering technique.}
+\label{f:clrfil}
+\end{figure}
+
+\ref{f:clrfil} shows the computational time of the full videoframes with and without red and green color filtering technique.
+It shows that color filtering process helps to reduce the processing time for all other steps significantly and this process itself is computationally lightweight.
+\ref{f:clrfil} shows that the median of processing time is reducing from 2000 ms to 67 ms approximately. 
 
 \subsection{Circularity check}
 The next step of this detection algorithm is to detect the shape of traffic bulb (circle).
