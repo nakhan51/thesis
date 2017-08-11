@@ -19,7 +19,7 @@ In this chapter, we present the end-to-end system and describe various component
 \end{figure}
 
 
-Figure \ref{f:sys_dia} shows the overview of our system.
+\ref{f:sys_dia} shows the overview of our system.
 Using our smartphone app, we simultaneously record video and inertial sensor data.
 Initially, we process the full region of the video frames to detect the traffic lights.
 Once we successfully detect traffic lights in a video frame, we process only sub-parts of the subsequent frames using the sensor hints. 
@@ -70,8 +70,8 @@ The range of hue values of each color are well defined and we utilze this range 
 
 \subsection{Color filtering}
 We only keep red and green pixels of a video frame for further processing in next stages.
-In OpenCV \cite{opencv}, the hue range is from 0 to 180.
-Table \ref{t:hue_range} shows the hue range for red and green colors.
+In OpenCV \cite{opencv}, the range of all hues is from 0 to 180, and each color has its own specific range.
+For example, \ref{t:hue_range} shows the hue range for red and green colors.
 
 \begin{table}[h!]
   \centering
@@ -88,25 +88,27 @@ Table \ref{t:hue_range} shows the hue range for red and green colors.
 \end{table}
 
 
+
+\ref{f:org_img}(a) shows the video frame with red traffic signal light and (b) shows the frame with green traffic signal light.
 \begin{figure*}[!ht]
 \centering
 \subfloat[Frame with red lights] {\includegraphics[width=3in]{images/frame301.pdf}}
 \subfloat[Frame with green lights] {\includegraphics[width=3in]{images/frame502.pdf}}
-
 \caption{Original videoframes.}
 \label{f:org_img}
 \end{figure*}
+
+
 
 \begin{figure*}[!ht]
 \centering
 \subfloat[Frame with red lights] {\includegraphics[width=3in]{images/RedGreenfiltering_red.pdf}}
 \subfloat[Frame with green lights] {\includegraphics[width=3in]{images/RedGreenfiltering.pdf}}
-
 \caption{Red green pixel filtering.}
 \label{f:fil_img}
 \end{figure*}
 
-\ref{f:org_img}(a) shows the video frame with red traffic signal light and (b) shows the frame with green traffic signal light.
+
 \ref{f:fil_img} shows the image with only red and green pixel.
 (a) shows the filtering output with a red traffic light and (b) shows the filtering output with green traffic lights.
 The color filtering process is computationally lightweight and it zeros out most of the pixels that reduce computational time to next steps.
