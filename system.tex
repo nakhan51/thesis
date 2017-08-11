@@ -53,7 +53,7 @@ Next, we discuss the procedure to select a subpart of a frame using sensor hints
 The primary features of a traffic light is its bright red, yellow, or green color and the circular bulbs.
 We use both these features for detecting the traffic lights. 
 However, there can be other objects in the scene that can satisfy these properties such as circular red or green flower on people's clothing, red or green street signs etc.
-To filter out such false detections, we used two heuristic filters, which utilize the fact that traffic lights are usually placed within a black box. 
+To filter out such false detections, we use two heuristic filters, which utilize the fact that traffic lights are usually placed within a black box. 
 Below, we discuss about these procedures in detail.
 
 %% The first step of detection algorithm is color filtering of video frames.
@@ -61,13 +61,17 @@ Below, we discuss about these procedures in detail.
 
 
 \subsection{Color space conversion}
-For this purpose, we convert the BGR color space to HSV space first.
-In BGR space, to detect specific color we need to depend on three different values (B, G, R)
-HSV space has the property to find out the color based on the only single value of hue.
-The range of hue values of each color are well defined that help us to filter out our desired pixels.
-In OpenCV, the hue range is from 0 to 180.
-We fix the range for the red and green analyzing the color range of traffic bulbs.
-\ref{t:hue_range} shows the hue range for red and green pixel.
+The first step in our image processing pipeline is color space conversion.
+We convert the BGR color space to HSV space.
+To detect a specific color in BGR space, we need to use three different components (B, G, R).
+However, HSV space has the property that we can detect a color based the single component hue.
+The range of hue values of each color are well defined and we utilze this range to keep the pixels of a desired color.
+
+
+\subsection{Color filtering}
+We only keep red and green pixels of a video frame for further processing in next stages.
+In OpenCV \cite{opencv}, the hue range is from 0 to 180.
+Table \ref{t:hue_range} shows the hue range for red and green colors.
 
 \begin{table}[h!]
   \centering
@@ -83,8 +87,6 @@ We fix the range for the red and green analyzing the color range of traffic bulb
   \end{tabular}
 \end{table}
 
-
-\subsection{Color filtering}
 
 \begin{figure*}[!ht]
 \centering
