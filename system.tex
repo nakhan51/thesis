@@ -69,13 +69,14 @@ The range of hue values of each color are well defined and we utilize this range
 
 
 \subsection{Color filtering}
+After color space conversion, we select the pixels of a video frame that have either red or green color since these colors are the most distinctive features of traffic lights.
+We detect the red or green color by their corresponding hue range in HSV space as discussed in \ref{s:color_space}. 
+To find the exact range of hue for red and green colors of traffic lights, we analyzed the traffic lights' pixels to compute the hue value distribution.
+Specifically, we computed the distribution of hue values of 200 frames that contain either red or green traffic lights. 
 
-After color space conversion we need to filter out only the candidate pixels from video frames.
-The most distinctive feature of traffic lights is its bright color: red and green.
-The color filtering step examines each pixel of the video frames and keep only the desired pixels for red and green color.
-The individual color can detect by the range of hue in HSV space, as we discuss at \ref{s:color_space}
-To find out the exact range of hue for red and green color of the traffic light we build a histogram for hue.
-We examine traffic lights of 200 video frames to get the hue histogram.
+\ref{f:light_hue} shows the distribution of hue values for only the pixels that have a red or green traffic lights.
+Based on this distribution, we selected the hue range for color filtering. 
+These ranges are shown in \ref{t:hue_range}.
 
 
 \begin{figure}[!ht]
@@ -85,11 +86,6 @@ We examine traffic lights of 200 video frames to get the hue histogram.
 \label{f:light_hue}
 \end{figure}
 
-\ref{f:light_hue} shows the statistics for hue range of red and green traffic light.
-We make the hue range for red and green colors based on this statistics.
-
-\note{unnecessary?} In OpenCV \cite{opencv}, the range of all hues is from 0 to 180, and each color has its own specific range.
-For example, \ref{t:hue_range} shows the hue range for red and green colors.
 
 \begin{table}[h!]
   \centering
