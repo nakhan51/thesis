@@ -10,7 +10,7 @@
 #cp ~/research/videonav/plots/bar_tp.pdf plots/
 #cp ~/research/videonav/plots/bar_fp.pdf plots/
 #cp ~/research/videonav/plots/bar_fn.pdf plots/
-cp ~/research/videonav/plots/cdf_clrfil_full.pdf plots/
+cp ~/research/videonav/plots/stat_light.pdf plots/
 
 #cp ~/research/videonav/plots/sunny.jpg images/
 #cp ~/research/videonav/plots/cloudy.jpg images/

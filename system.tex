@@ -69,7 +69,26 @@ The range of hue values of each color are well defined and we utilize this range
 
 
 \subsection{Color filtering}
-In OpenCV \cite{opencv}, the range of all hues is from 0 to 180, and each color has its own specific range.
+
+After color space conversion we need to filter out only the candidate pixels from video frames.
+The most distinctive feature of traffic lights is its bright color: red and green.
+The color filtering step examines each pixel of the video frames and keep only the desired pixels for red and green color.
+The individual color can detect by the range of hue in HSV space, as we discuss at \ref{s:color_space}
+To find out the exact range of hue for red and green color of the traffic light we build a histogram for hue.
+We examine traffic lights of 200 video frames to get the hue histogram.
+
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=5.2in]{plots/stat_light.pdf}
+\caption{Statistics for hue range of green and red light.}
+\label{f:light_hue}
+\end{figure}
+
+\ref{f:light_hue} shows the statistics for hue range of red and green traffic light.
+We make the hue range for red and green colors based on this statistics.
+
+\note{unnecessary?} In OpenCV \cite{opencv}, the range of all hues is from 0 to 180, and each color has its own specific range.
 For example, \ref{t:hue_range} shows the hue range for red and green colors.
 
 \begin{table}[h!]
@@ -88,7 +107,7 @@ For example, \ref{t:hue_range} shows the hue range for red and green colors.
 
 
 We only keep red and green pixels of a video frame for further processing in next stages.
-\ref{f:red} shows an example video frame with red traffic lights and \ref{f:green} shows an example video frame with green traffic lights.
+Figure \ref{f:red} shows an example video frame with red traffic lights and figure \ref{f:green} shows an example video frame with green traffic lights.
 
 \begin{figure*}[!ht]
 \centering
@@ -101,7 +120,7 @@ We only keep red and green pixels of a video frame for further processing in nex
 
 
 \ref{f:fil_img} shows the frames after filtering out pixels except for the red and green color. 
-\ref{f:fill_img} shows that the color filtering works well as it can isolate the traffic lights. 
+\ref{f:fil_img} shows that the color filtering works well as it can isolate the traffic lights. 
 However, there can be other objects with the red and green color in the scene such as a red car in \ref{f:red_fil} and a green road sign in both \ref{f:red_fil} and \ref{f:green_fil}.
 We filter out such objects in next stages where we verify the circular shape of a traffic light and a black box around the light.
 The color filtering process is computationally very lightweight.
