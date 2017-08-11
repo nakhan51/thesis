@@ -92,8 +92,9 @@ For example, \ref{t:hue_range} shows the hue range for red and green colors.
 \ref{f:org_img}(a) shows the video frame with red traffic signal light and (b) shows the frame with green traffic signal light.
 \begin{figure*}[!ht]
 \centering
-\subfloat[Frame with red lights] {\includegraphics[width=3in]{images/frame301.pdf}}
-\subfloat[Frame with green lights] {\includegraphics[width=3in]{images/frame502.pdf}}
+\subfloat[Frame with red lights] {\label{f:red}\includegraphics[width=3in]{images/frame301.pdf}}
+\hfill
+\subfloat[Frame with green lights] {\label{f:green}\includegraphics[width=3in]{images/frame502.pdf}}
 \caption{Original videoframes.}
 \label{f:org_img}
 \end{figure*}
@@ -102,8 +103,9 @@ For example, \ref{t:hue_range} shows the hue range for red and green colors.
 
 \begin{figure*}[!ht]
 \centering
-\subfloat[Frame with red lights] {\includegraphics[width=3in]{images/RedGreenfiltering_red.pdf}}
-\subfloat[Frame with green lights] {\includegraphics[width=3in]{images/RedGreenfiltering.pdf}}
+\subfloat[Frame with red lights] {\label{f:red_fil}\includegraphics[width=3in]{images/RedGreenfiltering_red.pdf}}
+\hfill
+\subfloat[Frame with green lights] {\label{f:green_fil}\includegraphics[width=3in]{images/RedGreenfiltering.pdf}}
 \caption{Red green pixel filtering.}
 \label{f:fil_img}
 \end{figure*}
@@ -134,8 +136,9 @@ As a solution to this problem, before converting our original BGR space frame to
 
 \begin{figure*}[!ht]
 \centering
-\subfloat[Frame with red lights] {\includegraphics[width=3in]{images/Detectedredcircles.pdf}}
-\subfloat[Frame with green lights] {\includegraphics[width=3in]{images/Detectedgreencircles.pdf}}
+\subfloat[Frame with red lights] {\label{f:red_cir}\includegraphics[width=3in]{images/Detectedredcircles.pdf}}
+\hfill
+\subfloat[Frame with green lights] {\label{f:green_cir}\includegraphics[width=3in]{images/Detectedgreencircles.pdf}}
 
 \caption{Red green traffic bulb detection.}
 \label{f:cir_img}
@@ -163,9 +166,9 @@ So we can not get a successful result with this approach.
 
 \begin{figure*}[ht]
 \centering
-\subfloat[Red traffic bulb] {\includegraphics[width=2.2in]{images/redlight.jpg}}
+\subfloat[Red traffic bulb] {\label{f:red_bulb}\includegraphics[width=2.2in]{images/redlight.jpg}}
 \hfill
-\subfloat[Green traffic bulb] {\includegraphics[width=2.2in]{images/greenlight.jpg}}\\
+\subfloat[Green traffic bulb] {\label{f:green_bulb}\includegraphics[width=2.2in]{images/greenlight.jpg}}\\
 
 \caption{Red and green traffic bulb intensity.}
 \label{f:bulb_int}
