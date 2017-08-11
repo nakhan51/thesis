@@ -1,26 +1,15 @@
 \chapter{System Architecture}
 \label{c:system}
-In this chapter, we discuss the system overview for traffic light detection.
-This system detects the color of a traffic light in a recorded video frame.
-We captured video using a smartphone along with the sensor data.
+Two major components in our system are: (a) processing of video frames using computer vision techniques to detect traffic lights, and (b) selection of a subpart of a frame using inertial sensor hints to reduce both computation time and spurious detection of traffic lights. 
+In this chapter, we present the end-to-end system and describe various components of the system pipeline.
+
+%% In this chapter, we discuss the system overview for traffic light detection.
+%% This system detects the color of a traffic light in a recorded video frame.
+%% We captured video using a smartphone along with the sensor data.
 
 \section{Overview}
-\label{s:archi}
-We use three features of the traffic light, color, shape, and traffic bulb in a black box and the sensor feature of a smartphone as a system architecture for traffic light detection.
-While recording the video we logged in the sensor data.
-The first step of detection is the color filtering of the recorded videos.
-Each video frames is consist of different colors.
-In this step, each frame is filtered with only red and green pixel.
-The traffic bulb shape is mostly circle.
-To detect this characteristic we use Hough Circle  transformation\cite{hough_circle}.
-Based on the traffic light detection position in video frames, we fix the region of interest area, which is a subpart of video frames.
-After that, on next video frames the ROI change in respect to the sensor data. 
+\label{s:overview}
 
-%\subsection{Diagram}
-
-Section \ref{s:archi} discusses the overall architecture of our system.
-
-\ref{f:sys_dia} shows the overview of the system.
 
 \begin{figure}
 \centering
@@ -29,15 +18,49 @@ Section \ref{s:archi} discusses the overall architecture of our system.
 \label{f:sys_dia}
 \end{figure}
 
-At first, we recorded videos along with the sensor data, gyroscope, accelerometer, pitch, roll, and azimuth.
-These data have synchronization with our recorded video frames since we logged in sensor data while recording.
-Now to detect the traffic light, we use three features of the traffic light.
-Those are the color, shape of a traffic light and traffic light location in a black box.
 
-\subsection{Color filtering}
-The first step of detection algorithm is color filtering of video frames.
-The most distinctive feature of traffic bulb is its bright color.
-Color filtering step filters out these candidate pixels from the video frames.
+Figure \ref{f:sys_dia} shows the overview of our system.
+Using our smartphone app, we simultaneously record video and inertial sensor data.
+Initially, we process the full region of the video frames to detect the traffic lights.
+Once we successfully detect traffic lights in a video frame, we process only sub-parts of the subsequent frames using the sensor hints. 
+For the subsequent frames, using the orientation change, we predict the region where the the traffic lights are likely to move using and process only that region for detecting the traffic lights.
+However, the prediction of region-of-interest (ROI) using the sensor hints can sometimes be incorrect.
+In such cases, we gradually increase the area of the ROI until we detect traffic lights in that enlarged area. 
+Note that the increment of the ROI can go up to the whole frame if there is no traffic lights in the frame or the traffic light detection algorithm fails to detect the existing traffic lights. 
+
+The algorithm to detect traffic lights is same irrespective of processing of the full frame or a subpart of the frame.
+Below, we discuss the the image processing algorithm for traffic light detection at first. 
+Next, we discuss the procedure to select a subpart of a frame using sensor hints.
+
+
+%We use three features of the traffic light, color, shape, and traffic bulb in a black box and the sensor feature of a smartphone as a system architecture for traffic light detection.
+%% While recording the video we logged in the sensor data.
+%% The first step of detection is the color filtering of the recorded videos.
+%% Each video frames is consist of different colors.
+%% In this step, each frame is filtered with only red and green pixel.
+%% The traffic bulb shape is mostly circle.
+%% To detect this characteristic we use Hough Circle  transformation\cite{hough_circle}.
+%% Based on the traffic light detection position in video frames, we fix the region of interest area, which is a subpart of video frames.
+%% After that, on next video frames the ROI change in respect to the sensor data. 
+
+
+%% At first, we recorded videos along with the sensor data, gyroscope, accelerometer, pitch, roll, and azimuth.
+%% These data have synchronization with our recorded video frames since we logged in sensor data while recording.
+%% Now to detect the traffic light, we use three features of the traffic light.
+%% Those are the color, shape of a traffic light and traffic light location in a black box.
+
+\section{Image processing for traffic light detection}
+The primary features of a traffic light is its bright red, yellow, or green color and the circular bulbs.
+We use both these features for detecting the traffic lights. 
+However, there can be other objects in the scene that can satisfy these properties such as circular red or green flower on people's clothing, red or green street signs etc.
+To filter out such false detections, we used two heuristic filters, which utilize the fact that traffic lights are usually placed within a black box. 
+Below, we discuss about these procedures in detail.
+
+%% The first step of detection algorithm is color filtering of video frames.
+%% Color filtering step filters out these candidate pixels from the video frames.
+
+
+\subsection{Color space conversion}
 For this purpose, we convert the BGR color space to HSV space first.
 In BGR space, to detect specific color we need to depend on three different values (B, G, R)
 HSV space has the property to find out the color based on the only single value of hue.
@@ -59,6 +82,9 @@ We fix the range for the red and green analyzing the color range of traffic bulb
     \hline
   \end{tabular}
 \end{table}
+
+
+\subsection{Color filtering}
 
 \begin{figure*}[!ht]
 \centering
@@ -106,7 +132,7 @@ In this image, we have other red pixel values except for the traffic signal ligh
 But Hough circle transform can detect the circle precisely.
 (b) shows the green traffic light detection output with Hough transform method.
 
-\subsection{Heuristic filter}
+\subsection{Heuristic filters}
 \label{s:filter}
 At this point, we have knowledge about the traffic bulb location and size (radius).
 Now to detect if traffic bulb is in the black box, the other feature of our detection, we tried two heuristic filters.
@@ -161,8 +187,9 @@ So when we use our black box checking filter we can remove this false positive d
 \label{f:rec_filter}
 \end{figure}
 
-\subsection{Sensor hints}
-\subsubsection{Syncronization sensor data}
+\section{Sensor fusion for subpart selection}
+
+\subsection{Synchronization of sensors and video frames}
 To improve our detection we also use the smartphone's sensor data hints.
 Our system logged the sensor data while recording the video.
 From the logged data we know the time for sensor data registered.
@@ -175,7 +202,7 @@ Finally, we get the synchronized sensor data with our recorded video.
 \ref{} shows the interface of our android app.
 So when we start recording the pitch, roll and azimuth display in the screen and also start registering in a file.
 
-\subsubsection{Region of interest area selection}
+\subsection{Region-Of-Interest selection}
 \label{s:roi}
 Now, when we detect a traffic light in our video frame successfully using the color, shape of the traffic light and the characteristics of traffic bulb being in a box, we have the idea of the position of the traffic light.
 With this idea we subdivide our video frame making a region of interest area.
@@ -208,12 +235,5 @@ And this process is continuing to every frame.
 \caption{Enlarged ROI to detect traffic light successfully.}
 \label{f:rec_enl}
 \end{figure*}
-
-
-
-
-
-
-
 
 
