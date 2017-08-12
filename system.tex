@@ -269,16 +269,22 @@ But when prediction goes wrong as we discuss at \ref{s:overview}, we gradually i
 However, we already process some part of the images, so avoid the double processing,we increase the region in the surrounding sides of the previous roi where we has unsuccessful detection.
 If at any of these area, we can detect the circle, the view point of the roi changes to that part of tha frame.
 
-\ref{f:} shows that the rectange A can not detect any light at this frame.
+\ref{f:rectangle} shows that the rectange A can not detect any light at this frame.
 So we change the search roi to b,c,d, and e. 
 
 And this process is continuing to every frame.
+
+\begin{figure}
+\centering
+\includegraphics[width=5.2in]{figures/rectangle.pdf}
+\caption{ROI increment policy}
+\label{f:rectangle}
+\end{figure}
 
 \begin{figure*}[!ht]
 \centering
 \subfloat {\label{f:enl}\includegraphics[width=4.2in]{images/rec_enl.jpg}}\\
 \subfloat {\label{f:enl1}\includegraphics[width=4.2in]{images/rec_enl1.jpg}}
-
 \caption{Enlarged ROI to detect traffic light successfully.}
 \label{f:rec_enl}
 \end{figure*}
