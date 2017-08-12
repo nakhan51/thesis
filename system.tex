@@ -10,14 +10,12 @@ In this chapter, we present the end-to-end system and describe various component
 \section{Overview}
 \label{s:overview}
 
-
 \begin{figure}
 \centering
 \includegraphics[width=5.2in]{figures/sysdia1.pdf}
 \caption{System Overview}
 \label{f:sys_dia}
 \end{figure}
-
 
 \ref{f:sys_dia} shows the overview of our system.
 Using our smartphone app, we simultaneously record video and inertial sensor data.
@@ -172,7 +170,7 @@ At this point, we have the knowledge of the traffic bulb location and size (radi
 However, there can be still other objects in the scene that can have both green or red color and circular shape (e.g., flower on people's cloth).
 In this final filtering stage, we attempt to remove such objects. 
 Here, we take advantage of the fact that traffic light bulb resides inside a rectangular black box (see \ref{f:org_img}), and hence the pixels nearby the circular light bulb's perimeter should be black.
-To check for this constraint, we experimented with two heuristics: (a) black mid-point circle verification \todo{cite}, (b) black rectangle box verification.
+To check for this constraint, we experimented with two heuristics: (a) black mid-point circle verification \cite{midpoint}, (b) black rectangle box verification.
 
 \subsubsection{Black mid-point circle verification}
 In this heuristic, we check pixels intensity of a circular area outside but nearby of the traffic bulb.
