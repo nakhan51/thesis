@@ -20,7 +20,7 @@ Smartphones nowadays have three axis accelerometer, which can measure accelerati
 The accelerometer does not measure free fall acceleration.
 Instead, it measures the forces that are applied to the accelerometer itself.
 For example, when the phone is on the table, it measures the gravitational acceleration $g$ because this is proportional the accelerometer's weight.
-\todo{this is not clear}.
+%\todo{this is not clear}.
 
 Figure \ref{f:acc} shows the reference coordination frame of an accelerometer in an Android smartphone.
 The accelerometer measures the acceleration with respect to the reference frame and returns a vector $[a_x, a_y, a_z]$.
@@ -56,30 +56,28 @@ The gyroscope measures the angular velocity with respect to the reference frame 
 Geomagnetic field sensor is a position sensor of the smartphone.
 It helps to determine the smartphone's physical position in the Earth's reference frame.
 %Geomagnetic field sensor measures the change of the magnetic field and estimates the magnetic field at earth's point to find the declination from the true North.
-Geomagnetic field sensor measures the change of the magnetic field and estimates the declination,\note{the angle between geographical North and the magnetic North,}\note{is it needed?} of a smartphone with respect to the true North. \todo {what is declination. Also, is there any difference between true north and magnetic north?}
+Geomagnetic field sensor measures the change of the magnetic field and estimates the declination (the angle between geographical North and the magnetic North) of a smartphone with respect to the true North. 
 The magnetic field in a certain point is directional and has its magnitude.
-This geomagnetic field sensor of Android provides a vector along the three axes, that describes the strength and the direction of the magnetic field relative to the phone.
-X coordinate represents the magnetic field strength in the direction of North magnetic pole roughly.
-So, a positive X value means that the part of the magnetic field points to the North and negative X value means it points to the South.
-Similarly, Y coordinate represents the magnetic field strength to East magnetic pole and Z coordinate represents the direction of phone facing.
-\todo {how three axis is relevant? Isn't it a single number describing rotation compared to the north.} \note{fixed?}
+This geomagnetic field sensor of an Android smartphone provides a vector along the three axes, that describes the strength and the direction of the magnetic field relative to the phone.
+The X coordinate represents the magnetic field strength in the direction of magnetic North.
+A positive X value represents a smartphone's orientation with respect to the North and a negative X value represents the smartphone's orientation with respect to the South.
+Similarly, Y coordinate represents the East and West direction.
+The Z coordinate represents the direction of a smarthpone's up or down direction.
+
 
 \subsection{Orientation}
 Each sensor described in the previous section has its own strength and weakness.
 The gyroscope is fast, accurate and reliable.
 It is also very responsive to a small rotation.
 As a result, it can track the change of rotation rapidly.
-We can get the orientation from the gyroscope integrating the gyroscope values, which will produce the accumulation of error.
-The error can cause the orientation completely off.
-That's why we need to use the accelerometer to inject the correction term that keeps orientation correct with respect to gravity and remove the drift.
-\note{fixed}
-%However, the gyroscope can not measure gravity.
-\todo{should go after accelerometer?}
-So with the accelerometer, it can provide a better rotation or motion of the sensor in application's frame reference.
-\note{fixed?}\todo{how accelerometer helps here?}
-Additionally, to obtain the position of a smartphone in the Earth's reference frame, we need to combine the gyroscope and accelerometer data with geomagnetic field sensor.
+We can get the orientation from the gyroscope by integrating its values.
+However, the integration can accumulate a large error over time.
+Because of this, integration of gyroscope values are not used in practice. 
+Instead, the accelerometer is used to inject the correction term that keeps orientation accurate with respect to the gravity and removes the drift.
+Additionally, to obtain the position of a smartphone in the Earth's reference frame, we combine the gyroscope and accelerometer data with geomagnetic field sensor.
 
-So, in summary, we get orientation from gyroscope, accelerometer improves this with the correction due to gravity and geomagnetic field sensor  provides correction due to the magnetic North.
+In summary, we get orientation from gyroscope and the accelerometer corrects the error accumulation.
+Finally, geomagnetic field sensor provides correction due to the magnetic North.
 
 Android Sensor API \cite {api_android} provides the orientation of the phone with respect the reference frame described before by fusing the data from the accelerometer, gyroscope, and magnetic sensor. 
 This orientation contains the pitch, roll, and azimuth of the smartphone. 
@@ -87,7 +85,7 @@ This orientation contains the pitch, roll, and azimuth of the smartphone.
 
 %This rotation vector provides the axis of the system and the angle of rotation from these axes.
 %
-\note{new figure with horizontal phone image}
+%\note{new figure with horizontal phone image}
 \begin{figure}
 \centering
 \includegraphics[width=3.8in]{figures/roll_pitch_yaw.pdf}
@@ -99,11 +97,11 @@ This orientation contains the pitch, roll, and azimuth of the smartphone.
 Here, the pitch is the degree of rotation about the X axis.
 This value is positive when the positive Z axis rotates toward the positive Y axis and it is negative when positive Z axis rotates toward the negative Y axis.
 %Pitch is the angle between the plane parallel to the smartphone and parallel to the ground.
-\note{fixed?}
-\todo{clarify, parallel twice is ambiguous.}
+%\note{fixed?}
+%\todo{clarify, parallel twice is ambiguous.}
 %If the smartphone's top edge inclines to the ground the pitch will be positive and vice versa.
-\note{fixed?}
-\todo{overall below is confusing to read. May be table is better}
+%\note{fixed?}
+%\todo{overall below is confusing to read. May be table is better}
 Roll is the rotation angle with respect to the Y axis.
 This value is positive when the positive Z axis rotates toward the positive X axis and it is negative when positive Z axis rotates towards the negative X axis.
 Azimuth is the rotation angle with respect to the Z axis.
@@ -196,7 +194,7 @@ The radius of this cylinder represents Saturation and the height of the cylinder
 Our system detects the circular bulb in a traffic light using the Hough circle algorithm \cite{houghcir_alg}.
 The Hough circle algorithm first detect the edges in a video frame.
 It uses Canny method \cite{canny} for edge detection.
-\todo{can you make it more clear?}
+%\todo{can you make it more clear?}
 Then, at every edge pixel, it generates a circle.
 To find the intersection of these circles, Hough method uses an accumulator matrix.
 If a circle passes through the grid of the accumulator matrix, it increases the voting number of the grid.
