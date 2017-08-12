@@ -264,17 +264,27 @@ Apart from this, when our system can not detect any circle in our specific ROI a
 \end{figure*}
 
 
-With the successful detection, our region of interest again changes with the light position and pitch and azimuth value.
-For unsuccessful detection, ROI enlarged until it process the full frame and then go to the next frame to detect traffic light.
+With the successful detection, our region of interest updates to new position with the light position and pitch and azimuth value.
+But when prediction goes wrong as we discuss at \ref{s:overview}, we gradually increase the ROI.
+However, we already process some part of the images, so avoid the double processing,we increase the region in the surrounding sides of the previous roi where we has unsuccessful detection.
+If at any of these area, we can detect the circle, the view point of the roi changes to that part of tha frame.
+
+\ref{f:} shows that the rectange A can not detect any light at this frame.
+So we change the search roi to b,c,d, and e. 
+
 And this process is continuing to every frame.
 
 \begin{figure*}[!ht]
 \centering
-\subfloat {\includegraphics[width=4.2in]{images/rec_enl.jpg}}\\
-\subfloat {\includegraphics[width=4.2in]{images/rec_enl1.jpg}}
+\subfloat {\label{f:enl}\includegraphics[width=4.2in]{images/rec_enl.jpg}}\\
+\subfloat {\label{f:enl1}\includegraphics[width=4.2in]{images/rec_enl1.jpg}}
 
 \caption{Enlarged ROI to detect traffic light successfully.}
 \label{f:rec_enl}
 \end{figure*}
+
+\ref{f:rec_enl} shows the change of region of interest to the subsequent frames.
+Figure \ref{f:enl} shows the video frame of a sucessful detection.
+Figure \ref{f:enl1} shows the next frame, where detection goes wrong at first so region of interest is changing to new rectangle.
 
 
