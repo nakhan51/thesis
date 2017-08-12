@@ -1,15 +1,21 @@
 \chapter{Evaluation}
 \label{c:evalu}
 
-In this chapter, we discuss the end-to-end evaluation of our system using the sensor hints of the smartphone and without the sensor hints for our recorded dataset.
-Later in this chapter, we discuss the evaluation of our system using a public dataset.
+In this chapter, we present the end-to-end evaluation of our system.
+At first, we discuss the evaluation datasets and ground truth annotation.
+Next, we present the quantitative results for both computation time and accuracy.
+Finally, we conclude this chapter with evaluation of our system using a public dataset.
 
-\section{Evaluation dataset}
+\section{Evaluation datasets}
 \label{s:eval}
-For collecting the ground truth data we walked along the path of 300 feet at an urban street to record the video with samrtphone.
-We record data at different time of the day and at different light condition.
-\ref{f:dataset} shows the scene variation of recored video.
-The right one is cloudy and the left one is sunny.
+To our best knowledge, there is not much research on sensor fusion in the context of traffic light detection, especially for pedestrian navigation. 
+As a result, we did not find public datasets combining traffic lights video and inertial sensor data. 
+Hence, we collected our own ground truth data using an Android app \todo{refer section or fig with the screenshot}.
+We walked across several street crossings and recorded both video and sensor data simultaneously in various lighting conditions. 
+For example, \ref{f:dataset} shows video frames for both sunny and cloudy days. 
+Here, we present our results for several 300 feet long walks.  
+At the end of this chapter, we present an approximate evaluation of a public dataset that does not have sensor data. 
+However, we emulate the effect of sensors by manual selection of a subpart of a video frame. 
 
 \begin{figure}[!ht]
 \centering
@@ -20,7 +26,7 @@ The right one is cloudy and the left one is sunny.
 \label{f:dataset}
 \end{figure}
 
-\ref{t:dataset} shows the total no of frames, and time duration of our dataset.
+\ref{t:dataset} shows the total no of frames and time duration of our dataset.
 
 \begin{table}[h!]
   \centering
@@ -38,9 +44,12 @@ The right one is cloudy and the left one is sunny.
 \end{table}
 
 \section{Annotation}
-To measure our system performance quantitatively, we need the ground truth for traffic light.
-We annotate the traffic light's position manually at each video frame to get the ground truth.
-We remark the traffic light state: red or green and the location of traffic light.
+We need the ground truth for traffic light positions on video frames in order to measure our system performance quantitatively.
+Accordingly, we annotate the traffic light's positions manually by drawing a rectangle around the traffic lights at each video frame.
+During annotation, we record the type of the traffic lights (i.e., red or green) and their positions with a bounding box.
+
+\ref{f:annotate} shows the interface for manual annotation.
+The green box provides the location of the traffic light and we annotate 0 for a red traffic light and 1 for a green traffic light.
 
 \begin{figure}[h!]
 \centering
@@ -49,28 +58,65 @@ We remark the traffic light state: red or green and the location of traffic ligh
 \label{f:annotate}
 \end{figure}
 
-\ref{f:annotate} shows the interface for manual annotation.
-The green box gives the location of the traffic light and we annotate 0 for red traffic light and 1 for green.
 
 \section{Computation time}
-We collected data at different time of the day as we discussed in \ref{s:eval}.
-In this section we discuss the computation time of these datasets with the sensor hint and without it.
+We collected data at different times of the day as we discussed in \ref{s:eval}.
+In this section, we discuss the computation time of these datasets with and without the sensor fusion.
 
-\subsection{Computation time for heuristic filter}
+\subsection{Frame processing time}
+\ref{f:cdf_time} shows the computation time CDF for video frames for walking dataset with regular movement described in \ref{t:dataset}.
+It shows that the median of the computation time without the sensor data and without the heuristic filters is 106ms.
+On the other hand, the median computation time with the sensor and without heuristic filters is 13ms.
+This is an improvement of 8.15x.
+The median computation time with sensor and heuristic filters is 19ms.
+There is a slight increase in frame processing time with the heuristic filters, but this is worthwhile as we false detection rate reduces significantly with the heuristic filters.  
+We discuss more about the accuracy and false detections in Section \ref{s:acc}
 
-We use a heuristic filter to get better traffic light detection as we discuss at \ref{s:filter}.
-The computational cost is trivial for this heuristic filter.
+\begin{figure}[h!]
+\centering
+\includegraphics[width=5.2in]{plots/sunny_cdf_time.pdf}
+\caption{CDF of frame computation time for walking dataset in sunny weather.}
+\label{f:cdf_sunny}
+\end{figure}
+
+\ref{f:cdf_sunny} shows the CDF of the video frame computation time for walking dataset with sensor fusion on a sunny day.
+It shows that the median computation time without the sensor is 107ms and with the sensor is 13ms, resulting in an improvement of 8.23x.
+
+
+\subsection{Subimage processing time}
+Processing a subpart of a video frame significantly reduces the computation time. 
+We select a Region-Of-Interest (ROI) area within a frame with the sensor hints.
+However, the ROI predicted from the sensor hints can be incorrect and we gradually increase the area of the rectangle.
+We discussed the details about this in \ref{s:roi}.
+
+
+\ref{f:recarea} shows the computation time with the increase of the ROI area in video frames.
+It shows that the computation time increases as the area of the rectangle get larger.
+For the same area, if the number of candidate pixels is high or the detected circle count is high then computation time can be also high.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=5.2in]{plots/sunny_recarea.pdf}
+\caption{Computation time with the increase of the rectangle area.}
+\label{f:recarea}
+\end{figure}
+
+
+
+\subsection{Time for heuristic filtering}
+We use a heuristic filter to reduce false positive in traffic light detection as we discuss at \S\ref{s:filter}.
+The computational cost of the heuristic filter is very small.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=5.2in]{plots/sunny_cdf_filter.pdf}
-\caption{CDF of computation time for heuristic filter.}
+\caption{CDF of computation time for the heuristic filter.}
 \label{f:cdf_fil}
 \end{figure}
 
-\ref{f:cdf_fil} shows the computation time for the heuristic filter we discuss at \ref{s:filter}.
-The computation time depends on the number of circle detected on the frame.
-If circle count is high, filtering need for all of these circles, so computation time will be higher.
+\ref{f:cdf_fil} shows the computation time of the heuristic filter that we discuss at \S\ref{s:filter}.
+The computation time depends on the number of circles detected on the frame.
+If circle count is high, filtering need for all of these circles, so computation time gets higher.
 \ref{f:cdf_fil} shows that the median computation time is 1.5 ms for the filtering. 
 
 
@@ -81,47 +127,15 @@ If circle count is high, filtering need for all of these circles, so computation
 \label{f:cdf_time}
 \end{figure}
 
-\subsection{Computation time for video frames}
-\ref{f:cdf_time} shows the CDF of the video frame computation time for walking dataset with regular movement, we discuss at \ref{s:eval}.
-It shows that the median of the computation time without sensor and any heuristic filter is 106ms.
-Wheather, the median of the computation time with sensor and without heuristic filter is 13ms.
-We can improve the computation time 8.15x.
-The median of the computation time with sensor and heuristic filter is 19ms.
-Though we can improve the computation time 5.57x with the filter but it increases the accuracy, which we will describe at section \ref{s:acc}
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=5.2in]{plots/sunny_cdf_time.pdf}
-\caption{CDF of frame computation time for walking dataset in sunny weather.}
-\label{f:cdf_sunny}
-\end{figure}
 
-\ref{f:cdf_sunny} shows the CDF of the video frame computation time for walking dataset with sensor movement at sunny weather.
-\ref{f:cdf_sunny} shows that the median computation time without sensor is 107ms and with sensor is 13ms.
-So we can improve the computation time 8.23x.
-
-\subsection{Computation time for subpart images}
-In section \ref{s:roi}, we discuss the change of region of interest area with the sensor hints.
-The failed detection in a subpart images causes to increase the subpart area. 
-
-\begin{figure}[h!]
-\centering
-\includegraphics[width=5.2in]{plots/sunny_recarea.pdf}
-\caption{Computation time with the increase of the rectangle area.}
-\label{f:recarea}
-\end{figure}
-\ref{f:recarea} shows the computation time with the increase of the subpart area of video frames.
-As we can see, when area of subpart images increase computation time is increasing.
-At the same area, if the amount of candidate pixels is high or the detected circle count is high, computation time is also varying.
-
-\section{Detection accuracy of our system}
+\section{Traffic lights detection accuracy}
 \label{s:acc}
-To demonstrate the robustness of the various traffic light scenarios, we recorded video at different lightening condition: cloudy and sunny and at different time of the day.
-We walked along the intersection of the street and the route consist of 16 traffic light.
+To demonstrate the robustness of the various traffic light scenarios, we recorded video at different lightening condition such as cloudy and sunny and at the different time of the day.
+We walked along several crosswalks of few streets and the route had a total of 16 traffic lights.
 
 \subsection{Confusion matrix}
-
-\ref{t:con_nocrp} shows a confusion matrix for the traffic light decision when we do not consider the sensor hints of the smartphone.
+\ref{t:con_nocrp} shows the confusion matrix for the traffic light decision when we do not consider the sensor hints of the smartphone.
 \ref{t:con_crp} shows the confusion matrix considering the sensor hints in the same dataset.
 
 \begin{table}[h!]
@@ -158,12 +172,12 @@ We walked along the intersection of the street and the route consist of 16 traff
   \end{tabular}
 \end{table}
 
-These results show that, using the sensor hints our system is more accurate detecting the red light and also false detection of green light is decreasing.
+These results show that the use of sensor hints increases the accuracy of the red light detection and reduces false detection of green lights.
 
-\subsection{Detection and misdetection rate for traffic light}
 
-\ref{f:tp_stat} shows the detection rate for the red and green state of the traffic light.
-It shows that using the sensor hints detection rate for red light increases from 86\% to 96\% and for green light, detection rate increases 96\% to 99\%.
+\subsection{Detection and misdetection rate for traffic lights}
+\ref{f:tp_stat} shows the detection rate for the red and green state of the traffic lights.
+It shows that using the sensor hints detection rate for red lights increases from 86\% to 96\% and the detection rate for green lights increases 96\% to 99\%.
 
 \begin{figure}[h!]
 \centering
@@ -172,20 +186,21 @@ It shows that using the sensor hints detection rate for red light increases from
 \label{f:tp_stat}
 \end{figure}
 
-\ref{f:fp_stat} shows the misdetection rate for the red and green state of traffic light.
+\ref{f:fp_stat} shows the misdetection rate for the red and green state of traffic lights.
 Left one is the false positive detection and the right one is the false negative detection for the traffic light detection.
+Here, the false positive count is reduced significantly and false negative is zero.
 
 \begin{figure}[!ht]
 \centering
-\subfloat[] {\includegraphics[width=3.1in]{plots/bar_fp.pdf}}
-\hfill
-\subfloat[] {\includegraphics[width=3.1in]{plots/bar_fn.pdf}}
+\subfloat[] {\includegraphics[width=5.2in]{plots/bar_fp.pdf}}
+
+\subfloat[] {\includegraphics[width=5.2in]{plots/bar_fn.pdf}}
 \caption{Misdetection rate for static movement dataset.}
 \label{f:fp_stat}
 \end{figure}
 
-\ref{t:acc_stat} shows the accuracy rate for the static movement dataset.
-It shows that the accuracy increases from 89\% to 97\%.
+\ref{t:acc_stat} shows the accuracy rate for the static with sensor movement dataset.
+It shows that the accuracy increases from 89\% to 97\% with sensor hints.
 
 \begin{table}[h!]
   \centering
@@ -201,13 +216,13 @@ It shows that the accuracy increases from 89\% to 97\%.
 \end{table}
 
 
-\section{Evaluation for a public dataset}
+\section{Evaluation of a public dataset}
 
 \todo{need to add results here}
 
 \section{Effect of video/image resolution}
 
-\ref{f:vf_res} shows the computation time after changing video frames resolution.
+\todo{\ref{f:vf_res} shows the computation time after changing video frames resolution.}
 
 \begin{figure}[h!]
   \centering
