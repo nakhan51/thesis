@@ -227,7 +227,7 @@ Once we apply the heuristic filter, this false detection is removed as shown in 
 
 
 \section{Sensor fusion for frame subpart selection}
-Motion and orientation estimation of a smartphone with sensor fusion provides a big opportunity for processing a subpart of video frame instead of the whole frame for traffic light detection, resulting in improvement in both computation time and accuracy.
+Motion and orientation estimation of a smartphone with sensor fusion provide a big opportunity for processing a subpart of video frame instead of the whole frame for traffic light detection, resulting in an improvement in both computation time and accuracy.
 In this section, we discuss about our sensor fusion algorithm. 
 
 \subsection{Synchronization of sensors and video frames}
@@ -250,7 +250,7 @@ For intermediate video frames, we simply interpolate the sensor data.
 
 \subsection{Region-Of-Interest selection}
 \label{s:roi}
-At first, we detect traffic lights in the video frames using the color, circular shape and position of the traffic light bulbs inside a black box.
+At first, we detect traffic lights in the video frames using the color, circular shape, and position of the traffic light bulbs inside a black box.
 Once we have the initial position fix of the traffic lights in a video, we can utilize the orientation computed from the sensor hints to process only a subpart of the subsequent video frames. 
 %With this idea we subdivide our video frame making a region of interest area.
 As we move to the subsequent frames, we use the pitch, roll, and azimuth obtained from sensor fusion to predict the new ROI.
@@ -276,8 +276,8 @@ Hence, to avoid the double processing, we increase the region in the surrounding
 If at detect traffic lights in any of these areas, we reset the ROI to its original size in subsequent frames.
 We illustrate this process with an example in \ref{f:rectangle}.
 It shows that the rectangle A (original ROI) does not detect any traffic light.
-Hence, we change enlarge the ROI with 4 four rectangles named B, C, D, and E and traffic lights are detected in rectangle B.
-Note that, we keep a overlap between the original ROI and new rectangles so that we do not miss any circles that falls in the boundary. 
+Hence, we enlarge the ROI with 4 four rectangles named B, C, D, and E and traffic lights are detected in rectangle B.
+Note that  we keep an overlap between the original ROI and new rectangles so that we do not miss any circles that fall in the boundary. 
 
 
 \begin{figure}
