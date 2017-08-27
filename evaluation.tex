@@ -97,7 +97,7 @@ For the same area, if the number of candidate pixels is high or the detected cir
 
 \begin{figure}[h!]
 \centering
-\includegraphics[width=5.2in]{plots/sunny_recarea.pdf}
+\includegraphics[width=5.2in]{plots/cloudy_recarea.pdf}
 \caption{Computation time with the increase of the rectangle area.}
 \label{f:recarea}
 \end{figure}
@@ -220,6 +220,28 @@ It shows that the accuracy increases from 89\% to 97\% with sensor hints.
 \section{Evaluation of a public dataset}
 
 \todo{need to add results here}
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[width=5.2in]{plots/lisaday1_cdf.pdf}
+  \caption{CDF time of dayClip1 dataset with cropping and without cropping.}
+  \label{f:day_cdf}
+\end{figure}
+11
+Red 24.4514 0
+Green 0 0
+Red 70.5329 80.8464
+Green 67.5439 87.6537
+Red 13.4796 9.1536
+Green 20.1754 4.4561
+Acc 69.5853 81.8157
+
+12
+Green fp 10 8.33333
+Green tp 78.3333 96.6667
+Green fn 17.5 1.66667
+Acc 77.686 95.8678
+
 
 \section{Effect of video/image resolution}
 

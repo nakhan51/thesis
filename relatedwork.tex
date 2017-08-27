@@ -7,8 +7,7 @@ Navigation system helps people to travel in a convenience and independence.
 
 S Ram at el. designed a system, People Sensor \cite{peoplesensor}, which uses pyroelectric and ultrasound sensor to distinguish between a person and object obstruction in the path of the user.
 It helps to reduce the embarrassment through unintended contact with people and object in directional path.
-There are many ways to find the location of the users.
-Direct sensing 
+There are many ways to find the location of the users \cite{survey}.
 
 %In this work, we build a navigation system to detect the traffic light in a public street for visually impaired.
 %There has some existing systems for helping the blind and visually impaired find their way at indoor and outdoor.
@@ -29,6 +28,47 @@ Furthermore, the GPS signal can not be tracked when blind people moves through t
 Some studies proposed and implemented differential GPS which can provide better accuracy \cite{drishti2,gps}.
 It is costly and need fixed ground station, only efficient for outdoors.
 
+Alternative approches have been proposed to assist the blind people, such as ultrasound \cite{drishti} or radio frequency identification (RFID) \cite{rfid} transponders or virtual blind cane to detect obstacles using laser and inertial measurement unit (IMU) \cite {virtual}
+
+Although WLAN transmitters or RFID tags or WiFi is low cost technologies, installing them dedicatedly in the whole city would be expensive and inconvenient.
+Slight changes of the scenes also hamper to the navigation process.
+
+In order to be extinseively applicable, navigation system design needs to be wearable, low cost and mobile technology based.
+To achieve this aim we propose a comuter vision based navigation system for blind and visually impaired.
+
+The research on vision based localization system is active in recent years.
+The map based navigation method require a global map to make a decision for the navigation \cite{online,map,map2}.
+For this purpose, sequential images of the environment are registered in a database.
+Then to get accurate location and orientation for real world images image -to-image matches with the database.
+Another navigation method create a map while moving and then use that for navigation \cite{fly,fly2,fly3}. 
+\cite{visual} proposed a system with wearable stero camera to estimate the egomotion using visual odometry method.
 
 
-\cite{traffic_turan}
+
+Traffic light detection is a important part of the outdoor navigation navigation for the visually impaired.
+There is a significant research of traffic light detection for autonomus selfdriving car and driving assistence system \cite{traffic_turan,selfdrive,traffic,traffic2,traffic3}.
+This system introduces a technique to detect traffic light state using vehicle localization and prior knowledge of traffic light location.
+
+
+Traffic light color is an important feature to distinct it from the scenario.
+To detect and recognize the color there is different work space.
+The RGB color space is used \cite{rgb2}.
+Because of the lightening changes problem, the color values of RGB change in different condition.
+The other research group is working with the color space which is more immune to lightening condition.\todo{cite}
+Although the HSV space is most used \todo{cite}, LUV space is also used \cite{luv}
+
+For our system to detect color of traffic light we use the HSV space due to the description of color in HSV space is similar to the human perspective.
+
+For outdoor navigation system traffic light detection is only a part of the system either for autonomus vehicle or pedestrian navigation.
+It is important to use less time to detect the traffic light.
+We can use the information from the sensor like GPS, accelerometer, gyroscope to get the position of the traffic light. \cite{sensor,sensor2,sensor3}
+For the navigation purpose we need a portable system.
+Now a days smartphone uses is growing and it has internal sensor that we can use to get the position of the traffic light.
+
+For autonomus selfdriving car or driving assistance system, the position of traffic light is stable in respect to driving.\cite{signalguru}
+This paper introduces system, Signalguru, which get the position of traffic light from the sensor data of smartphone.
+Since the traffic light is always in the upper part of the scenario, they processed the upper half of the frame to detect the traffic light.
+In context of pedestrian navigation, the camera of smartphone is not always fixed because of the movement of the body part while walking \cite{sensor_pedestrian,sensor_pedestrian2}.
+
+
+
