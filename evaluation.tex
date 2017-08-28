@@ -33,13 +33,15 @@ However, we emulate the effect of sensors by manual selection of a subpart of a 
   \centering
   \caption{Description of the dataset.}
   \label{t:dataset}
-  \begin{tabular}{  l  c  r  }   
+  \rowcolors{2}{gray!25}{white}
+  \begin{tabular}{  l  c  r  }
+    \rowcolor{gray!50}
     Name & Frame Count & Time Duration \\
     \hline
-    Walk with sensor movement-Sunny day & 5905 & 3 mins 16 secs  \\
-    Walk with sensor movement-Cloudy day & 6205 & 3 mins 26 secs \\
-    Walk regular movement & 6022 & 3 mins 20 secs \\
-    Static with sensor movement & 1810 & 1 min \\
+    Walking w/ sensor (Sunny day) & 5905 & 3 mins 16 secs  \\
+    Walking w/ sensor (Cloudy day) & 6205 & 3 mins 26 secs \\
+    Walking w/ sensor (Regular day) & 6022 & 3 mins 20 secs \\
+    Static w/ sensor (Regular day) & 1810 & 1 min \\
     \hline
   \end{tabular}
 \end{table}
@@ -61,34 +63,57 @@ The green box provides the location of the traffic light and we annotate 0 for a
 
 
 \section{Computation time}
-We collected data at different times of the day as we discussed in \ref{s:eval}.
+We collected data at different times of the day as we discussed in \S\ref{s:eval}.
 In this section, we discuss the computation time of these datasets with and without the sensor fusion.
 
 \subsection{Frame processing time}
-\ref{f:cdf_time} shows the computation time CDF for video frames for walking dataset with regular movement described in \ref{t:dataset}.
-It shows that the median of the computation time without the sensor data and without the heuristic filters is 106ms.
-On the other hand, the median computation time with the sensor and without heuristic filters is 13ms.
-This is an improvement of 8.15x.
-The median computation time with sensor and heuristic filters is 19ms.
-There is a slight increase in frame processing time with the heuristic filters, but this is worthwhile as we false detection rate reduces significantly with the heuristic filters.  
-We discuss more about the accuracy and false detections in Section \ref{s:acc}
-
-\begin{figure}[h!]
+\ref{f:cdf_cloudy} shows the computation time CDF for video frames for walking dataset with sensor movement in cloudy weather described in \ref{t:dataset}.
+\begin{figure}[ht]
 \centering
-\includegraphics[width=5.2in]{plots/sunny_cdf_time.pdf}
-\caption{CDF of frame computation time for walking dataset in sunny weather.}
-\label{f:cdf_sunny}
+\includegraphics[width=5.2in]{plots/cloudy_cdf.pdf}
+\caption{CDF of frame computation time for walking dataset with sensor movement in cloudy weather.}
+\label{f:cdf_cloudy}
 \end{figure}
+It shows that the median of the computation time without the sensor data and without the heuristic filters is 108.62ms.
+On the other hand, the median computation time with the sensor and without heuristic filters is 13.11ms.
+This is an improvement of 8.29x.
+The median computation time with sensor and heuristic filters is 18.25ms.
+There is a slight increase in frame processing time with the heuristic filters, but this is worthwhile as we false detection rate reduces significantly with the heuristic filters.  
+We discuss more about the accuracy and false detections in Section \S\ref{s:acc}
 
-\ref{f:cdf_sunny} shows the CDF of the video frame computation time for walking dataset with sensor fusion on a sunny day.
-It shows that the median computation time without the sensor is 107ms and with the sensor is 13ms, resulting in an improvement of 8.23x.
+\ref{t:dataset_time} shows the median computation time for other datasets described in \ref{t:dataset}.
+It shows that the average median computation time without sensor and without our heuristic filter is 113.11 ms.
+On the contrary, the average median computation time with sensor and without our heuristic filter is 13.24 ms.
+This is the average improvement is 8.54x.
+The average median computation time with sensor and heuristic filter is 19.53 ms.
+This gives the average improvement 5.79x, which is trivial decrease in computation time improvement, but this gives less false detection rate as we described earlier.
 
+\begin{table}[!ht]
+  \centering
+  \caption{Median computation time (ms) with various settings for our dataset.}
+  \label{t:dataset_time}
+  \rowcolors{2}{gray!25}{white}
+  \begin{tabular}{  l r r r r}
+    \rowcolor{gray!50}
+    Dataset Nane & W/o sensor & w/o sensor & w/ sensor  & w/ sensor \\
+    \rowcolor{gray!50}
+    & w/o filter & w/ filter & w/o filter & w/ filter\\
+    \hline
+    Walking w/ sensor (Cloudy) & 108.62 & 109.76 & 13.11 & 18.25 \\
+    Walking w/ sensor (Sunny) & 112.74 & 113.67 & 13.32 & 19.82 \\
+    Walking w/ sensor (Regular) & 110.43 & 114.12 & 13.89 & 20.17 \\
+    Static w/ sesor (Regular) & 120.65 & 121.92 & 12.65 & 19.89\\
+    \hline
+    Avg. computation time (ms) & 113.11 & 114.87 & 13.24 & 19.53\\
+    
+  \end{tabular}
+\end{table}
 
 \subsection{Subimage processing time}
 Processing a subpart of a video frame significantly reduces the computation time. 
 We select a Region-Of-Interest (ROI) area within a frame with the sensor hints.
 However, the ROI predicted from the sensor hints can be incorrect and we gradually increase the area of the rectangle.
-We discussed the details about this in \ref{s:roi}.
+We discussed the details about this in \S\ref{s:roi}.
 
 
 \ref{f:recarea} shows the computation time with the increase of the ROI area in video frames.
@@ -121,12 +146,6 @@ If circle count is high, filtering need for all of these circles, so computation
 \ref{f:cdf_fil} shows that the median computation time is 1.5 ms for the filtering. 
 
 
-\begin{figure}[h!]
-\centering
-\includegraphics[width=5.2in]{plots/walk_cdf_time.pdf}
-\caption{CDF of frame computation time.}
-\label{f:cdf_time}
-\end{figure}
 
 
 
@@ -141,24 +160,24 @@ We walked along several crosswalks of few streets and the route had a total of 1
 
 \begin{table}[h!]
   \centering
-  \caption{Confusion Matrix without sensor hints for static movement dataset.}
+  \caption{Confusion Matrix without sensor hints for static movement dataset. Entries are number of decisions. Each row and column has an associated accuracy.}
   \label{t:con_nocrp}
   \begin{tabular}{  l | c | c | r }
    
      & Detected Red & Detected Green &  \\
     \hline
-    Actual Red & 828 & 1 & 99.88\% \\
+    Actual Red & 858 & 52 & 94.29\% \\
     \hline
-    Actual Green & 54 & 509 & 90.41\% \\
+    Actual Green & 51 & 509 & 90.89\% \\
     \hline
-    & 93.88\% & 98.8\% & 96.05\% \\
+    & 94.39\% & 90.73\% & 92.99\% \\
     
   \end{tabular}
 \end{table}
 
 \begin{table}[h!]
   \centering
-  \caption{Confusion Matrix with sensor hints for static movement dataset.}
+  \caption{Confusion Matrix with sensor hints for static movement dataset.Entries are number of decisions. Each row and column has an associated accuracy.}
   \label{t:con_crp}
   \begin{tabular}{  l | c | c | r }
    
@@ -205,13 +224,16 @@ It shows that the accuracy increases from 89\% to 97\% with sensor hints.
 
 \begin{table}[h!]
   \centering
-  \caption{Accuracy for detection.}
+  \caption{Accuracy for detection in our datasets.}
+  \rowcolors{2}{gray!25}{white}
   \label{t:acc_stat}
-  \begin{tabular}{  l  c | r  }
-   
-     & without sensor & with sensor  \\
+  \begin{tabular}{  l  r  r r r }
+    \rowcolor{gray!50}
+    Dataset & w/o sensor & w/o sensor & w/ sensor & w/ sensor \\
+    \rowcolor{gray!50}
+    name & w/o filter & w/ filter & w/o filter & w/ filter \\
     \hline
-    & 89.7313\% & 97.035\%  \\
+    Static w/ sensor (Regular) & 89.7313\% & 90.6142\% & 97.035\% & 98.7908\% \\
     \hline
   \end{tabular}
 \end{table}
@@ -219,14 +241,95 @@ It shows that the accuracy increases from 89\% to 97\% with sensor hints.
 
 \section{Evaluation of a public dataset}
 
-\todo{need to add results here}
+In this section, we evaluate our system with a well studied public dataset, LISA Traffic Light Dataset \cite{lisa}.
+The LISA Traffic Light Dataset consists of 13 day training clips and 5 night traing clips with 4 testing sequences which are captured in San Diego, California, USA \cite{lisa2}.
+This dataset has total 46418 frames with 112,971 annotated lights.
 
-\begin{figure}[h!]
+The main approach of our system is to use sensor hints to improve the comutational time and the detection accuracy.
+However, the LISA dataset has no information of the sensor hints, so we manually take the 1/4 frames.
+
+\ref{f:lisa_cdf} shows the CDF of computation time for dayclip1 dataset with full frames and subframes.
+It shows that the median time for full frame is 67.15 ms and for the subframe is 12.03 ms.
+We can improve the computation time by 5.58 for this dataset taking the approximate 1/4 of frames.
+However, if we have sensor hints we can improve computation time more keeping the subframes area smaller.
+
+\ref{t:lisa_time} shows the median computation time for full frames and subframes for other clips of LISA dataset.
+It shows that the average median computation time for full frame is 59.29 ms and for subframe is 12.53 ms.
+
+
+\begin{figure}[ht!]
   \centering
   \includegraphics[width=5.2in]{plots/lisaday1_cdf.pdf}
   \caption{CDF time of dayClip1 dataset with cropping and without cropping.}
-  \label{f:day_cdf}
+  \label{f:lisa_cdf}
 \end{figure}
+
+\begin{table}[!ht]
+  \centering
+  \caption{Median computation time (ms) for LISA dataset.}
+  \label{t:lisa_time}
+  \rowcolors{2}{gray!25}{white}
+  \begin{tabular}{  l   r   r }
+    \rowcolor{gray!50}
+    Sequence Nane &  Full frame (ms)  &  Subframe (ms) \\
+    \hline
+    Dayclip-1 & 67.15 & 12.03 \\
+    Dayclip-2 & 53.85 & 10.10 \\
+    Dayclip-3 & 58.63 & 10.81 \\
+    Dayclip-4 & 51.89 & 9.67 \\
+    Dayclip-5 & 68.23 & 13.05 \\
+    Dayclip-6 & 52.24 & 10.01 \\
+    Dayclip-7 & 68.11  & 13.20 \\
+    Dayclip-8 & 52.16  & 9.89  \\
+    Dayclip-9 & 54.22  & 10.40  \\
+    Dayclip-10 & 58.66 & 10.80 \\
+    Dayclip-11 & 53.95 & 10.40 \\
+    Dayclip-12 & 62.50  & 13.05 \\
+    Dayclip-13 & 54.33 & 10.09 \\
+    Nightclip-1 & 63.19 & 19.10 \\
+    Nightclip-2 & 66.48 & 18.55 \\
+    Nightclip-3 & 62.30 & 16.50 \\
+    Nightclip-4 & 60.43 & 13.45 \\
+    Nightclip-5 & 58.89 & 14.50 \\
+    \hline
+    Average computation time (ms) & 59.29 & 12.53 \\
+    
+  \end{tabular}
+\end{table}
+
+\begin{table}[h!]
+  \centering
+  \caption{Confusion Matrix without cropping for LISA dataset of dayclip1.}
+  \label{t:con_nocrp}
+  \begin{tabular}{  l | c | c | r }
+   
+     & Detected Red & Detected Green &  \\
+    \hline
+    Actual Red & 324 & 23 & 93.37\% \\
+    \hline
+    Actual Green & 58 & 111 & 65.68\% \\
+    \hline
+    & 84.82\% & 82.84\% & 84.30\% \\
+    
+  \end{tabular}
+\end{table}
+
+\begin{table}[h!]
+  \centering
+  \caption{Confusion Matrix with cropping for LISA dataset of dayclip1.}
+  \label{t:con_crp}
+  \begin{tabular}{  l | c | c | r }
+   
+     & Detected Red & Detected Green &  \\
+    \hline
+    Actual Red & 342 & 5 & 98.55\% \\
+    \hline
+    Actual Green & 14 & 155 & 91.72\% \\
+    \hline
+    & 96.07\% & 96.88\% & 96.32\% \\
+    
+  \end{tabular}
+\end{table}
 11
 Red 24.4514 0
 Green 0 0
