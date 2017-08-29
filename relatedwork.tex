@@ -2,52 +2,63 @@
 \label{c:relw}
 
 In this section, we describe a brief introduction to the most notable research on the navigation for visually impaired.
-Visually impaired people can not have information about their location or the direction with respect to the traffic or obstacles on the way.
-The conventional ways of the guide dog and long cane can help to find out the obstacles on the way, not help to provide information of their position.
-Navigation system helps people to travel in a convenience and independence.
-People Sensor \cite{peoplesensor} uses pyroelectric and ultrasound sensor to distinguish between a person and object obstruction in the path of the user.
-It helps to reduce the embarrassment through unintended contact with people and object in the directional path.
-There are many ways to find the location of the users \cite{survey}.
+Visually impaired people can not have information about their location or the direction with respect to the obstacles on the way.
+The conventional ways of the guide dog and long cane can help to find out the obstacles on the way, but do not provide their position information.
+Navigation systems help people to travel independently.
+
+There has been a significant research \cite{survey} in localization and obstacle avoidance.
+For obstacle avoidance, People Sensor \cite{peoplesensor} used pyroelectric and ultrasound sensor to detect an object the user's path.
+%It helps to reduce the embarrassment through unintended contact with people and object in the directional path.
+\todo{cite more about obstacle}
+or virtual blind cane to detect obstacles using laser and inertial measurement unit (IMU) \cite {virtual}
 
 %In this work, we build a navigation system to detect the traffic light in a public street for visually impaired.
 %There has some existing systems for helping the blind and visually impaired find their way at indoor and outdoor.
-After the introduction of Global Positioning System (GPS) at the 1980s, many navigation assistant systems integrate GPS for visually impaired.
-Loomis \cite{loomis1,loomis,loomis2} was one of the first to propose the navigation system using DGPS and FM correction data receiver to get the location of the visually impaired.
+After the introduction of Global Positioning System (GPS) at the 1980s, many systems integrated GPS for the navigation by the visually impaired.
+Loomis at el. \cite{loomis1,loomis,loomis2} was one of the first to propose a navigation system using DGPS and correction data over FM to obtain accurate localization.
 
-There has some commercially released system for outdoor navigation for blind and visually impaired users.
-Ariadne GPS \cite{arigps} developed by Ciaffoni is one of the first GPS apps for blind and visually impaired.
-Other commercially released apps for iPhone and Android devices are BlindSquare \cite{blindsq} developed by MIPsoft and ViaOpta Nav \cite{viaopta} developed by Novartis Corporation etc.
-These apps use GPS to inform users the current location, give an announcement of user points of interest and use open source map to navigate.
-Seeing Assistant move app \cite{seeing} developed by Transition Technologies is the only GPS app for blind people that lets the user operate the app through speech commands.
+There are some commercial systems for outdoor navigation for blind and visually impaired users.
+Ariadne GPS \cite{arigps} developed by Ciaffoni is one of the first GPS apps for navigation by the blind and visually impaired.
+Some other commercially released apps for iPhone and Android devices are BlindSquare \cite{blindsq} and ViaOpta Nav \cite{viaopta}.
+These apps use the GPS to inform users the current location, give an announcement of user points of interest and use open source map to navigate.
+Seeing Assistant Move \cite{seeing} is the first app for blind people that lets the user to operate the app through speech commands.
+Other systems that use GPS to find the user’s location are MoBic \cite{mobic}, BrailleNote GPS and Trekker \cite{human}. 
+BrailleNote GPS is commercially available and provides the user with nearby location names and the distance to the destination along the path. 
 
-Other systems that use GPS to find the user’s location are MoBic \cite{mobic}, BrailleNote GPS and Trekker developed by Humanware group \cite{human}, etc. BrailleNote GPS is commercially available and provides the user with nearby location names and the distance to the destination along the path. 
-However, there is a shortcoming of GPS.
-A GPS sensor is ineffective at indoor.
-Some studies proposed and implemented differential GPS which can provide better accuracy \cite{drishti2,gps}.
-It is costly and needs fixed ground station, only efficient for outdoors.
-Furthermore, the GPS signal can not be tracked when blind people move through tall buildings or high walls or trees.
+The GPS provides good location estimations. 
+However, there are several shortcomings of the GPS.
+The GPS sensor is ineffective at indoors.
+The GPS location error can also be high at urban canyons due to multi-path effect and obstructed view of the sky.
+%% Some studies proposed and implemented differential GPS which can provide better accuracy \cite{drishti2,gps}.
+%% It is costly and needs fixed ground station, only efficient for outdoors.
+%% Furthermore, the GPS signal can not be tracked when blind people move through tall buildings or high walls or trees.
 
-Alternative approaches have been proposed to assist the blind people, such as ultrasound \cite{drishti} or radio frequency identification (RFID) \cite{rfid} transponders or virtual blind cane to detect obstacles using laser and inertial measurement unit (IMU) \cite {virtual}
-Although WLAN transmitters or RFID tags or WiFi is low-cost technologies, installing them dedicatedly in the whole city would be expensive and inconvenient.
-Slight changes of the scenes also hamper to the navigation process.
+Since GPS does not work in indoors, there has been other approaches for localization in indoors using various instrumentation techniques. 
+Researchers instrumented indoor areas with ultrasound \cite{drishti} or radio frequency identification (RFID) \cite{rfid} transponders to provide localization with triangulation.
+Recently, due to the pervasive deployment of Wi-Fi networks, localization through Wi-Fi triangulation also became popular.  
+Most of the localization techniques in indoors using instrumentation depends on fingerprinting where the error can be high.
+Furthermore, small changes of the environment can reduce the accuracy.
 
-In order to be extensively applicable, navigation system design needs to be wearable, low cost and mobile technology based.
-To achieve this aim we propose a computer vision based navigation system for visually impaired.
-The research on vision based localization system is active in recent years.
-The map based navigation method requires a global map to make a decision for the navigation \cite{online,map,map2}.
-For this purpose, sequential images of the environment are registered in a database.
-Then to get accurate location and orientation for real world images image -to-image matches with the database.
-Another navigation method creates a map while moving and then use that for navigation \cite{fly,fly2,fly3}. 
-\cite{visual} proposed a system with a wearable stereo camera to estimate the ego-motion using visual odometry method.
+In order to be extensively applicable, navigation systems needs to be highly accurate.
+Additionally, the system needs to be wearable and low cost.
+%To achieve this aim we propose a computer vision based navigation system for visually impaired.
+To achieve this goal, there has been some recent work on vision based localization with smartphones or other wearable cameras and sensors.
+\todo{cite vision based systems w/o map first}
+The map based navigation methods \cite{online,map,map2} require a global map to make a decision for the navigation. 
+In map-based localization systems, sequential images of the environment are registered in a database.
+Then to obtain the location and orientation in the same area at a later time images are matched in the database.
+In \cite{fly,fly2,fly3}, Simultaneous Localization and Mapping is used to create a map while moving along with the localization.
+In \cite{visual}, the authors proposed a system with a wearable stereo camera for higher accuracy localization utilizing the depth information.
 
-Traffic light detection is an important part of the outdoor navigation for the visually impaired.
-There is a significant research of traffic light detection for an autonomous selfdriving car and driving assistance system \cite{traffic_turan,selfdrive,traffic,traffic2,traffic3}.
-\cite{traffic_turan} introduces a technique to detect traffic light state using vehicle localization and prior knowledge of traffic light location.
-In recent years traffic light detection is divided into two categories: model-based and learning-based \cite{survey_traffic}.
-The model based \cite{model,model2} detection approach creates a heuristic model that rely on color or shape information and this approach is dominant and popular in past decades.
-The color information is quite significant as traffic light color is an important feature to distinct it from the scenario.
-Primarily to find the region of interest (ROI) and to classify the traffic light state we use the color information.
-To detect and recognize the color, the detector defines the heuristical threshold of color in selected color space.
+In outdoor streets, traffic light detection is an important part of the navigation system for the visually impaired.
+There has been significant research on traffic light detection for autonomous driving and driving assistance systems \cite{traffic_turan,selfdrive,traffic,traffic2,traffic3}.
+In \cite{traffic_turan}, the authors combined previously mapped traffic light locations along with the vehicle location to achieve reliable estimation of traffic light status.
+In recent years, in addition to the model-based methods \cite{model,model2}, learning-based methods \cite{survey_traffic} became popular for traffic light detection.
+The model-based approaches creates a heuristic model that rely on color or shape information.
+These approves were dominant in the past decade.
+The color information is significant for traffic light detection as color can be distinguished from the surroundings.
+%Primarily to find the region of interest (ROI) and to classify the traffic light state we use the color information.
+To detect and recognize the color, the detector defines the heuristic threshold of color in selected color space.
 The RGB color space is most common as the input video frames are in this space \cite{rgb2}.
 Because of the lightening changes problem, and the color and intensity information is mixed in all the channels of  RGB color space as we discussed in \S\ref{s:color_space}, the values of RGB channel change in different condition.
 The other researcher on traffic light recognition is working with the color space which is more immune to lightening condition and hue distribution is much narrower \cite{hsv2}.
@@ -61,7 +72,7 @@ We can use the information from the sensor like GPS, accelerometer, gyroscope to
 For the navigation purpose, we need a portable system.
 Nowadays smartphone uses is growing and it has the internal sensor that we can use to get the position of the traffic light.
 
-For autonomous selfdriving car or driving assistance system, the position of the traffic light is stable with respect to the vehicle while driving.
+For autonomous self-driving car or driving assistance system, the position of the traffic light is stable with respect to the vehicle while driving.
 \cite{signalguru} introduces a system, Signalguru, which get the position of the traffic light from the sensor data of smartphone.
 Since the traffic light is always in the upper part of the scenario, they processed the upper half of the frame to detect the traffic light.
 In the context of pedestrian navigation, the camera of a smartphone is not always fixed because of the movement of the body part while walking \cite{sensor_pedestrian,sensor_pedestrian2}.
