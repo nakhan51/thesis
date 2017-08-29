@@ -57,7 +57,7 @@ The green box provides the location of the traffic light and we annotate 0 for a
 \begin{figure}[h!]
 \centering
 \includegraphics[width=5.2in]{images/annotation.png}
-\caption{Interface for manual annotation.}
+\caption{Interface for manual annotation. The green box provides the location of the traffic light in video frame.}
 \label{f:annotate}
 \end{figure}
 
@@ -71,14 +71,14 @@ In this section, we discuss the computation time of these datasets with and with
 \begin{figure}[ht]
 \centering
 \includegraphics[width=5.2in]{plots/cloudy_cdf.pdf}
-\caption{CDF of frame computation time for walking dataset with sensor movement in cloudy weather.}
+\caption{CDF of frame computation time for walking dataset with sensor movement in cloudy weather. The improvement of comutation time is 5.29x if we use the sensor hints with the heuristic filter}
 \label{f:cdf_cloudy}
 \end{figure}
 It shows that the median of the computation time without the sensor data and without the heuristic filters is 108.62ms.
 On the other hand, the median computation time with the sensor and without heuristic filters is 13.11ms.
 This is an improvement of 8.29x.
 The median computation time with sensor and heuristic filters is 18.25ms.
-There is a slight increase in frame processing time with the heuristic filters, but this is worthwhile as we false detection rate reduces significantly with the heuristic filters.  
+There is a slight increase in frame processing time with the heuristic filters, but this is worthwhile as false detection rate reduces significantly with the heuristic filters.  
 We discuss more about the accuracy and false detections in Section \S\ref{s:acc}
 
 \ref{t:dataset_time} shows the median computation time for other datasets described in \ref{t:dataset}.
@@ -118,12 +118,12 @@ We discussed the details about this in \S\ref{s:roi}.
 
 \ref{f:recarea} shows the computation time with the increase of the ROI area in video frames.
 It shows that the computation time increases as the area of the rectangle get larger.
-For the same area, if the number of candidate pixels is high or the detected circle count is high then computation time can be also high.
+For the same area, if the number of candidate pixels is high or the detected circle count is high then computation time increases.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=5.2in]{plots/cloudy_recarea.pdf}
-\caption{Computation time with the increase of the rectangle area.}
+\caption{Computation time with the increase of the rectangle area. For the same rectangle area, computation time depends on the number of candidate pixels and detected circle count.}
 \label{f:recarea}
 \end{figure}
 
@@ -140,7 +140,7 @@ The computational cost of the heuristic filter is very small.
 \label{f:cdf_fil}
 \end{figure}
 
-\ref{f:cdf_fil} shows the computation time of the heuristic filter that we discuss at \S\ref{s:filter}.
+\ref{f:cdf_fil} shows the computation time of the heuristic filter.
 The computation time depends on the number of circles detected on the frame.
 If circle count is high, filtering need for all of these circles, so computation time gets higher.
 \ref{f:cdf_fil} shows that the median computation time is 1.5 ms for the filtering. 
