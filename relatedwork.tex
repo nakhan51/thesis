@@ -54,48 +54,49 @@ In outdoor streets, traffic light detection is an important part of the navigati
 There has been significant research on traffic light detection for autonomous driving and driving assistance systems \cite{traffic_turan,selfdrive,traffic,traffic2,traffic3}.
 In \cite{traffic_turan}, the authors combined previously mapped traffic light locations along with the vehicle location to achieve reliable estimation of traffic light status.
 In recent years, in addition to the model-based methods \cite{model,model2}, learning-based methods \cite{survey_traffic} became popular for traffic light detection.
-The model-based approaches creates a heuristic model that rely on color or shape information.
+The model-based approaches create a heuristic model that rely on color or shape information.
 %These approves were dominant in the past decade.
 The color information is significant for traffic light detection.
 %Primarily to find the region of interest (ROI) and to classify the traffic light state we use the color information.
-The model-based detector defines the heuristic threshold of color to distinguish the traffic light from the surroundings in selected color space.
-The RGB color space is most common as the input video frames are in this space \cite{rgb2}.
-However, in RGB color space the color and intensity information is mixed in all the channels, as we discussed in \S\ref{s:color_space}, the values of RGB channel change in different lightening condition.
-Alternatively, the HSV color space is more immune to lightening condition and the hue distribution is different for each color unlike the RGB color channels.
-In recent years, most of the research on traffic light recognition is in HSV space \cite{hsv2}.
-To make the model-based approach  more robust, the shape information of traffic light is fused with the color information, applying them as a filter after color segmentation \cite{signalguru}.
+The model-based systems usually define a heuristic threshold for color to distinguish the traffic lights from the surroundings in a selected color space.
+The RGB color space is the most common as the input video frames are in this space \cite{rgb2}.
+However, in RGB color space, the color and intensity information is mixed in all the channels, as we discussed in \S\ref{s:color_space}.
+As a result, the values of RGB change in different lightening condition.
+Alternatively, the HSV color space is more immune to lightening condition and the hue distribution is different for each color unlike the RGB space.
+In recent years, most of the research in traffic light detection used HSV space \cite{hsv2}.
+To make the model-based approach  more robust, the shape information of traffic light is fused with the color information.
 Traffic light's shape can be obtained by applying the Hough transform on an edge map \cite{hough,hough2,signalguru} or by using radial symmetry \cite{radial,radial2}.
 
-Learning-based model \cite{learning,learning2} is another method to detect traffic light states.
-SVM classifier together with HOG features \cite{selfdrive} is one of the popular learning based detector in computer vision research areas.
-The learning based aggregated channel feature (ACF) \cite{acf,acf2,lisa_cvpr} detector largely used in traffic light detection and provide outperform result.
+Learning-based model \cite{learning,learning2} is another approach to detect traffic lights.
+In \cite{selfdrive}, SVM classifier together with HOG features are used for traffic light detection. 
+In \cite{acf,acf2,lisa_cvpr}, authors used Aggregated Channel Feature (ACF) for traffic light detection, which resulted in higher accuracy.
 Traffic light detection using deep learning is introduced in \cite{cnn,cnn2,cnn3}, where a convolutional neural network (CNN) model detects and recognizes traffic light states using the region of interest information from the smartphone GPS sensor.
 
-For our system to detect traffic light states, we use the HSV space due to the description of color in HSV space is similar to the human perspective and we use Hough circle transform to get the shape information of the traffic light. 
+%For our system to detect traffic light states, we use the HSV space due to the description of color in HSV space is similar to the human perspective and we use Hough circle transform to get the shape information of the traffic light. 
 
-For outdoor navigation system traffic light detection is only a part of the system either for autonomous vehicle or pedestrian navigation.
-The system can include obstacle detection or cross-walk detection or pedestrian movement detection.
-If we can reduce the processing time per frame to detect the traffic light, we will have more time to work on the other parts of the system.
-Traffic light should be in a subpart of the frame.
-If we have knowledge of the location of the traffic light in a frame, we can process that part only, which can reduce the processing time.
-For a navigation system, we need a camera to get the image of the environment.
-If we mount the sensor like GPS, accelerometer, or gyroscope  \cite{sensor,sensor2,sensor3} with the camera we can  get the position of the traffic light with the viewpoint of the camera.
+For outdoor navigation system, traffic light detection is only a part of the end-to-end system for autonomous driving or pedestrian navigation.
+These systems also include obstacle detection, cross-walk detection, pedestrian movement detection, and path planning.
+Reducing the processing time of individual frames for traffic light detection is important for achiving lower processing time for the entire pipeline.
+In general, traffic lights occupy only a subpart of a video frame.
+It is possible to reduce the computation time for traffic light detection by only processing that subpart of the frame.
+We can utilize the GPS and other intertial sensors (e.g., accelerometer, gyroscope, magnetic field sensor) \cite{sensor,sensor2,sensor3} to predict the change in the camera's viewpoint and infer a subpart of the frame that contains the traffic lights. 
 %It is important to use less time to detect the traffic light.
-Nowadays smartphones usage is growing for the navigation purpose since most the smartphones has built in camera and it is easy to carry.
-Most smartphones has inertial measurement unit which we can use to get the position of the traffic light while using the navigation system.
+Nowadays, smartphones usage is growing for the navigation purpose since most of the smartphones has built in camera and they are easy to carry around.
+Additionally, most of the smartphones contain inertial sensors, which are useful.
 
-For autonomous self-driving car or driving assistance system, the position of the traffic light is stable with respect to the vehicle while driving.
-\cite{signalguru} introduces a system, Signalguru, which get the position of the traffic light from the sensor data of smartphone.
-Since the traffic light is always in the upper part of the environment while driving, they processed the upper half of the frame to detect the traffic light.
-In the context of pedestrian navigation, the viewpont of a camera of a smartphone is not always fixed because of the movement of the body part while walking \cite{sensor_pedestrian,sensor_pedestrian2}.
-In this case, we can not process a predefined part of the frames.
-We need to predict the location of the traffic light with the movement and the orientation of the smartphones.
-In our system, we use the sensor hints at each video frame to get the relative position of traffic light from the previous video frame and finally processed that area to detect the traffic light state.
+For autonomous cars or driving assistance systems, the position of the traffic light is stable with respect to the vehicles.
+SignalGuru \cite{signalguru} utlized the intertial sensors in a smartphone to predict the position of the traffic light in the camera's viewpoint.
+Since the traffic light is always in the upper part of the frame while driving, they only processed the upper half of the frame for traffic light detection.
+In the context of pedestrian navigation, the viewpont of a smartphone's camera is not static because of the body movement \cite{sensor_pedestrian,sensor_pedestrian2}.
+Thus, it is more challenging to select a subpart of a frame for traffic light detection.
+%% In this case, we can not process a predefined part of the frames.
+%% We need to predict the location of the traffic light with the movement and the orientation of the smartphones.
+%% In our system, we use the sensor hints at each video frame to get the relative position of traffic light from the previous video frame and finally processed that area to detect the traffic light state.
 
 
-In our system, we use the model-based computer vision technique to detect and recognize the traffic light states.
-Our main approach is to use the sensor hints to improve the computation time and the misdetection rate.
-If we adopt these learning based approaches as our detection method with the sensor hint the result can be approved more.  
+%% In our system, we use the model-based computer vision technique to detect and recognize the traffic light states.
+%% Our main approach is to use the sensor hints to improve the computation time and the misdetection rate.
+%% If we adopt these learning based approaches as our detection method with the sensor hint the result can be approved more.  
 
 
 
