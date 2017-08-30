@@ -46,6 +46,23 @@ Next, we discuss the procedure to select a subpart of a frame using sensor hints
 %% These data have synchronization with our recorded video frames since we logged in sensor data while recording.
 %% Now to detect the traffic light, we use three features of the traffic light.
 %% Those are the color, shape of a traffic light and traffic light location in a black box.
+\section{Android app}
+\label{s:app}
+We build an smartphone app to record the video simultaneously with the sensor hints.
+As we described in \S\ref{s:sensor}, we fuse gyroscope, accelerometer and magnetic field sensor data to get the orientation of the smartphone.
+When we record the video, we hold the smartphone in landscape so the camera of the smartphone face forward.
+That create a change of the smartphone's coordination axes along which we calculate the orientation.
+So we remap the coordination axes with our new reference frame to get the accurate pitch, roll, and azimuth value of the smartphone.
+
+\ref{f:app} shows the interface of our smartphone app.
+While recording the video orientation of the smartphone is displayed in the screen of the smartphone.
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=5.2in]{images/app_interface.png}
+\caption{Smartphone App interface.}
+\label{f:app}
+\end{figure}
 
 \section{Image processing for traffic light detection}
 The primary features of a traffic light are its bright red, yellow, or green color and the circular bulbs.
