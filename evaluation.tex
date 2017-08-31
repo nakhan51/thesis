@@ -55,9 +55,9 @@ However, we emulate the effect of sensors by manual selection of a subpart of a 
     Name & Frame Count & Time Duration & Annotated lights\\
     \hline
     Walking w/ sensor (Sunny day) & 5905 & 3 mins 16 secs &   \\
-    Walking w/ sensor (Cloudy day) & 6205 & 3 mins 26 secs & \\
-    Walking w/ sensor (Regular day) & 6022 & 3 mins 20 secs & 807\\
-    Static w/ sensor (Regular day) & 1810 & 1 min & 1299\\
+    Walking w/ sensor (Cloudy day) & 6205 & 3 mins 26 secs & 807\\
+    Walking w/ sensor (Regular day) & 6022 & 3 mins 20 secs & 469\\
+    Static w/ sensor (Regular day) & 1810 & 1 min & 2014\\
     Walking w/ sensor (Night) & 6146 & 3 mins 24 secs \\
     \hline
   \end{tabular}
@@ -168,38 +168,38 @@ We walked along several crosswalks of few streets and the route had a total of 1
 
 \subsection{Confusion matrix}
 \ref{t:con_nocrp} shows the confusion matrix for the traffic light decision when we do not consider the sensor hints of the smartphone.
-\ref{t:con_crp} shows the confusion matrix considering the sensor hints in the same dataset.
+\ref{t:con_crp} shows the confusion matrix considering the sensor hints in our dataset.
 
 \begin{table}[ht!]
   \centering
-  \caption{Confusion Matrix without sensor hints for static movement dataset. Entries are number of decisions. Each row and column has an associated accuracy.}
+  \caption{Confusion Matrix without sensor hints for our dataset. Entries are number of decisions. Each row and column has an associated accuracy.}
   \label{t:con_nocrp}
   \begin{tabular}{  l | c | c | r }
    
      & Detected Red & Detected Green &  \\
     \hline
-    Actual Red & 858 & 52 & 94.29\% \\
+    Actual Red & 1832 & 236 & 88.588\% \\
     \hline
-    Actual Green & 51 & 509 & 90.89\% \\
+    Actual Green & 67 & 1155 & 94.5172\% \\
     \hline
-    & 94.39\% & 90.73\% & 92.99\% \\
+    & 96.4718\% & 83.0338\% & 90.7902\% \\
     
   \end{tabular}
 \end{table}
 
 \begin{table}[ht!]
   \centering
-  \caption{Confusion Matrix with sensor hints for static movement dataset.Entries are number of decisions. Each row and column has an associated accuracy.}
+  \caption{Confusion Matrix with sensor hints for our  dataset.Entries are number of decisions. Each row and column has an associated accuracy.}
   \label{t:con_crp}
   \begin{tabular}{  l | c | c | r }
    
      & Detected Red & Detected Green &  \\
     \hline
-    Actual Red & 909 & 1 & 99.89\% \\
+    Actual Red & 1952 & 116 & 94.3907\% \\
     \hline
-    Actual Green & 36 & 524 & 93.57\% \\
+    Actual Green & 31 & 1191 & 97.4632\% \\
     \hline
-    & 96.19\% & 99.81\% & 97.48\% \\
+    & 98.4367\% & 91.1247\% & 95.5319\% \\
     
   \end{tabular}
 \end{table}
@@ -231,8 +231,8 @@ Here, the false positive count is reduced significantly and false negative is ze
 \label{f:fp_stat}
 \end{figure}
 
-\ref{t:acc_stat} shows the accuracy rate for the static with sensor movement dataset.
-It shows that the accuracy increases from 89\% to 97\% with sensor hints.
+\ref{t:acc_stat} shows the accuracy rate for our  dataset.
+It shows that the average accuracy increases from 91\% to 97\% with sensor hints.
 
 \begin{table}[h!]
   \centering
@@ -245,12 +245,12 @@ It shows that the accuracy increases from 89\% to 97\% with sensor hints.
     \rowcolor{gray!50}
     name & w/o filter & w/ filter & w/o filter & w/ filter \\
     \hline
-    Walking w/sensor (Cloudy day) & \\
-    Walking w/sensor (Sunny day) &\\
-    Walking w/sensor (Regular day) & \\
+    Walking w/sensor (Cloudy day) & 92.21\% & 92.63\% & 95.3229\% & 96.026\% \\
+    Walking w/sensor (Sunny day) & & & \\
+    Walking w/sensor (Regular day) & 92.11\% & 92.986\% & 96.16\% & 97.2906\% \\
     Static w/ sensor (Regular day) & 89.7313\% & 90.6142\% & 97.035\% & 98.7908\% \\
-    
     \hline
+    Average detection rate & 91.3504\% & 92.0767\% & 97.1726\% & 97.3691\%\\
   \end{tabular}
 \end{table}
 
