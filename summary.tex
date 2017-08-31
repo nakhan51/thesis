@@ -1,3 +1,14 @@
 \summary
-abstract goes here.
+
+With the exponential growth of smartphone usage and its computational capability, there is an opportunity today to build a usable navigation system for the visually impaired. 
+A smartphone contains virtually all sensors for sensing the surrounding environment such as GPS, cameras, and inertial sensors. 
+However, there are many challenges for building a complete navigation system, such as low-level methods of environment sensing, accuracy, and efficient data processing.
+In this dissertation, we address some of these challenges and present a system for traffic light detection, which is fundamental for pedestrian navigation by the visually impaired in outdoors. 
+In this system, we analyze the video feed from a smartphone's camera using model-based computer vision techniques to detect traffic lights. 
+Specifically, we utilize both color and shape information as they are the most prominent features of the traffic lights.
+Additionally, we use the inertial sensors of a smartphone to compute the 3D orientation of a smartphone to predict a subpart of a video frame, which is highly probable to contain the traffic lights. 
+By processing only that subpart, we improve the computational time by an order of magnitude on average. 
+Furthermore, due to the processing of a subpart instead of the whole video frame, our system achieves higher accuracy because of reduced false positive.
+We evaluated this system in various lighting conditions such as cloudy, sunny, and at night, and achieved over 95\% accuracy in traffic light detection.  
+
 
