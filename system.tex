@@ -53,7 +53,14 @@ As we described in \S\ref{s:sensor}, we fuse gyroscope, accelerometer and magnet
 When we record the video, we hold the smartphone in landscape so the camera of the smartphone face forward.
 That create a change of the smartphone's coordination axes along which we calculate the orientation.
 So we remap the coordination axes with our new reference frame to get the accurate pitch, roll, and azimuth value of the smartphone.
+\ref{f:remap} shows the orientation of the smartphone after remapping the coordination axes with the new reference frame.
 
+\begin{figure}[ht]
+\centering
+\includegraphics[width=4.5in]{figures/remap.pdf}
+\caption{Orientation with the remapped coordination axes.}
+\label{f:remap}
+\end{figure}
 \ref{f:app} shows the interface of our smartphone app.
 While recording the video orientation of the smartphone is displayed in the screen of the smartphone.
 

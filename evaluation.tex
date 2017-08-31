@@ -27,10 +27,16 @@ Here, we present our results for several 300 feet long walks.
 At the end of this chapter, we present an approximate evaluation of a public dataset that does not have sensor data. 
 However, we emulate the effect of sensors by manual selection of a subpart of a video frame. 
 
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=5.2in]{images/annotation.png}
+\caption{Interface for manual annotation. The green box provides the location of the traffic light in video frame.}
+\label{f:annotate}
+\end{figure}
+
 \begin{figure}[!ht]
 \centering
 \subfloat[Sunny] {\includegraphics[width=3.2in]{images/sunny.jpg}}\\
-\vfill
 \subfloat[Cloudy] {\includegraphics[width=3.2in]{images/cloudy.jpg}}\\
 \subfloat[Night] {\includegraphics[width=3.2in]{images/night.jpg}}
 \caption{Scene variation of recorded video.}
@@ -44,14 +50,15 @@ However, we emulate the effect of sensors by manual selection of a subpart of a 
   \caption{Description of the dataset.}
   \label{t:dataset}
   \rowcolors{2}{gray!25}{white}
-  \begin{tabular}{  l  c  r  }
+  \begin{tabular}{  l  c  r r }
     \rowcolor{gray!50}
-    Name & Frame Count & Time Duration \\
+    Name & Frame Count & Time Duration & Annotated lights\\
     \hline
-    Walking w/ sensor (Sunny day) & 5905 & 3 mins 16 secs  \\
-    Walking w/ sensor (Cloudy day) & 6205 & 3 mins 26 secs \\
-    Walking w/ sensor (Regular day) & 6022 & 3 mins 20 secs \\
-    Static w/ sensor (Regular day) & 1810 & 1 min \\
+    Walking w/ sensor (Sunny day) & 5905 & 3 mins 16 secs &   \\
+    Walking w/ sensor (Cloudy day) & 6205 & 3 mins 26 secs & \\
+    Walking w/ sensor (Regular day) & 6022 & 3 mins 20 secs & 807\\
+    Static w/ sensor (Regular day) & 1810 & 1 min & 1299\\
+    Walking w/ sensor (Night) & 6146 & 3 mins 24 secs \\
     \hline
   \end{tabular}
 \end{table}
@@ -64,12 +71,7 @@ During annotation, we record the type of the traffic lights (i.e., red or green)
 \ref{f:annotate} shows the interface for manual annotation.
 The green box provides the location of the traffic light and we annotate 0 for a red traffic light and 1 for a green traffic light.
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=5.2in]{images/annotation.png}
-\caption{Interface for manual annotation. The green box provides the location of the traffic light in video frame.}
-\label{f:annotate}
-\end{figure}
+
 
 
 \section{Computation time}
@@ -243,7 +245,11 @@ It shows that the accuracy increases from 89\% to 97\% with sensor hints.
     \rowcolor{gray!50}
     name & w/o filter & w/ filter & w/o filter & w/ filter \\
     \hline
-    Static w/ sensor (Regular) & 89.7313\% & 90.6142\% & 97.035\% & 98.7908\% \\
+    Walking w/sensor (Cloudy day) & \\
+    Walking w/sensor (Sunny day) &\\
+    Walking w/sensor (Regular day) & \\
+    Static w/ sensor (Regular day) & 89.7313\% & 90.6142\% & 97.035\% & 98.7908\% \\
+    
     \hline
   \end{tabular}
 \end{table}
@@ -256,15 +262,17 @@ The LISA Traffic Light Dataset consists of 13 day training clips and 5 night tra
 This dataset has total 46418 frames with 112,971 annotated lights.
 
 The main approach of our system is to use sensor hints to improve the comutational time and the detection accuracy.
-However, the LISA dataset has no information of the sensor hints, so we manually take the 1/4 frames.
+However, the LISA dataset has no information of the sensor hints, so we manually take the 1/4 of frames approximately.
 
 \ref{f:lisa_cdf} shows the CDF of computation time for dayclip1 dataset with full frames and subframes.
 It shows that the median time for full frame is 67.15 ms and for the subframe is 12.03 ms.
 We can improve the computation time by 5.58 for this dataset taking the approximate 1/4 of frames.
 However, if we have sensor hints we can improve computation time more keeping the subframes area smaller.
 
-\ref{t:lisa_time} shows the median computation time for full frames and subframes for other clips of LISA dataset.
+\ref{t:lisa_time} shows the median computation time for full frames and subframes for the other clips of LISA dataset.
+The last column of \ref{t:lisa_time} shows the improvement of computation time for each dataset.
 It shows that the average median computation time for full frame is 59.29 ms and for subframe is 12.53 ms.
+Additionally, the average computation time improvement is 4.73\%. 
 
 
 \begin{figure}[ht!]
@@ -279,92 +287,96 @@ It shows that the average median computation time for full frame is 59.29 ms and
   \caption{Median computation time (ms) for LISA dataset.}
   \label{t:lisa_time}
   \rowcolors{2}{gray!25}{white}
-  \begin{tabular}{  l   r   r }
+  \begin{tabular}{  l   r   r  r}
     \rowcolor{gray!50}
-    Sequence Nane &  Full frame (ms)  &  Subframe (ms) \\
+    Sequence Nane &  Full frame (ms)  &  Subframe (ms) & Improvement \\
     \hline
-    Dayclip-1 & 67.15 & 12.03 \\
-    Dayclip-2 & 53.85 & 10.10 \\
-    Dayclip-3 & 58.63 & 10.81 \\
-    Dayclip-4 & 51.89 & 9.67 \\
-    Dayclip-5 & 68.23 & 13.05 \\
-    Dayclip-6 & 52.24 & 10.01 \\
-    Dayclip-7 & 68.11  & 13.20 \\
-    Dayclip-8 & 52.16  & 9.89  \\
-    Dayclip-9 & 54.22  & 10.40  \\
-    Dayclip-10 & 58.66 & 10.80 \\
-    Dayclip-11 & 53.95 & 10.40 \\
-    Dayclip-12 & 62.50  & 13.05 \\
-    Dayclip-13 & 54.33 & 10.09 \\
-    Nightclip-1 & 63.19 & 19.10 \\
-    Nightclip-2 & 66.48 & 18.55 \\
-    Nightclip-3 & 62.30 & 16.50 \\
-    Nightclip-4 & 60.43 & 13.45 \\
-    Nightclip-5 & 58.89 & 14.50 \\
+    Dayclip-1 & 67.15 & 12.03 & 5.58\% \\
+    Dayclip-2 & 53.85 & 10.10 & 5.33\% \\
+    Dayclip-3 & 58.63 & 10.81 & 5.42\% \\
+    Dayclip-4 & 51.89 & 9.67 & 5.37\% \\
+    Dayclip-5 & 68.23 & 13.05 & 5.23\% \\
+    Dayclip-6 & 52.24 & 10.01 & 5.22\% \\
+    Dayclip-7 & 68.11  & 13.20 & 5.16\% \\
+    Dayclip-8 & 52.16  & 9.89  & 5.27\% \\
+    Dayclip-9 & 54.22  & 10.40  & 5.21\% \\
+    Dayclip-10 & 58.66 & 10.80 & 5.43\% \\
+    Dayclip-11 & 53.95 & 10.40 & 5.19\% \\
+    Dayclip-12 & 62.50  & 13.05 & 4.79\% \\
+    Dayclip-13 & 54.33 & 10.09 & 5.38\% \\
+    Nightclip-1 & 63.19 & 19.10 & 3.31\% \\
+    Nightclip-2 & 66.48 & 18.55 & 3.58\% \\
+    Nightclip-3 & 62.30 & 16.50 & 3.78\% \\
+    Nightclip-4 & 60.43 & 13.45 & 4.49\% \\
+    Nightclip-5 & 58.89 & 14.50 & 4.06\% \\
     \hline
-    Average computation time (ms) & 59.29 & 12.53 \\
+    Average computation time (ms) & 59.29 & 12.53 & 4.73\% \\
     
   \end{tabular}
 \end{table}
 
 \begin{table}[h!]
   \centering
-  \caption{Confusion Matrix without cropping for LISA dataset of dayclip1.}
+  \caption{Confusion Matrix without cropping for LISA dataset.}
   \label{t:con_nocrp}
   \begin{tabular}{  l | c | c | r }
    
      & Detected Red & Detected Green &  \\
     \hline
-    Actual Red & 324 & 23 & 93.37\% \\
+    Actual Red & 5479 & 2346 & 70.019\% \\
     \hline
-    Actual Green & 58 & 111 & 65.68\% \\
+    Actual Green & 1369 & 3682 & 72.896\% \\
     \hline
-    & 84.82\% & 82.84\% & 84.30\% \\
+    & 80.009\% & 61.0816\% & 71.1478\% \\
     
   \end{tabular}
 \end{table}
 
 \begin{table}[h!]
   \centering
-  \caption{Confusion Matrix with cropping for LISA dataset of dayclip1.}
+  \caption{Confusion Matrix with cropping for LISA dataset.}
   \label{t:con_crp}
   \begin{tabular}{  l | c | c | r }
    
      & Detected Red & Detected Green &  \\
     \hline
-    Actual Red & 342 & 5 & 98.55\% \\
+    Actual Red & 5947 & 1878 & 76\% \\
     \hline
-    Actual Green & 14 & 155 & 91.72\% \\
+    Actual Green & 334 & 4717 & 93.3874\% \\
     \hline
-    & 96.07\% & 96.88\% & 96.32\% \\
+    & 94.6824\% & 71.5239\% & 82.8208\% \\
     
   \end{tabular}
 \end{table}
-11
-Red 24.4514 0
-Green 0 0
-Red 70.5329 80.8464
-Green 67.5439 87.6537
-Red 13.4796 9.1536
-Green 20.1754 4.4561
-Acc 69.5853 81.8157
 
-12
-Green fp 10 8.33333
-Green tp 78.3333 96.6667
-Green fn 17.5 1.66667
-Acc 77.686 95.8678
-
-
-\section{Effect of video/image resolution}
-
-\todo{\ref{f:vf_res} shows the computation time after changing video frames resolution.}
-
-\begin{figure}[h!]
+\begin{table}[h!]
   \centering
-  \vspace{2in}
-  %\includegraphics[width=5.2in]{plots/bar_tp.pdf}
-  \caption{Effect of the computation time after changing video frames resolution.}
-  \label{f:vf_res}
-\end{figure}
+  \caption{Accuracy for detection in LISA datasets.}
+  \rowcolors{2}{gray!25}{white}
+  \label{t:acc_stat}
+  \begin{tabular}{  l  r  r }
+    \rowcolor{gray!50}
+    Dataset & Full frame & Sub frame \\
+    \hline
+    Dayclip-1 & 65.162\% & 77.7014\% \\
+    Dayclip-10 & 88.6792\% & 97.1698\% \\
+    Dayclip-11 & 69.746\% & 79.9209\% \\
+    Dayclip-12 & 78.3333\% & 96.6667\% \\
+    Dayclip-13 & 68.6257\% & 83.6199\%\\
+    \hline
+    Average detection rate & 74.1092\% & 87.01574\% \\
+  \end{tabular}
+\end{table}
+
+%% \section{Effect of video/image resolution}
+
+%% \todo{\ref{f:vf_res} shows the computation time after changing video frames resolution.}
+
+%% \begin{figure}[h!]
+%%   \centering
+%%   \vspace{2in}
+%%   %\includegraphics[width=5.2in]{plots/bar_tp.pdf}
+%%   \caption{Effect of the computation time after changing video frames resolution.}
+%%   \label{f:vf_res}
+%% \end{figure}
 
