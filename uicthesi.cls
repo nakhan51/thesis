@@ -517,7 +517,8 @@
    \@makeschapterhead{LIST OF FIGURES}
    \par
    \hbox to \textwidth{\normalsize\bfseries
-      \underbar{FIGURE}\hfil\underbar{PAGE}}
+     \underbar{FIGURE}\hfil\underbar{PAGE}}
+   \vspace{0.3cm}
    \@starttoc{lof}
    \end{singlespace}}
  
@@ -547,7 +548,8 @@
    \@makeschapterhead{LIST OF TABLES}
    \par
    \hbox to \textwidth{\normalsize\bfseries
-       \underbar{TABLE}\hfil\underbar{PAGE}}
+     \underbar{TABLE}\hfil\underbar{PAGE}}
+   \vspace{0.3cm}
    \@starttoc{lot}
    \end{singlespace}}
  

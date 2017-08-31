@@ -10,26 +10,36 @@ Finally, we conclude this chapter with evaluation of our system using a public d
 \label{s:eval}
 To our best knowledge, there is not much research on sensor fusion in the context of traffic light detection, especially for pedestrian navigation. 
 As a result, we did not find public datasets combining traffic lights video and inertial sensor data. 
-Hence, we collected our own ground truth data using an Android app.
+Hence, we collected our own ground truth data using an Android app, that we discussed in \S\ref{s:app}.
+\ref{f:ground_truth} shows the ground truth data collection using our Android app.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=5.2in]{images/ground_truth.jpg}
+\caption{Ground truth data collection using Android app}
+\label{f:ground_truth}
+\end{figure}
+
 % \todo{refer section or fig with the screenshot}.
 We walked across several street crossings and recorded both video and sensor data simultaneously in various lighting conditions. 
-For example, \ref{f:dataset} shows video frames for both sunny and cloudy days. 
+For example, \ref{f:dataset} shows video frames for sunny, cloudy days and for night time. 
 Here, we present our results for several 300 feet long walks.  
 At the end of this chapter, we present an approximate evaluation of a public dataset that does not have sensor data. 
 However, we emulate the effect of sensors by manual selection of a subpart of a video frame. 
 
 \begin{figure}[!ht]
 \centering
-\subfloat[Sunny] {\includegraphics[width=3.1in]{images/sunny.jpg}}
-\hfill
-\subfloat[Cloudy] {\includegraphics[width=3.1in]{images/cloudy.jpg}}
+\subfloat[Sunny] {\includegraphics[width=3.2in]{images/sunny.jpg}}\\
+\vfill
+\subfloat[Cloudy] {\includegraphics[width=3.2in]{images/cloudy.jpg}}\\
+\subfloat[Night] {\includegraphics[width=3.2in]{images/night.jpg}}
 \caption{Scene variation of recorded video.}
 \label{f:dataset}
 \end{figure}
 
 \ref{t:dataset} shows the total no of frames and time duration of our dataset.
 
-\begin{table}[h!]
+\begin{table}[ht!]
   \centering
   \caption{Description of the dataset.}
   \label{t:dataset}
@@ -54,7 +64,7 @@ During annotation, we record the type of the traffic lights (i.e., red or green)
 \ref{f:annotate} shows the interface for manual annotation.
 The green box provides the location of the traffic light and we annotate 0 for a red traffic light and 1 for a green traffic light.
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
 \centering
 \includegraphics[width=5.2in]{images/annotation.png}
 \caption{Interface for manual annotation. The green box provides the location of the traffic light in video frame.}
@@ -120,7 +130,7 @@ We discussed the details about this in \S\ref{s:roi}.
 It shows that the computation time increases as the area of the rectangle get larger.
 For the same area, if the number of candidate pixels is high or the detected circle count is high then computation time increases.
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
 \centering
 \includegraphics[width=5.2in]{plots/cloudy_recarea.pdf}
 \caption{Computation time with the increase of the rectangle area. For the same rectangle area, computation time depends on the number of candidate pixels and detected circle count.}
@@ -133,7 +143,7 @@ For the same area, if the number of candidate pixels is high or the detected cir
 We use a heuristic filter to reduce false positive in traffic light detection as we discuss at \S\ref{s:filter}.
 The computational cost of the heuristic filter is very small.
 
-\begin{figure}[h!]
+\begin{figure}[ht!]
 \centering
 \includegraphics[width=5.2in]{plots/sunny_cdf_filter.pdf}
 \caption{CDF of computation time for the heuristic filter.}
@@ -158,7 +168,7 @@ We walked along several crosswalks of few streets and the route had a total of 1
 \ref{t:con_nocrp} shows the confusion matrix for the traffic light decision when we do not consider the sensor hints of the smartphone.
 \ref{t:con_crp} shows the confusion matrix considering the sensor hints in the same dataset.
 
-\begin{table}[h!]
+\begin{table}[ht!]
   \centering
   \caption{Confusion Matrix without sensor hints for static movement dataset. Entries are number of decisions. Each row and column has an associated accuracy.}
   \label{t:con_nocrp}
@@ -175,7 +185,7 @@ We walked along several crosswalks of few streets and the route had a total of 1
   \end{tabular}
 \end{table}
 
-\begin{table}[h!]
+\begin{table}[ht!]
   \centering
   \caption{Confusion Matrix with sensor hints for static movement dataset.Entries are number of decisions. Each row and column has an associated accuracy.}
   \label{t:con_crp}
