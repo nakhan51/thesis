@@ -5363,7 +5363,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2017-09-04 18:41:32 +0000</string>
+	<string>2017-09-04 19:43:51 +0000</string>
 	<key>Modifier</key>
 	<string>ABM Musa</string>
 	<key>NotesVisible</key>
@@ -5397,7 +5397,7 @@
 		<key>NSPaperName</key>
 		<array>
 			<string>string</string>
-			<string>E22336A5-D951-4793-B79E-7C937574E39A</string>
+			<string>0114BE68-F6F0-44FE-BF67-A34B205959DE</string>
 		</array>
 		<key>NSPaperSize</key>
 		<array>
@@ -5588,28 +5588,28 @@
 						BAtzdHJlYW10eXBlZIHoA4QBQISE
 						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
 						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBKxNDaXJjbGUgbm90
-						IGRldGVjdGVkhoQCaUkBE5KEhIQM
-						TlNEaWN0aW9uYXJ5AJSEAWkEkoSW
-						lhBOU1BhcmFncmFwaFN0eWxlhpKE
-						hIQXTlNNdXRhYmxlUGFyYWdyYXBo
-						U3R5bGUAhIQQTlNQYXJhZ3JhcGhT
-						dHlsZQCUhARDQ0BTAgCEhIQHTlNB
-						cnJheQCUmQyShISECU5TVGV4dFRh
-						YgCUhAJDZgAchpKEoJ8AOIaShKCf
-						AFSGkoSgnwBwhpKEoJ8AgYwAhpKE
-						oJ8AgagAhpKEoJ8AgcQAhpKEoJ8A
-						geAAhpKEoJ8AgfwAhpKEoJ8AgRgB
-						hpKEoJ8AgTQBhpKEoJ8AgVABhoaB
-						AAiEBFsxZl2DzcxMPYaShJaWB05T
-						Q29sb3KGkoSEhAdOU0NvbG9yAJSE
-						AWMBhARmZmZmAAAAAYaShJaWBk5T
-						Rm9udIaShISEBk5TRm9udB6UmRyE
-						BVsyOGNdBgAAABQAAAD//kgAZQBs
-						AHYAZQB0AGkAYwBhAIQBZhCiAKIB
-						ogCiAIaShJaWBk5TS2VyboaShISE
-						CE5TTnVtYmVyAISEB05TVmFsdWUA
-						lIQBKoSEAWSqAIaGhg==
+						dHJpbmcBlIQBKxJMaWdodCBub3Qg
+						ZGV0ZWN0ZWSGhAJpSQESkoSEhAxO
+						U0RpY3Rpb25hcnkAlIQBaQSShJaW
+						EE5TUGFyYWdyYXBoU3R5bGWGkoSE
+						hBdOU011dGFibGVQYXJhZ3JhcGhT
+						dHlsZQCEhBBOU1BhcmFncmFwaFN0
+						eWxlAJSEBENDQFMCAISEhAdOU0Fy
+						cmF5AJSZDJKEhIQJTlNUZXh0VGFi
+						AJSEAkNmAByGkoSgnwA4hpKEoJ8A
+						VIaShKCfAHCGkoSgnwCBjACGkoSg
+						nwCBqACGkoSgnwCBxACGkoSgnwCB
+						4ACGkoSgnwCB/ACGkoSgnwCBGAGG
+						koSgnwCBNAGGkoSgnwCBUAGGhoEA
+						CIQEWzFmXYPNzEw9hpKElpYHTlND
+						b2xvcoaShISEB05TQ29sb3IAlIQB
+						YwGEBGZmZmYAAAABhpKElpYGTlNG
+						b250hpKEhIQGTlNGb250HpSZHIQF
+						WzI4Y10GAAAAFAAAAP/+SABlAGwA
+						dgBlAHQAaQBjAGEAhAFmEKIAogGi
+						AKIAhpKElpYGTlNLZXJuhpKEhIQI
+						TlNOdW1iZXIAhIQHTlNWYWx1ZQCU
+						hAEqhIQBZKoAhoaG
 						</data>
 						<key>Text</key>
 						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
@@ -5619,18 +5619,18 @@
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
 \f0\fs32 \cf2 \expnd0\expndtw0\kerning0
-Circle not detected}</string>
+Light not detected}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{762.66668605804443, 210}, {73, 38}}</string>
+					<string>{{592.33337211608887, 279.5}, {154.66667175292969, 19}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
-					<string>YES</string>
+					<string>Vertical</string>
 					<key>Flow</key>
 					<string>Resize</string>
 					<key>FontInfo</key>
@@ -5682,28 +5682,28 @@ Circle not detected}</string>
 						BAtzdHJlYW10eXBlZIHoA4QBQISE
 						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
 						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBKxRDaXJjbGUgbm90
-						IApkZXRlY3RlZIaEAmlJARSShISE
-						DE5TRGljdGlvbmFyeQCUhAFpBJKE
-						lpYQTlNQYXJhZ3JhcGhTdHlsZYaS
-						hISEF05TTXV0YWJsZVBhcmFncmFw
-						aFN0eWxlAISEEE5TUGFyYWdyYXBo
-						U3R5bGUAlIQEQ0NAUwIAhISEB05T
-						QXJyYXkAlJkMkoSEhAlOU1RleHRU
-						YWIAlIQCQ2YAHIaShKCfADiGkoSg
-						nwBUhpKEoJ8AcIaShKCfAIGMAIaS
-						hKCfAIGoAIaShKCfAIHEAIaShKCf
-						AIHgAIaShKCfAIH8AIaShKCfAIEY
-						AYaShKCfAIE0AYaShKCfAIFQAYaG
-						gQAIhARbMWZdg83MTD2GkoSWlgdO
-						U0NvbG9yhpKEhIQHTlNDb2xvcgCU
-						hAFjAYQEZmZmZgAAAAGGkoSWlgZO
-						U0ZvbnSGkoSEhAZOU0ZvbnQelJkc
-						hAVbMjhjXQYAAAAUAAAA//5IAGUA
-						bAB2AGUAdABpAGMAYQCEAWYQogCi
-						AaIAogCGkoSWlgZOU0tlcm6GkoSE
-						hAhOU051bWJlcgCEhAdOU1ZhbHVl
-						AJSEASqEhAFkqgCGhoY=
+						dHJpbmcBlIQBKxJMaWdodCBub3Qg
+						ZGV0ZWN0ZWSGhAJpSQESkoSEhAxO
+						U0RpY3Rpb25hcnkAlIQBaQSShJaW
+						EE5TUGFyYWdyYXBoU3R5bGWGkoSE
+						hBdOU011dGFibGVQYXJhZ3JhcGhT
+						dHlsZQCEhBBOU1BhcmFncmFwaFN0
+						eWxlAJSEBENDQFMCAISEhAdOU0Fy
+						cmF5AJSZDJKEhIQJTlNUZXh0VGFi
+						AJSEAkNmAByGkoSgnwA4hpKEoJ8A
+						VIaShKCfAHCGkoSgnwCBjACGkoSg
+						nwCBqACGkoSgnwCBxACGkoSgnwCB
+						4ACGkoSgnwCB/ACGkoSgnwCBGAGG
+						koSgnwCBNAGGkoSgnwCBUAGGhoEA
+						CIQEWzFmXYPNzEw9hpKElpYHTlND
+						b2xvcoaShISEB05TQ29sb3IAlIQB
+						YwGEBGZmZmYAAAABhpKElpYGTlNG
+						b250hpKEhIQGTlNGb250HpSZHIQF
+						WzI4Y10GAAAAFAAAAP/+SABlAGwA
+						dgBlAHQAaQBjAGEAhAFmEKIAogGi
+						AKIAhpKElpYGTlNLZXJuhpKEhIQI
+						TlNOdW1iZXIAhIQHTlNWYWx1ZQCU
+						hAEqhIQBZKoAhoaG
 						</data>
 						<key>Text</key>
 						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
@@ -5713,13 +5713,10 @@ Circle not detected}</string>
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
 \f0\fs32 \cf2 \expnd0\expndtw0\kerning0
-Circle not \
-detected}</string>
+Light not detected}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
-					<key>Wrap</key>
-					<string>NO</string>
 				</dict>
 				<dict>
 					<key>Class</key>
@@ -6114,7 +6111,7 @@ detected}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{686.00762544316149, 319}, {107, 19}}</string>
+					<string>{{749, 316}, {101, 19}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -6172,28 +6169,28 @@ detected}</string>
 						BAtzdHJlYW10eXBlZIHoA4QBQISE
 						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
 						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBKw9DaXJjbGUgZGV0
-						ZWN0ZWSGhAJpSQEPkoSEhAxOU0Rp
-						Y3Rpb25hcnkAlIQBaQSShJaWEE5T
-						UGFyYWdyYXBoU3R5bGWGkoSEhBdO
-						U011dGFibGVQYXJhZ3JhcGhTdHls
-						ZQCEhBBOU1BhcmFncmFwaFN0eWxl
-						AJSEBENDQFMAAISEhAdOU0FycmF5
-						AJSZDJKEhIQJTlNUZXh0VGFiAJSE
-						AkNmAByGkoSgnwA4hpKEoJ8AVIaS
-						hKCfAHCGkoSgnwCBjACGkoSgnwCB
-						qACGkoSgnwCBxACGkoSgnwCB4ACG
-						koSgnwCB/ACGkoSgnwCBGAGGkoSg
-						nwCBNAGGkoSgnwCBUAGGhoEACIQE
-						WzFmXYPNzEw9hpKElpYHTlNDb2xv
-						coaShISEB05TQ29sb3IAlIQBYwGE
-						BGZmZmYAAAABhpKElpYGTlNGb250
-						hpKEhIQGTlNGb250HpSZHIQFWzI4
-						Y10GAAAAFAAAAP/+SABlAGwAdgBl
-						AHQAaQBjAGEAhAFmEKIAogGiAKIA
-						hpKElpYGTlNLZXJuhpKEhIQITlNO
-						dW1iZXIAhIQHTlNWYWx1ZQCUhAEq
-						hIQBZKoAhoaG
+						dHJpbmcBlIQBKw5MaWdodCBkZXRl
+						Y3RlZIaEAmlJAQ6ShISEDE5TRGlj
+						dGlvbmFyeQCUhAFpBJKElpYQTlNQ
+						YXJhZ3JhcGhTdHlsZYaShISEF05T
+						TXV0YWJsZVBhcmFncmFwaFN0eWxl
+						AISEEE5TUGFyYWdyYXBoU3R5bGUA
+						lIQEQ0NAUwAAhISEB05TQXJyYXkA
+						lJkMkoSEhAlOU1RleHRUYWIAlIQC
+						Q2YAHIaShKCfADiGkoSgnwBUhpKE
+						oJ8AcIaShKCfAIGMAIaShKCfAIGo
+						AIaShKCfAIHEAIaShKCfAIHgAIaS
+						hKCfAIH8AIaShKCfAIEYAYaShKCf
+						AIE0AYaShKCfAIFQAYaGgQAIhARb
+						MWZdg83MTD2GkoSWlgdOU0NvbG9y
+						hpKEhIQHTlNDb2xvcgCUhAFjAYQE
+						ZmZmZgAAAAGGkoSWlgZOU0ZvbnSG
+						koSEhAZOU0ZvbnQelJkchAVbMjhj
+						XQYAAAAUAAAA//5IAGUAbAB2AGUA
+						dABpAGMAYQCEAWYQogCiAaIAogCG
+						koSWlgZOU0tlcm6GkoSEhAhOU051
+						bWJlcgCEhAdOU1ZhbHVlAJSEASqE
+						hAFkqgCGhoY=
 						</data>
 						<key>Text</key>
 						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
@@ -6203,7 +6200,7 @@ detected}</string>
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs32 \cf2 \expnd0\expndtw0\kerning0
-Circle detected}</string>
+Light detected}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
@@ -6222,7 +6219,7 @@ Circle detected}</string>
 					<integer>246</integer>
 					<key>Points</key>
 					<array>
-						<string>{482.41291427612305, 454}</string>
+						<string>{482.0000114440918, 454}</string>
 						<string>{482.41292879316563, 509}</string>
 					</array>
 					<key>Style</key>
@@ -6248,12 +6245,27 @@ Circle detected}</string>
 				<dict>
 					<key>Class</key>
 					<string>LineGraphic</string>
+					<key>Head</key>
+					<dict>
+						<key>ID</key>
+						<integer>244</integer>
+						<key>Position</key>
+						<real>0.31190553307533264</real>
+					</dict>
 					<key>ID</key>
 					<integer>245</integer>
+					<key>OrthogonalBarAutomatic</key>
+					<true/>
+					<key>OrthogonalBarPoint</key>
+					<string>{0, 0}</string>
+					<key>OrthogonalBarPosition</key>
+					<real>13.883342742919922</real>
 					<key>Points</key>
 					<array>
-						<string>{844.66668605804443, 209}</string>
-						<string>{749.66668605804443, 209}</string>
+						<string>{844.66668701171875, 227.66667103767395}</string>
+						<string>{801, 250}</string>
+						<string>{601, 280}</string>
+						<string>{568.02067237601091, 191.07797687607146}</string>
 					</array>
 					<key>Style</key>
 					<dict>
@@ -6263,11 +6275,20 @@ Circle detected}</string>
 							<string>FilledArrow</string>
 							<key>Legacy</key>
 							<true/>
+							<key>LineType</key>
+							<integer>2</integer>
 							<key>TailArrow</key>
 							<string>0</string>
 							<key>Width</key>
 							<real>2</real>
 						</dict>
+					</dict>
+					<key>Tail</key>
+					<dict>
+						<key>ID</key>
+						<integer>274</integer>
+						<key>Info</key>
+						<integer>16</integer>
 					</dict>
 				</dict>
 				<dict>
@@ -6544,7 +6565,7 @@ Circle detected}</string>
 				</dict>
 				<dict>
 					<key>Bounds</key>
-					<string>{{421.91291427612305, 435}, {121, 19}}</string>
+					<string>{{443.0000114440918, 435}, {78, 19}}</string>
 					<key>Class</key>
 					<string>ShapedGraphic</string>
 					<key>FitText</key>
@@ -6617,28 +6638,28 @@ Circle detected}</string>
 						BAtzdHJlYW10eXBlZIHoA4QBQISE
 						hBJOU0F0dHJpYnV0ZWRTdHJpbmcA
 						hIQITlNPYmplY3QAhZKEhIQITlNT
-						dHJpbmcBlIQBKxBTZWxlY3Qgc3Vi
-						LWZyYW1lhoQCaUkBEJKEhIQMTlNE
-						aWN0aW9uYXJ5AJSEAWkEkoSWlhBO
-						U1BhcmFncmFwaFN0eWxlhpKEhIQX
-						TlNNdXRhYmxlUGFyYWdyYXBoU3R5
-						bGUAhIQQTlNQYXJhZ3JhcGhTdHls
-						ZQCUhARDQ0BTAACEhIQHTlNBcnJh
-						eQCUmQyShISECU5TVGV4dFRhYgCU
-						hAJDZgAchpKEoJ8AOIaShKCfAFSG
-						koSgnwBwhpKEoJ8AgYwAhpKEoJ8A
-						gagAhpKEoJ8AgcQAhpKEoJ8AgeAA
-						hpKEoJ8AgfwAhpKEoJ8AgRgBhpKE
-						oJ8AgTQBhpKEoJ8AgVABhoaBAAiE
-						BFsxZl2DzcxMPYaShJaWB05TQ29s
-						b3KGkoSEhAdOU0NvbG9yAJSEAWMB
-						hARmZmZmAAAAAYaShJaWBk5TRm9u
-						dIaShISEBk5TRm9udB6UmRyEBVsy
-						OGNdBgAAABQAAAD//kgAZQBsAHYA
-						ZQB0AGkAYwBhAIQBZhCiAKIBogCi
-						AIaShJaWBk5TS2VyboaShISECE5T
-						TnVtYmVyAISEB05TVmFsdWUAlIQB
-						KoSEAWSqAIaGhg==
+						dHJpbmcBlIQBKwpTZWxlY3QgUk9J
+						hoQCaUkBCpKEhIQMTlNEaWN0aW9u
+						YXJ5AJSEAWkEkoSWlhBOU1BhcmFn
+						cmFwaFN0eWxlhpKEhIQXTlNNdXRh
+						YmxlUGFyYWdyYXBoU3R5bGUAhIQQ
+						TlNQYXJhZ3JhcGhTdHlsZQCUhARD
+						Q0BTAACEhIQHTlNBcnJheQCUmQyS
+						hISECU5TVGV4dFRhYgCUhAJDZgAc
+						hpKEoJ8AOIaShKCfAFSGkoSgnwBw
+						hpKEoJ8AgYwAhpKEoJ8AgagAhpKE
+						oJ8AgcQAhpKEoJ8AgeAAhpKEoJ8A
+						gfwAhpKEoJ8AgRgBhpKEoJ8AgTQB
+						hpKEoJ8AgVABhoaBAAiEBFsxZl2D
+						zcxMPYaShJaWB05TQ29sb3KGkoSE
+						hAdOU0NvbG9yAJSEAWMBhARmZmZm
+						AAAAAYaShJaWBk5TRm9udIaShISE
+						Bk5TRm9udB6UmRyEBVsyOGNdBgAA
+						ABQAAAD//kgAZQBsAHYAZQB0AGkA
+						YwBhAIQBZhCiAKIBogCiAIaShJaW
+						Bk5TS2VyboaShISECE5TTnVtYmVy
+						AISEB05TVmFsdWUAlIQBKoSEAWSq
+						AIaGhg==
 						</data>
 						<key>Text</key>
 						<string>{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
@@ -6648,7 +6669,7 @@ Circle detected}</string>
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
 
 \f0\fs32 \cf2 \expnd0\expndtw0\kerning0
-Select sub-frame}</string>
+Select ROI}</string>
 						<key>VerticalPad</key>
 						<integer>0</integer>
 					</dict>
