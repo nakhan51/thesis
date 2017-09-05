@@ -5363,7 +5363,7 @@
 	<key>MasterSheets</key>
 	<array/>
 	<key>ModificationDate</key>
-	<string>2017-09-04 19:43:51 +0000</string>
+	<string>2017-09-05 04:08:46 +0000</string>
 	<key>Modifier</key>
 	<string>ABM Musa</string>
 	<key>NotesVisible</key>
@@ -5397,7 +5397,7 @@
 		<key>NSPaperName</key>
 		<array>
 			<string>string</string>
-			<string>0114BE68-F6F0-44FE-BF67-A34B205959DE</string>
+			<string>C674C8FF-6FF1-4B5D-82F7-9559AC42E0C4</string>
 		</array>
 		<key>NSPaperSize</key>
 		<array>
@@ -7706,7 +7706,7 @@ Detect Traffic Lights}</string>
 {\*\expandedcolortbl;;}
 \pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\qc
 
-\f0\fs38 \cf0 Convert Color Space}</string>
+\f0\fs38 \cf0 Filter Color}</string>
 									</dict>
 								</dict>
 								<dict>
@@ -11358,7 +11358,7 @@ Video Frames Queue}</string>
 		<key>ExpandedCanvases</key>
 		<array/>
 		<key>Frame</key>
-		<string>{{-1912, -257}, {1839, 1057}}</string>
+		<string>{{0, 46}, {1280, 731}}</string>
 		<key>ListView</key>
 		<true/>
 		<key>OutlineWidth</key>
@@ -11372,7 +11372,7 @@ Video Frames Queue}</string>
 		<key>SidebarWidth</key>
 		<integer>120</integer>
 		<key>VisibleRegion</key>
-		<string>{{-186, -12}, {1704, 902}}</string>
+		<string>{{0, 0}, {1145, 576}}</string>
 		<key>Zoom</key>
 		<real>1</real>
 		<key>ZoomValues</key>
