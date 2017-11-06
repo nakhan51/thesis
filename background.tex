@@ -206,11 +206,10 @@ If a circle passes through the grid of the accumulator matrix, it increases the 
 The position of the local maxima of this accumulator matrix provides the corresponding circle's centers.
 
 \section{Neural network architecture}
+The Neural network is a supervised machine learning algorithm that that can achieve high accuracy in recognition tasks involving complex datasets. 
+A neural network typically consists of a large number of nodes that are organized into layers along with interconnection between the layers. 
+\ref{f:nn_archi} shows a sample neural network architecture.
 
-Neural network, a machine learning process, enables a computer to learn and conduct task by examining training datasets.
-Neural network consists of a lot of nodes that are organized into layers and are internally connected.
-Training data sample is provided at the input layer and signal travels from input layers to output layers.
-There has multi lavels of hidden layers between these input and output layers.
 \begin{figure}[h]
 \centering
 \includegraphics[width=3.8in]{figures/nn.pdf}
@@ -218,13 +217,12 @@ There has multi lavels of hidden layers between these input and output layers.
 \label{f:nn_archi}
 \end{figure}
 
-\ref{f:nn_archi} shows the neural network architecture.
+At every layer, each node has different weights.
+During data propagation, the data values are multiplied with the weights.
+The final value passes through the activation layers if it exceeds the threshold.
+During training, the threshold value and weight value are tuned iteratively to achieve best possible accuracy in the training data. 
+Typically, back-propagation method is used to train a neural network.
 
-At every layer, each node has different weights and when data passes through the nodes it's values multiplied with the weights.
-Final value passes through the activation layers if it exceeds the threshold.
-During training the architecture, the threshold value and weight value are tuned constantly so that the training samples with same class provides the same results.
-Our system uses the backpropagation method to train the neural network.
-Backpropagation method finds the internal values of weights at each node while training the architecture to get similar output to our expected results.
 
 
 

@@ -28,8 +28,8 @@ Sensor fusion allows us to process only subpart of a video frame.
 We can predict where the traffic lights will move in a video frame using the estimated motion and orientation of the smartphone and can process only that region of the frame. 
 This results in an order of magnitude improvement in image processing time on average. 
 Additionally, traffic light detection in a sub-image reduces the false positive rate since spurious detections are eliminated from the regions of a frame where the traffic lights are not located.
-Finally, in addition to the traffic light detection, walk sign recognition is a very important part of perception during pedestrian navigation.
-\note{}Here, in this work, we use a neural network classifier
+In addition to the traffic light detection, walk sign recognition is important for pedestrian navigation.
+Here, we use a neural network classifier to recognize walk signs with high accuracy. 
 
 The primary contributions of this work are:
 
@@ -38,7 +38,7 @@ The primary contributions of this work are:
 \item Accuracy improvement in traffic light detection by processing only the relevant region of a video frame. 
 \item Experimental study of the sensor fusion for the reliable estimation of a smartphone's pose. 
 \item Efficient heuristic filters for reducing the false positive rate in traffic light detection.
-\item Efficient neural network classifier design for walk sign recognition at each video frames.
+\item High accuracy walk sign recognition at video frames using a neural network classifier.
 \item Evaluation of our system with real-world traffic light video in various lighting conditions. 
 \item Evaluation of our system with other public datasets.
   
