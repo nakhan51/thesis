@@ -24,7 +24,7 @@ Third, the traffic lights are mostly perpendicular to a vehicle, where they are 
 In this work, we address these challenges and build a system to detect and recognize traffic light and sign for pedestrian navigation.
 Here, we combine sensor fusion and image processing to efficiently detect traffic lights. 
 The benefit of sensor fusion is two-fold.
-Sensor fusion allows us to process only subpart of a video frame.
+Sensor fusion allows us to process only a subpart of a video frame.
 We can predict where the traffic lights will move in a video frame using the estimated motion and orientation of the smartphone and can process only that region of the frame. 
 This results in an order of magnitude improvement in image processing time on average. 
 Additionally, traffic light detection in a sub-image reduces the false positive rate since spurious detections are eliminated from the regions of a frame where the traffic lights are not located.
@@ -50,6 +50,6 @@ The primary contributions of this work are:
 
 The remainder of this dissertation is structured as follows.
 We discuss the background of inertial sensors of smartphones, image processing for traffic light detection and neural network classifier for walk sign recognition in chapter \ref{c:background}.
-In chapter \ref{c:relw}, we discuss the state of the art work related to our system.
+In chapter \ref{c:relw}, we discuss the state-of-the-art work related to our system.
 We describe our system architecture in chapter \ref{c:system}.
 In chapter \ref{c:evalu}, we present the end-to-end evaluation.

@@ -64,7 +64,7 @@ This geomagnetic field sensor of an Android smartphone provides a vector along t
 The X coordinate represents the magnetic field strength in the direction of magnetic North.
 A positive X value represents a smartphone's orientation with respect to the North and a negative X value represents the smartphone's orientation with respect to the South.
 Similarly, Y coordinate represents the East and West direction.
-The Z coordinate represents the direction of a smarthpone's up or down direction.
+The Z coordinate represents the direction of a smartphone's up or down direction.
 
 
 \subsection{Orientation}
@@ -74,11 +74,11 @@ It is also very responsive to a small rotation.
 As a result, it can track the change of rotation rapidly.
 We can get the orientation from the gyroscope by integrating its values.
 However, the integration can accumulate a large error over time.
-Because of this, integration of gyroscope values are not used in practice. 
+Because of this, integration of gyroscope values is not used in practice. 
 Instead, the accelerometer is used to inject the correction term that keeps orientation accurate with respect to the gravity and removes the drift.
 Additionally, to obtain the position of a smartphone in the Earth's reference frame, we combine the gyroscope and accelerometer data with geomagnetic field sensor.
 
-In summary, we get orientation from gyroscope and the accelerometer corrects the error accumulation.
+In summary, we get orientation from the gyroscope and the accelerometer corrects the error accumulation.
 Finally, geomagnetic field sensor provides correction due to the magnetic North.
 
 Android Sensor API \cite {api_android} provides the orientation of the phone with respect to the reference frame described before by fusing the data from the accelerometer, gyroscope, and magnetic sensor. 
@@ -97,7 +97,7 @@ This orientation contains the pitch, roll, and azimuth of the smartphone.
 
 \ref{f:rpy_dia} shows the orientation of a smartphone with respect to the smartphone's coordination frame.
 Here, the pitch is the degree of rotation about the X axis.
-This value is positive when the positive Z axis rotates toward the positive Y axis and it is negative when positive Z axis rotates toward the negative Y axis.
+Pitch value is positive when the positive Y axis rotates to the negative Z axis and this value is negative when positive Y axis rotates to the positive Z axis.
 %Pitch is the angle between the plane parallel to the smartphone and parallel to the ground.
 %\note{fixed?}
 %\todo{clarify, parallel twice is ambiguous.}
@@ -105,10 +105,10 @@ This value is positive when the positive Z axis rotates toward the positive Y ax
 %\note{fixed?}
 %\todo{overall below is confusing to read. May be table is better}
 Roll is the rotation angle with respect to the Y axis.
-This value is positive when the positive Z axis rotates toward the positive X axis and it is negative when positive Z axis rotates towards the negative X axis.
+Roll value is positive when the positive X axis turns to the negative Z axis and it is negative when positive X axis turns to the positive Z axis.
 Azimuth is the rotation angle with respect to the Z axis.
-This is the angle between the magnetic North and the Y axis.
-For example, if the phone's Y axis is aligned to the magnetic North the azimuth is 0.
+This is the angle between the smartphone Y axis and the magnetic North of the earth.
+That means if the phone's Y axis is placed in straight to the magnetic North of earth the azimuth is 0.
 
 \ref{t:rpy} shows the range of pitch, roll, and the azimuth value.
 \begin{table}[h!]
@@ -123,7 +123,7 @@ For example, if the phone's Y axis is aligned to the magnetic North the azimuth 
     Range for roll value & -90 degrees to 90 degrees  \\
     Range for azimuth value & 0 degree to 360 degrees \\
     \rowcolor{gray!50}
-    & 0 degree when Y axis align with the magnetic North \\
+    & 0 degree when Y axis aligns with the magnetic North \\
     
   \end{tabular}
 \end{table}

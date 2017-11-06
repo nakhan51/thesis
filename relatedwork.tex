@@ -2,8 +2,8 @@
 \label{c:relw}
 
 In this section, we describe a brief introduction to the most notable research on the navigation for visually impaired.
-Visually impaired people can not have information about their location or the direction with respect to the obstacles on the way.
-The conventional ways of the guide dog and long cane can help to find out the obstacles on the way, but do not provide their position information.
+Visually impaired people can not have knowledge about their position or the direction regarding the obstacles on the way.
+The traditional ways of the guide dog and long cane can assist to find out the obstacles on the way, but do not provide their location information.
 Navigation systems help people to travel independently.
 
 There has been a significant research \cite{survey} in localization and obstacle avoidance.
@@ -15,36 +15,37 @@ or virtual blind cane to detect obstacles using laser and inertial measurement u
 %In this work, we build a navigation system to detect the traffic light in a public street for visually impaired.
 %There has some existing systems for helping the blind and visually impaired find their way at indoor and outdoor.
 After the introduction of Global Positioning System (GPS) at the 1980s, many systems integrated GPS for the navigation by the visually impaired.
-Loomis at el. \cite{loomis1,loomis,loomis2} was one of the first to propose a navigation system using DGPS and correction data over FM to obtain accurate localization.
+Loomis at el. \cite{loomis1,loomis,loomis2} proposes a navigation system using DGPS.
+He was one of the first to use DGPS and correction data for a navigation system to obtain correct and precise localization.
 
 There are some commercial systems for outdoor navigation for blind and visually impaired users.
 Ariadne GPS \cite{arigps} developed by Ciaffoni is one of the first GPS apps for navigation by the blind and visually impaired.
 Some other commercially released apps for iPhone and Android devices are BlindSquare \cite{blindsq} and ViaOpta Nav \cite{viaopta}.
 These apps use the GPS to inform users the current location, give an announcement of user points of interest and use open source map to navigate.
-Seeing Assistant Move \cite{seeing} is the first app for blind people that lets the user to operate the app through speech commands.
-Other systems that use GPS to find the user’s location are MoBic \cite{mobic}, BrailleNote GPS and Trekker \cite{human}. 
-BrailleNote GPS is commercially available and provides the user with nearby location names and the distance to the destination along the path. 
+Seeing Assistant Move \cite{seeing} is the first app for blind people that lets the user operate the app through speech commands.
+Other systems that use GPS to get the user’s position are MoBic \cite{mobic}, BrailleNote GPS and Trekker \cite{human}. 
+BrailleNote GPS is accessible for all in commercial and helps the users with the distance to their destination along with the nearby location description. 
 
 The GPS provides good location estimations. 
 However, there are several shortcomings of the GPS.
 The GPS sensor is ineffective at indoors.
-The GPS location error can also be high at urban canyons due to multi-path effect and obstructed view of the sky.
+The GPS location error can also be high at urban canyons due to multi-path effect and obstructed the view of the sky.
 %% Some studies proposed and implemented differential GPS which can provide better accuracy \cite{drishti2,gps}.
 %% It is costly and needs fixed ground station, only efficient for outdoors.
 %% Furthermore, the GPS signal can not be tracked when blind people move through tall buildings or high walls or trees.
 
-Since GPS does not work in indoors, there has been other approaches for localization in indoors using various instrumentation techniques. 
+Since GPS does not work in indoors, there have been other approaches for localization in indoors using various instrumentation techniques. 
 Researchers instrumented indoor areas with ultrasound \cite{drishti} or radio frequency identification (RFID) \cite{rfid} transponders to provide localization with triangulation.
 Recently, due to the pervasive deployment of Wi-Fi networks, localization through Wi-Fi triangulation also became popular.  
-Most of the localization techniques in indoors using instrumentation depends on fingerprinting where the error can be high.
-Furthermore, small changes of the environment can reduce the accuracy.
+Most of the localization techniques in indoors using instrumentation depend on fingerprinting where the error can be high.
+Furthermore, small changes in the environment can reduce the accuracy.
 
-In order to be extensively applicable, navigation systems needs to be highly accurate.
+In order to be extensively applicable, navigation systems need to be highly accurate.
 Additionally, the system needs to be wearable and low cost.
 %To achieve this aim we propose a computer vision based navigation system for visually impaired.
-To achieve this goal, there has been some recent work on vision based localization with smartphones or other wearable cameras and sensors.
+To achieve this goal, there has been some recent work on vision-based localization with smartphones or other wearable cameras and sensors.
 %\todo{cite vision based systems w/o map first}
-The map based navigation methods \cite{online,map,map2} require a global map to make a decision for the navigation. 
+The map-based navigation methods \cite{online,map,map2} require a global map to make a decision for the navigation. 
 In map-based localization systems, sequential images of the environment are registered in a database.
 Then to obtain the location and orientation in the same area at a later time images are matched in the database.
 In \cite{fly,fly2,fly3}, Simultaneous Localization and Mapping is used to create a map while moving along with the localization.
@@ -52,42 +53,52 @@ In \cite{visual}, the authors proposed a system with a wearable stereo camera fo
 
 In outdoor streets, traffic light detection is an important part of the navigation system for the visually impaired.
 There has been significant research on traffic light detection for autonomous driving and driving assistance systems \cite{traffic_turan,selfdrive,traffic,traffic2,traffic3}.
-In \cite{traffic_turan}, the authors combined previously mapped traffic light locations along with the vehicle location to achieve reliable estimation of traffic light status.
+In \cite{traffic_turan}, the authors combined previously mapped traffic light locations along with the vehicle location to achieve a reliable estimation of traffic light status.
 In recent years, in addition to the model-based methods \cite{model,model2}, learning-based methods \cite{survey_traffic} became popular for traffic light detection.
 The model-based approaches create a heuristic model that rely on color or shape information.
 %These approves were dominant in the past decade.
 The color information is significant for traffic light detection.
 %Primarily to find the region of interest (ROI) and to classify the traffic light state we use the color information.
-The model-based systems usually define a heuristic threshold for color to distinguish the traffic lights from the surroundings in a selected color space.
+The model-based systems usually define a heuristic threshold for the color to distinguish the traffic lights from the surroundings in a selected color space.
 The RGB color space is the most common as the input video frames are in this space \cite{rgb2}.
 However, in RGB color space, the color and intensity information is mixed in all the channels, as we discussed in \S\ref{s:color_space}.
-As a result, the values of RGB change in different lightening condition.
-Alternatively, the HSV color space is more immune to lightening condition and the hue distribution is different for each color unlike the RGB space.
+As a result, the values of RGB change in different lighting condition.
+Alternatively, the HSV color space is more immune to lighting condition and the hue distribution is different for each color, unlike the RGB space.
 In recent years, most of the research in traffic light detection used HSV space \cite{hsv2}.
 To make the model-based approach  more robust, the shape information of traffic light is fused with the color information.
 Traffic light's shape can be obtained by applying the Hough transform on an edge map \cite{hough,hough2,signalguru} or by using radial symmetry \cite{radial,radial2}.
 
 Learning-based model \cite{learning,learning2} is another approach to detect traffic lights.
-In \cite{selfdrive}, SVM classifier together with HOG features are used for traffic light detection. 
+In \cite{selfdrive}, SVM classifier together with HOG features is used for traffic light detection. 
 In \cite{acf,acf2,lisa_cvpr}, authors used Aggregated Channel Feature (ACF) for traffic light detection, which resulted in higher accuracy.
 Traffic light detection using deep learning is introduced in \cite{cnn,cnn2,cnn3}, where a convolutional neural network (CNN) model detects and recognizes traffic light states using the region of interest information from the smartphone GPS sensor.
 
 %For our system to detect traffic light states, we use the HSV space due to the description of color in HSV space is similar to the human perspective and we use Hough circle transform to get the shape information of the traffic light. 
+Detection and recognition of walk and stop signs are also an important part of perspective in case of pedestrian navigation, especially for visually impaired.
 
-For outdoor navigation system, traffic light detection is only a part of the end-to-end system for autonomous driving or pedestrian navigation.
+There has a significant work on traffic road sign in real world scene for self-driving assistance.
+In \cite{template}, the authors used template matching for sign recognition after detecting the candidates.
+There also lots of work on sign recognition using SVM \cite{svm,svm2} classifier with HOG feature extraction \cite{tra_sign,svm_with_image} and neural networks \cite{nn_random}.
+In \cite{svm_with_image}, authors used color segmentation method and shape information of the road signs to get the interested area.
+Then they used SVM classifier with the HOG feature extraction method to recognize the different signs 
+In recent years, deep learning method \cite{deep1,deep2,deep3} is getting more popular for traffic sign recognition to get better accuracy.
+
+
+
+For outdoor navigation system, traffic light and sign detection and recognition is only a part of the end-to-end system for autonomous driving or pedestrian navigation.
 These systems also include obstacle detection, cross-walk detection, pedestrian movement detection, and path planning.
-Reducing the processing time of individual frames for traffic light detection is important for achiving lower processing time for the entire pipeline.
+Reducing the processing time of individual frames for traffic light detection is important for achieving lower processing time for the entire pipeline.
 In general, traffic lights occupy only a subpart of a video frame.
 It is possible to reduce the computation time for traffic light detection by only processing that subpart of the frame.
-We can utilize the GPS and other intertial sensors (e.g., accelerometer, gyroscope, magnetic field sensor) \cite{sensor,sensor2,sensor3} to predict the change in the camera's viewpoint and infer a subpart of the frame that contains the traffic lights. 
+We can utilize the GPS and other inertial sensors (e.g., accelerometer, gyroscope, magnetic field sensor) \cite{sensor,sensor2,sensor3} to predict the change in the camera's viewpoint and infer a subpart of the frame that contains the traffic lights. 
 %It is important to use less time to detect the traffic light.
-Nowadays, smartphones usage is growing for the navigation purpose since most of the smartphones has built in camera and they are easy to carry around.
+Nowadays, smartphones usage is growing for the navigation purpose since most of the smartphones have the built-in camera and they are easy to carry around.
 Additionally, most of the smartphones contain inertial sensors, which are useful.
 
 For autonomous cars or driving assistance systems, the position of the traffic light is stable with respect to the vehicles.
-SignalGuru \cite{signalguru} utlized the intertial sensors in a smartphone to predict the position of the traffic light in the camera's viewpoint.
+SignalGuru \cite{signalguru} utilized the inertial sensors in a smartphone to predict the position of the traffic light in the camera's viewpoint.
 Since the traffic light is always in the upper part of the frame while driving, they only processed the upper half of the frame for traffic light detection.
-In the context of pedestrian navigation, the viewpont of a smartphone's camera is not static because of the body movement \cite{sensor_pedestrian,sensor_pedestrian2}.
+In the context of pedestrian navigation, the viewpoint of a smartphone's camera is not static because of the body movement \cite{sensor_pedestrian,sensor_pedestrian2}.
 Thus, it is more challenging to select a subpart of a frame for traffic light detection.
 %% In this case, we can not process a predefined part of the frames.
 %% We need to predict the location of the traffic light with the movement and the orientation of the smartphones.
@@ -97,8 +108,6 @@ Thus, it is more challenging to select a subpart of a frame for traffic light de
 %% In our system, we use the model-based computer vision technique to detect and recognize the traffic light states.
 %% Our main approach is to use the sensor hints to improve the computation time and the misdetection rate.
 %% If we adopt these learning based approaches as our detection method with the sensor hint the result can be approved more.  
-
-
 
 
 
