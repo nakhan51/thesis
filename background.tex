@@ -1,6 +1,7 @@
 \chapter{Background}
 \label{c:background}
-Our traffic light detection system uses sensor fusion to estimate the motion and orientation of a smartphone and image processing in an estimated subpart of a video frame to detect the traffic lights. 
+Our traffic light detection system uses sensor fusion to estimate the motion and orientation of a smartphone and image processing in an estimated subpart of a video frame to detect the traffic lights.
+Our system also uses neural network architecture to classify the walk and stop signs in video frames.
 We use some existing techniques for these stages. 
 In this section, we provide an overview of these techniques. 
 
@@ -200,6 +201,8 @@ Then, at every edge pixel, it generates a circle.
 To find the intersection of these circles, Hough method uses an accumulator matrix.
 If a circle passes through the grid of the accumulator matrix, it increases the voting number of the grid.
 The position of the local maxima of this accumulator matrix provides the corresponding circle's centers.
+
+\section{Neural network architecture}
 
 
 
