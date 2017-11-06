@@ -1,6 +1,6 @@
 \chapter{System Architecture}
 \label{c:system}
-Three major components of our system are (a) processing of video frames using computer vision techniques to detect traffic lights, (b) classification of walk and stop sign at each video frame and (c) selection of a subpart of a frame using inertial sensor hints to reduce both computation time and spurious detection of traffic lights. 
+Three major components of our system are (a) processing of video frames using computer vision techniques to detect traffic lights, (b) classification of walk and stop signs at each video frame and (c) selection of a subpart of a frame using inertial sensor hints to reduce both computation time and spurious detection of traffic lights. 
 In this chapter, we present the end-to-end system and describe various components of the system pipeline.
 
 %% In this chapter, we discuss the system overview for traffic light detection.
@@ -331,7 +331,7 @@ Figure \ref{f:enl1} shows the next frame, where detection goes wrong at first an
 \section{Neural network architecture for sign classification}
 At this point, we have successful detection of red and green traffic lights in all video frames.
 To make our system more robust for the visually impaired, we detect and classify the walk and stop signs at each video frames.
-Here, we designed a multi layer perception classifier for walk sign recognition.
+Here, we designed a multi-layer perception classifier for walk sign recognition.
 Below, we discuss the design of our neural network classifier and training procedure. 
 
 \subsection{Data preprocessing}
@@ -339,7 +339,19 @@ Below, we discuss the design of our neural network classifier and training proce
 For walk and stop sign classification in our datasets, we annotate the position of these signs in video frames.
 From these annotated video frames, we obtain the training images by cropping the walk sign area.
 We manually label all the training datasets for the walk and stop signs.
+
+\begin{figure}
+\centering
+\includegraphics[width=5.2in]{figures/walk_stop.pdf}
+\caption{Example images of walk and stop signs}
+\label{f:walk_stop}
+\end{figure}
+
+
 Training dataset sample sizes vary from 48x37 to 129x217.
+\ref{f:walk_stop} shows some training images of walk and stop signs.
+It shows that sample images has different sizes.
+
 We down-scale or up-scale all these sample images to 58x58 to produce a fixed resolution training data.
 We use the different shape characteristics of walk and stop sign for the classification.
 Hence, we convert the training images to grayscale to retain the shape information. 
