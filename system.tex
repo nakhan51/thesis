@@ -20,7 +20,7 @@ In this chapter, we present the end-to-end system and describe various component
 \ref{f:sys_dia} shows the overview of our system.
 Using our smartphone app, we simultaneously record video and inertial sensor data.
 Initially, we process the full region of the video frames to detect the traffic lights.
-Once we successfully detect traffic lights in a video frame, we process only subparts of the subsequent frames using the sensor hints. 
+Once we successfully detect traffic lights in a video frame, we process only sub-parts of the subsequent frames using the sensor hints. 
 For the subsequent frames, using the orientation change, we predict the region where the traffic lights are likely to move and process only that region for detecting the traffic lights.
 However, the prediction of region-of-interest (ROI) using the sensor hints can sometimes be incorrect.
 In such cases, we gradually increase the area of the ROI until we detect traffic lights in that enlarged area. 
@@ -329,39 +329,40 @@ Here, Figure \ref{f:enl} shows the video frame of a successful detection.
 Figure \ref{f:enl1} shows the next frame, where detection goes wrong at first and we change the ROI in the next frame.
 
 \section{Neural network architecture for sign classification}
-At this point we have a successful detection of red and green traffic lights in all video frames.
-To make our system more confident for the visually impaired, we also detect and classify the walk and stop sign at each video frames.
-We design a multi layer perception classifier for classification of sign.
-Here we give a brief description of our designed classifier; a detailed description of the neural architecture with the specification  of our training datasets.
+At this point, we have successful detection of red and green traffic lights in all video frames.
+To make our system more robust for the visually impaired, we detect and classify the walk and stop signs at each video frames.
+Here, we designed a multi layer perception classifier for walk sign recognition.
+Below, we discuss the design of our neural network classifier and training procedure. 
 
 \subsection{Data preprocessing}
 \label{s:prepro}
-For walk and stop sign classification in our dataset, we annotate the position of the signs in video frames.
-From these annotated video frames, we get the training images cropping the walk sign area.
-We manually label all the training datasets for walk and stop sign.
-Training dataset sample sizes vary from 48*37 to 129*217.
-We down-sample or up-sample all images to 58*58 for training them.
+For walk and stop sign classification in our datasets, we annotate the position of these signs in video frames.
+From these annotated video frames, we obtain the training images by cropping the walk sign area.
+We manually label all the training datasets for the walk and stop signs.
+Training dataset sample sizes vary from 48x37 to 129x217.
+We down-scale or up-scale all these sample images to 58x58 to produce a fixed resolution training data.
 We use the different shape characteristics of walk and stop sign for the classification.
-We convert all images to gray scale to have the shape information only and flatten them to have all information in a row for our MLP classifier.
+Hence, we convert the training images to grayscale to retain the shape information. 
+Finally, we convert the image matrix to a vector for easy integration with the neural network classifier.
 
 \subsection{Network architecture}
 \label{s:neural}
-We use the Multi layer perception (MLP) algorithm for our neural architecture.
-MLP is a supervised learning algorithm that we use for our MLP classifier to train images using backpropagation.
-MLP classifier trains on two arrays, training samples that contains feature vector and the class labels for each training samples.
-We train on the preprocessed training set as we describe at \S\ref{s:prepro} and evaluate against the test set with the foloowing architecture parameters:
+We use the Multi-Layer Perception (MLP) algorithm for our neural architecture.
+%MLP is a supervised learning algorithm that we use for our MLP classifier to train images using backpropagation.
+%MLP classifier trains on two arrays, training samples that contains feature vector and the class labels for each training samples.
+We train with the preprocessed training images (described at \S\ref{s:prepro}) and evaluate with a test set with following architecture parameters:
 
 \begin{itemize}
-\item Number of features at each layer: For our neural architecture we experiment with different layer and layer sizes.
-We use 4 layer and 3 layer architecture for our experiment and for layer sizes we try with (50,30,30,2), (130,80,2),(80,50,2) and (150,50,2).
-We finally select 3 layer architecture with 150 neurons as input layer, 50 neurons as hidden layer and 2 neurons as output layer since this gives us a better result.
-\item Activation function: For the activation function in the hidden layer we try logistic sigmoid function and hyperbolic tan function.
-  We finally use logistic sigmoid function,that reurns $$f(x)= 1/(1+exp(-x))$$.
-\item Weight optimization solver for layers: We try stochastic gradient descent and quasi- Newton optimizer as the weight optimization solver.
-  Our training and testing datasets are relatively small (less than 1000 training samples).
-  So for faster convergence and better perfomance on small dataset, we finally select quasi-Newton optimizer.
-
-\item We use different learning rates and different regularization parameter (L2 penalty parameter) for better performance.   
+\item Layer and neuron architecture: We experimented with different layers and different number of neurons at each layer.
+We used 4 layer and 3 layer architecture for our experiment and for layer sizes we experimented with following neuron counts: (50,30,30,2), (130,80,2), (80,50,2) and (150,50,2). 
+We finally selected 3 layer architecture with 150 neurons at the input layer, 50 neurons at the hidden layer, and 2 neurons at the output layer since it resulted in better results.
+\item Activation function: For the activation function in the hidden layer, we experimented with the logistic sigmoid function and hyperbolic tan function.
+We finally used logistic sigmoid function, which is defined as:
+ $$f(x)= 1/(1+exp(-x))$$.
+\item Training algorithm: We experimented with stochastic gradient descent and quasi-Newton optimizer for training the neural network. 
+Our training and testing datasets are relatively small (less than 1000 training samples).
+Hence, we finally used quasi-Newton optimizer for faster convergence and better performance.
+\item We used different learning rates and different regularization parameter (L2 penalty parameter) for better performance.   
 \end{itemize}
 
 

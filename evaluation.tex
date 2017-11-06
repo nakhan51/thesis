@@ -83,7 +83,7 @@ In this section, we discuss the computation time of these datasets with and with
 \begin{figure}[ht]
 \centering
 \includegraphics[width=5.2in]{plots/cloudy_cdf.pdf}
-\caption{CDF of frame computation time for walking dataset with sensor movement in cloudy weather. The improvement of comutation time is 5.29x if we use the sensor hints with the heuristic filter}
+\caption{CDF of frame computation time for walking dataset with sensor movement in cloudy weather. The improvement of computation time is 5.29x if we use the sensor hints with the heuristic filter}
 \label{f:cdf_cloudy}
 \end{figure}
 It shows that the median of the computation time without the sensor data and without the heuristic filters is 108.62ms.
@@ -114,7 +114,7 @@ This gives the average improvement 5.79x, which is trivial decrease in computati
     Walking w/ sensor (Cloudy) & 108.62 & 109.76 & 13.11 & 18.25 \\
     Walking w/ sensor (Sunny) & 112.74 & 113.67 & 13.32 & 19.82 \\
     Walking w/ sensor (Regular) & 110.43 & 114.12 & 13.89 & 20.17 \\
-    Static w/ sesor (Regular) & 120.65 & 121.92 & 12.65 & 19.89\\
+    Static w/ sensor (Regular) & 120.65 & 121.92 & 12.65 & 19.89\\
     \hline
     Avg. computation time (ms) & 113.11 & 114.87 & 13.24 & 19.53\\
     
@@ -254,9 +254,9 @@ It shows that the average accuracy increases from 91\% to 97\% with sensor hints
   \end{tabular}
 \end{table}
 
-\section{Evaluation for walk sign detection}
-We need the ground truth to classify the walk sign on video frames.
-Accordingly, we annotate the walk sign location manually at each video frame.
+\section{Evaluation of walk sign detection}
+We need the ground truth to classify the walk signs at the video frames.
+Accordingly, we annotate the walk sign locations manually at each video frame.
 During annotation, we record the position of the walk and stop sign and we label the sign types (walk and stop). 
 
 \begin{table}[ht!]
@@ -275,8 +275,8 @@ During annotation, we record the position of the walk and stop sign and we label
   \end{tabular}
 \end{table}
 
-\ref{t:walk_sign_ann} describes the total number of annotated signs in our datasets.
-Total number of annotated sign (walk and stop) are 394.
+\ref{t:walk_sign_ann} shows the total number of annotated signs in our datasets.
+Here, we annotated 394 sign (walk and stop) in total.
 
 We use the multi-layer neural network to classify the signs as we described in \S\ref{s:neural}.
 \ref{t:training_neural} shows the length of training and testing dataset for our neural network architecture.
@@ -301,8 +301,8 @@ And for testing dataset we use 84 signs in total.
 
 \subsection{Classifier accuracy for sign detection}
 
-\ref{t:report_walk} shows the final classification report of our neural network classifier in our dataset.
-We can see at \ref{t:report_walk}, the average precision for the sign detection is 97.75\% and the average recall we get 97\%.
+\ref{t:report_walk} shows the final classification results of our neural network classifier.
+Here, the average precision for the sign detection is 97.75\% and the average recall we get 97\%.
 
 \begin{table}[h!]
   \centering
@@ -340,15 +340,15 @@ We can see at \ref{t:report_walk}, the average precision for the sign detection 
 \end{table}
 
 This result shows that for the walk sign we get 2 false detections, while the accuracy for stop sign detection is 100\%.
-The better accuracy of the stop sign gives our system more confidence for the navigation of visually impaired. 
+
 
 \section{Evaluation of a public dataset}
 
 In this section, we evaluate our system with a well studied public dataset, LISA Traffic Light Dataset \cite{lisa}.
-The LISA Traffic Light Dataset consists of 13 day training clips and 5 night traing clips with 4 testing sequences which are captured in San Diego, California, USA \cite{lisa2}.
+The LISA Traffic Light Dataset consists of 13 day training clips and 5 night training clips with 4 testing sequences which are captured in San Diego, California, USA \cite{lisa2}.
 This dataset has total 46418 frames with 112,971 annotated lights.
 
-The main approach of our system is to use sensor hints to improve the comutational time and the detection accuracy.
+The main approach of our system is to use sensor hints to improve the computational time and the detection accuracy.
 However, the LISA dataset has no information of the sensor hints, so we manually take the 1/4 of frames approximately.
 
 
