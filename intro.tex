@@ -11,7 +11,7 @@ GPS is not sufficient for many higher level applications such as autonomous driv
 First, GPS accuracy is not high enough, especially in urban environments for reliable localization for these applications. 
 Second, in addition to high accuracy localization, the perception of the environment is paramount for effective decision making. 
 
-Detection of traffic lights in public streets is an important part of perception for both autonomous driving and navigation by visually impaired.  
+Detection and recognition of traffic lights and signs in public streets is an important part of perception for both autonomous driving and navigation by visually impaired.  
 There has a significant research \cite{traffic_google} on traffic light detection in the context of autonomous driving. 
 However, in the context of pedestrian navigation by the visually impaired, the existing research is limited. 
 
@@ -21,13 +21,15 @@ First, unlike a car mounted camera, the movement of a handheld or body-mounted c
 Second, the viewpoint of a pedestrian's camera can move a lot compared to the straight viewpoint of a camera on a vehicle.
 Third, the traffic lights are mostly perpendicular to a vehicle, where they are angled for a pedestrian. 
 
-In this work, we address these challenges and build a system to detect traffic light for pedestrian navigation.
+In this work, we address these challenges and build a system to detect and recognize traffic light and sign for pedestrian navigation.
 Here, we combine sensor fusion and image processing to efficiently detect traffic lights. 
 The benefit of sensor fusion is two-fold.
 Sensor fusion allows us to process only subpart of a video frame.
 We can predict where the traffic lights will move in a video frame using the estimated motion and orientation of the smartphone and can process only that region of the frame. 
 This results in an order of magnitude improvement in image processing time on average. 
 Additionally, traffic light detection in a sub-image reduces the false positive rate since spurious detections are eliminated from the regions of a frame where the traffic lights are not located.
+Finally, in addition to the traffic light detection, walk sign recognition is a very important part of perception during pedestrian navigation.
+\note{}Here, in this work, we use a neural network classifier
 
 The primary contributions of this work are:
 
@@ -36,6 +38,7 @@ The primary contributions of this work are:
 \item Accuracy improvement in traffic light detection by processing only the relevant region of a video frame. 
 \item Experimental study of the sensor fusion for the reliable estimation of a smartphone's pose. 
 \item Efficient heuristic filters for reducing the false positive rate in traffic light detection.
+\item Efficient neural network classifier design for walk sign recognition at each video frames.
 \item Evaluation of our system with real-world traffic light video in various lighting conditions. 
 \item Evaluation of our system with other public datasets.
   
@@ -46,6 +49,7 @@ The primary contributions of this work are:
 \end{itemize}
 
 The remainder of this dissertation is structured as follows.
-We discuss the background of inertial sensors of smartphones and image processing for traffic light detection in chapter \ref{c:background}.
+We discuss the background of inertial sensors of smartphones, image processing for traffic light detection and neural network classifier for walk sign recognition in chapter \ref{c:background}.
+In chapter \ref{c:relw}, we discuss the state of the art work related to our system.
 We describe our system architecture in chapter \ref{c:system}.
 In chapter \ref{c:evalu}, we present the end-to-end evaluation.
