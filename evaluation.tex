@@ -13,7 +13,7 @@ As a result, we did not find public datasets combining traffic lights video and 
 Hence, we collected our own ground truth data using an Android app, that we discussed in \S\ref{s:app}.
 \ref{f:ground_truth} shows the ground truth data collection using our Android app.
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=5.2in]{images/ground_truth.jpg}
 \caption{Ground truth data collection using Android app}
@@ -27,7 +27,7 @@ Here, we present our results for several 300 feet long walks.
 At the end of this chapter, we present an approximate evaluation of a public dataset that does not have sensor data. 
 However, we emulate the effect of sensors by manual selection of a subpart of a video frame. 
 
-\begin{figure}[ht!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=5.2in]{images/annotation.png}
 \caption{Interface for manual annotation. The green box provides the location of the traffic light in video frame.}
@@ -35,10 +35,25 @@ However, we emulate the effect of sensors by manual selection of a subpart of a 
 \end{figure}
 
 \begin{figure}[!ht]
-\centering
-\subfloat[Sunny] {\includegraphics[width=3.2in]{images/sunny.jpg}}\\
-\subfloat[Cloudy] {\includegraphics[width=3.2in]{images/cloudy.jpg}}\\
-\subfloat[Night] {\includegraphics[width=3.2in]{images/night.jpg}}
+  \centering
+    \begin {subfigure}
+    \centering
+    \includegraphics[width=4.2in]{images/sunny.jpg}
+  \end{subfigure}
+
+  \begin{subfigure}
+    \centering
+    \includegraphics[width=4.2in]{images/cloudy.jpg}
+  \end{subfigure}
+
+  \begin{subfigure}
+    \centering
+    \includegraphics[width=4.2in]{images/night.jpg}
+  \end{subfigure}
+%% \subfloat[Sunny] {\includegraphics[width=3.2in]{images/sunny.jpg}}\\
+%% \subfloat[Cloudy] {\includegraphics[width=3.2in]{images/cloudy.jpg}}\\
+  %% \subfloat[Night] {\includegraphics[width=3.2in]{images/night.jpg}}
+  
 \caption{Scene variation of recorded video.}
 \label{f:dataset}
 \end{figure}
@@ -47,8 +62,7 @@ However, we emulate the effect of sensors by manual selection of a subpart of a 
 
 \begin{table}[ht!]
   \centering
-  \caption{Description of the dataset.}
-  \label{t:dataset}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l  c  r r }
     \rowcolor{gray!50}
@@ -61,6 +75,8 @@ However, we emulate the effect of sensors by manual selection of a subpart of a 
     Walking w/ sensor (Night) & 6146 & 3 mins 24 secs \\
     \hline
   \end{tabular}
+  \caption{Description of the dataset.}
+  \label{t:dataset}
 \end{table}
 
 \section{Annotation}
@@ -80,12 +96,14 @@ In this section, we discuss the computation time of these datasets with and with
 
 \subsection{Frame processing time}
 \ref{f:cdf_cloudy} shows the computation time CDF for video frames for walking dataset with sensor movement in cloudy weather described in \ref{t:dataset}.
+
 \begin{figure}[ht]
 \centering
 \includegraphics[width=5.2in]{plots/cloudy_cdf.pdf}
 \caption{CDF of frame computation time for walking dataset with sensor movement in cloudy weather. The improvement of computation time is 5.29x if we use the sensor hints with the heuristic filter}
 \label{f:cdf_cloudy}
 \end{figure}
+
 It shows that the median of the computation time without the sensor data and without the heuristic filters is 108.62ms.
 On the other hand, the median computation time with the sensor and without heuristic filters is 13.11ms.
 This is an improvement of 8.29x.
@@ -102,8 +120,7 @@ This gives the average improvement 5.79x, which is trivial decrease in computati
 
 \begin{table}[!ht]
   \centering
-  \caption{Median computation time (ms) with various settings for our dataset.}
-  \label{t:dataset_time}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l r r r r}
     \rowcolor{gray!50}
@@ -119,6 +136,8 @@ This gives the average improvement 5.79x, which is trivial decrease in computati
     Avg. computation time (ms) & 113.11 & 114.87 & 13.24 & 19.53\\
     
   \end{tabular}
+  \caption{Median computation time (ms) with various settings for our dataset.}
+  \label{t:dataset_time}
 \end{table}
 
 \subsection{Subimage processing time}
@@ -172,8 +191,7 @@ We walked along several crosswalks of few streets and the route had a total of 1
 
 \begin{table}[ht!]
   \centering
-  \caption{Confusion Matrix without sensor hints for our dataset. Each entry represents the decision number. Row and column entries are the associated accuracy.}
-  \label{t:con_nocrp}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l  c  c  r }
     \rowcolor{gray!50}
@@ -185,12 +203,13 @@ We walked along several crosswalks of few streets and the route had a total of 1
     & 96.4718\% & 83.0338\% & 90.7902\% \\
     
   \end{tabular}
+  \caption{Confusion Matrix without sensor hints for our dataset. Each entry represents the decision number. Row and column entries are the associated accuracy.}
+  \label{t:con_nocrp}
 \end{table}
 
 \begin{table}[ht!]
   \centering
-  \caption{Confusion Matrix with sensor hints for our  dataset. Each entry represents the decision number. Row and column entries are the associated accuracy.}
-  \label{t:con_crp}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l  c  c  r }
     \rowcolor{gray!50}
@@ -202,6 +221,8 @@ We walked along several crosswalks of few streets and the route had a total of 1
     & 98.4367\% & 91.1247\% & 95.5319\% \\
     
   \end{tabular}
+  \caption{Confusion Matrix with sensor hints for our  dataset. Each entry represents the decision number. Row and column entries are the associated accuracy.}
+  \label{t:con_crp}
 \end{table}
 
 These results show that the use of sensor hints increases the accuracy of the red light detection and reduces false detection of green lights.
@@ -211,7 +232,7 @@ These results show that the use of sensor hints increases the accuracy of the re
 \ref{f:tp_stat} shows the detection rate for the red and green state of the traffic lights.
 It shows that using the sensor hints detection rate for red lights increases from 86\% to 96\% and the detection rate for green lights increases 96\% to 99\%.
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=5.2in]{plots/bar_tp.pdf}
 \caption{Detection rate for static movement dataset.}
@@ -223,12 +244,23 @@ Left one is the false positive detection and the right one is the false negative
 Here, the false positive count is reduced significantly and false negative is zero.
 
 \begin{figure}[!ht]
-\centering
-\subfloat[] {\includegraphics[width=5.2in]{plots/bar_fp.pdf}}
+  \centering
 
-\subfloat[] {\includegraphics[width=5.2in]{plots/bar_fn.pdf}}
-\caption{Misdetection rate for static movement dataset.}
-\label{f:fp_stat}
+  \begin {subfigure}
+    \centering
+    \includegraphics[width=4.2in]{plots/bar_fp.pdf}
+  \end{subfigure}
+
+  \begin{subfigure}
+    \centering
+    \includegraphics[width=4.2in]{plots/bar_fn.pdf}
+  \end{subfigure}
+%% \subfloat[] {\includegraphics[width=5.2in]{plots/bar_fp.pdf}}
+
+  %% \subfloat[] {\includegraphics[width=5.2in]{plots/bar_fn.pdf}}
+  
+  \caption{Misdetection rate for static movement dataset.}
+  \label{f:fp_stat}
 \end{figure}
 
 \ref{t:acc_stat} shows the accuracy rate for our  dataset.
@@ -236,9 +268,8 @@ It shows that the average accuracy increases from 91\% to 97\% with sensor hints
 
 \begin{table}[h!]
   \centering
-  \caption{Accuracy for detection in our datasets.}
+  
   \rowcolors{2}{gray!25}{white}
-  \label{t:acc_stat}
   \begin{tabular}{  l  r  r r r }
     \rowcolor{gray!50}
     Dataset & w/o sensor & w/o sensor & w/ sensor & w/ sensor \\
@@ -252,6 +283,8 @@ It shows that the average accuracy increases from 91\% to 97\% with sensor hints
     \hline
     Average detection rate & 91.3504\% & 92.0767\% & 97.1726\% & 97.3691\%\\
   \end{tabular}
+  \caption{Accuracy for detection in our datasets.}
+  \label{t:acc_stat}
 \end{table}
 
 \section{Evaluation of walk sign detection}
@@ -261,8 +294,7 @@ During annotation, we record the position of the walk and stop sign and we label
 
 \begin{table}[ht!]
   \centering
-  \caption{Annotated sign in our dataset.}
-  \label{t:walk_sign_ann}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l  c  r r }
     \rowcolor{gray!50}
@@ -273,6 +305,8 @@ During annotation, we record the position of the walk and stop sign and we label
     Total annotated sign & 197 & 197 \\
     \hline
   \end{tabular}
+  \caption{Annotated sign in our dataset.}
+  \label{t:walk_sign_ann}
 \end{table}
 
 \ref{t:walk_sign_ann} shows the total number of annotated signs in our datasets.
@@ -285,8 +319,7 @@ And for testing dataset we use 84 signs in total.
 
 \begin{table}[ht!]
   \centering
-  \caption{Training and testing dataset for neural network architecture.}
-  \label{t:training_neural}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l  c  c  r}
     \rowcolor{gray!50}
@@ -297,6 +330,8 @@ And for testing dataset we use 84 signs in total.
    
     \hline
   \end{tabular}
+  \caption{Training and testing dataset for neural network architecture.}
+  \label{t:training_neural}
 \end{table}
 
 \subsection{Classifier accuracy for sign detection}
@@ -306,8 +341,7 @@ Here, the average precision for the sign detection is 97.75\% and the average re
 
 \begin{table}[h!]
   \centering
-  \caption{Classification report for the classifier for sign detection in our dataset.}
-  \label{t:report_walk}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l  c  c  r }
     \rowcolor{gray!50}
@@ -318,14 +352,15 @@ Here, the average precision for the sign detection is 97.75\% and the average re
     \hline  
     Average & 97.75\% & 97\% & 97.5\% \\
   \end{tabular}
+  \caption{Classification report for the classifier for sign detection in our dataset.}
+  \label{t:report_walk}
 \end{table}
 
 \ref{t:walk_sign} shows the confusion matrix for the sign detection in our dataset.
 
 \begin{table}[h!]
   \centering
-  \caption{Confusion Matrix for sign detection in our dataset.}
-  \label{t:walk_sign}
+ 
   \rowcolors{2}{gray!25}{white}  
   \begin{tabular}{  l  c  c  r }
     \rowcolor{gray!50}
@@ -337,6 +372,8 @@ Here, the average precision for the sign detection is 97.75\% and the average re
     & 95.83\% & 100\% & 97.619\% \\
     
   \end{tabular}
+  \caption{Confusion Matrix for sign detection in our dataset.}
+  \label{t:walk_sign}
 \end{table}
 
 This result shows that for the walk sign we get 2 false detections, while the accuracy for stop sign detection is 100\%.
@@ -369,8 +406,7 @@ However, if we have sensor hints we can improve computation time more keeping th
 
 \begin{table}[!ht]
   \centering
-  \caption{Median computation time (ms) for LISA dataset.}
-  \label{t:lisa_time}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l   r   r  r}
     \rowcolor{gray!50}
@@ -398,6 +434,8 @@ However, if we have sensor hints we can improve computation time more keeping th
     Average computation time (ms) & 59.29 & 12.53 & 4.73\% \\
     
   \end{tabular}
+  \caption{Median computation time (ms) for LISA dataset.}
+  \label{t:lisa_time}
 \end{table}
 
 \ref{t:lisa_time} shows the median computation time for full frames and subframes for the other clips of LISA dataset.
@@ -408,8 +446,7 @@ Additionally, the average computation time improvement is 4.73\%.
 
 \begin{table}[h!]
   \centering
-  \caption{Confusion Matrix without cropping for LISA dataset.}
-  \label{t:lisa_con_nocrp}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l  c  c  r }
     \rowcolor{gray!50}   
@@ -421,6 +458,8 @@ Additionally, the average computation time improvement is 4.73\%.
     & 80.009\% & 61.0816\% & 71.1478\% \\
     
   \end{tabular}
+  \caption{Confusion Matrix without cropping for LISA dataset.}
+  \label{t:lisa_con_nocrp}
 \end{table}
 
 \ref{t:lisa_con_nocrp} shows the confusion matrix for the traffic light decision when we process the full frame for LISA dataset.
@@ -428,8 +467,7 @@ Additionally, the average computation time improvement is 4.73\%.
 
 \begin{table}[h!]
   \centering
-  \caption{Confusion Matrix with cropping for LISA dataset.}
-  \label{t:lisa_con_crp}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l  c  c  r }
     \rowcolor{gray!50}   
@@ -441,15 +479,17 @@ Additionally, the average computation time improvement is 4.73\%.
     & 94.6824\% & 71.5239\% & 82.8208\% \\
     
   \end{tabular}
+  \caption{Confusion Matrix with cropping for LISA dataset.}
+  \label{t:lisa_con_crp}
 \end{table}
 
 This result shows that the red and green traffic light detection is increasing while considering the part of the frames.
 
 \begin{table}[h!]
   \centering
-  \caption{Accuracy for detection in LISA datasets.}
+ 
   \rowcolors{2}{gray!25}{white}
-  \label{t:lisa_acc_stat}
+  
   \begin{tabular}{  l  r  r }
     \rowcolor{gray!50}
     Dataset & Full frame & Sub frame \\
@@ -467,6 +507,8 @@ This result shows that the red and green traffic light detection is increasing w
     \hline
     Average detection rate & 74.1092\% & 87.01574\% \\
   \end{tabular}
+  \caption{Accuracy for detection in LISA datasets.}
+  \label{t:lisa_acc_stat}
 \end{table}
 
 \ref{t:lisa_acc_stat} shows the accuracy of traffic light detection for LISA datasets.

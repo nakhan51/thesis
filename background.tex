@@ -24,19 +24,32 @@ Instead, it measures the forces that are applied to the accelerometer itself.
 For example, when the phone is on the table, it measures the gravitational acceleration $g$ because this is proportional the accelerometer's weight.
 %\todo{this is not clear}.
 
-Figure \ref{f:acc} shows the reference coordination frame of an accelerometer in an Android smartphone.
+\ref{f:acc} shows the reference coordination frame of an accelerometer in an Android smartphone.
 The accelerometer measures the acceleration with respect to the reference frame and returns a vector $[a_x, a_y, a_z]$.
-Here, $a_z$ points perpendicular with respect to the smartphone's screen and $a_x$ and $a_y$ point right and up in the phone's planes respectively as shown in Figure \ref{f:acc}.
+Here, $a_z$ points perpendicular with respect to the smartphone's screen and $a_x$ and $a_y$ point right and up in the phone's planes respectively as shown in \ref{f:acc}.
 
 \begin{figure*}[!ht]
-\centering
-\subfloat[Accelerator coordination] {\label{f:acc}\includegraphics[width=2.5in]{figures/coord_acceleration.pdf}}
-\hfill
-\subfloat[Gyroscope coordination] {\label{f:gyro}\includegraphics[width=2.5in]{figures/coord_omega.pdf}}
-
-\caption{Smartphone reference coordination system.}
-\label{f:coord_dia}
+  \centering
+  \includegraphics[width=2.5in]{figures/coord_acceleration.pdf}
+  \caption{Accelerator coordination}
+  \label{f:acc}
 \end{figure*}
+
+
+\begin{figure*}
+  \centering
+  \includegraphics[width=2.5in]{figures/coord_omega.pdf}
+  \caption{Gyroscope coordination}
+  \label{f:gyro}
+\end{figure*}
+  
+%\subfloat[Accelerator coordination] {\label{f:acc}\includegraphics[width=2.5in]{figures/coord_acceleration.pdf}}
+%\hfill
+%\subfloat[Gyroscope coordination] {\label{f:gyro}\includegraphics[width=2.5in]{figures/coord_omega.pdf}}
+
+%%   \caption{Smartphone reference coordination system.}
+%%   \label{f:coord_dia}
+%% \end{figure*}
 
 \subsection{Gyroscope}
 The accelerometer is another motion sensor in a smartphone.
@@ -47,7 +60,7 @@ When a smartphone rotates, there is a change of direction in the vibrating eleme
 A MEMS gyroscope measures these variations along the three axes to estimate the rate of rotation.
 Gyroscopes are very responsive to small rotations and can measure the variation in the rate of rotation smoothly.
 
-Figure \ref{f:gyro} shows the reference coordination frame of a gyroscope on an Android phone.
+\ref{f:gyro} shows the reference coordination frame of a gyroscope on an Android phone.
 The coordination frame for the gyroscope is same as the coordination frame of accelerometer described above.
 The gyroscope measures the angular velocity with respect to the reference frame and returns a vector $[\omega_x, \omega_y, \omega_z]$.
 
@@ -113,8 +126,7 @@ That means if the phone's Y axis is placed in straight to the magnetic North of 
 \ref{t:rpy} shows the range of pitch, roll, and the azimuth value.
 \begin{table}[h!]
   \centering
-  \caption{The range of pitch, roll, and azimuth.}
-  \label{t:rpy}
+ 
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l   c  }
     \rowcolor{gray!50}
@@ -126,6 +138,8 @@ That means if the phone's Y axis is placed in straight to the magnetic North of 
     & 0 degree when Y axis aligns with the magnetic North \\
     
   \end{tabular}
+  \caption{The range of pitch, roll, and azimuth.}
+  \label{t:rpy}
 \end{table}
 
 
@@ -174,8 +188,7 @@ Hence, the OpenCV converts the hue original range to 0-180.
 
 \begin{table}[h!]
   \centering
-  \caption{The range of hue, saturation, and value.}
-  \label{t:hsv}
+  
   \rowcolors{2}{gray!25}{white}
   \begin{tabular}{  l  c  }
     \rowcolor{gray!50}
@@ -188,6 +201,8 @@ Hence, the OpenCV converts the hue original range to 0-180.
     \hline 
     
   \end{tabular}
+  \caption{The range of hue, saturation, and value.}
+  \label{t:hsv}
 \end{table}
 
 
