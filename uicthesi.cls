@@ -174,7 +174,7 @@
             \begin{center}
                THESIS
                \vskip \baselineskip
-               Submitted in partial fulfillment of the requirements\\
+               Submitted as partial fulfillment of the requirements\\
                for the degree of \@degree\\
                in the Graduate College of the\\
                University of Illinois at Chicago, \@date
