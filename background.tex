@@ -129,11 +129,11 @@ That means if the phone's Y axis is placed in straight to the magnetic North of 
 \end{table}
 
 
-\section {Image Processing}
+\section {Image processing}
 We process each video frame using computer vision techniques to detect traffic lights. 
 Below, we provide a brief overview of these techniques. 
 
-\subsection{Color Space}
+\subsection{Color space}
 \label{s:color_space}
 RGB \cite{rgb} and HSV \cite{hsv} are two primary color spaces that are used in image processing and computer vision.
 RGB defines a color as a combination of the three primary colors red (R), green (G), and Blue (B).
@@ -195,7 +195,7 @@ Hence, the OpenCV converts the hue original range to 0-180.
 Here, the Hue is the central part.
 The radius of this cylinder represents Saturation and the height of the cylinder represents the Value.
 
-\subsection{Hough Circle Transform}
+\subsection{Hough circle transform}
 Our system detects the circular bulb in a traffic light using the Hough circle algorithm \cite{houghcir_alg}.
 The Hough circle algorithm first detect the edges in a video frame.
 It uses Canny method \cite{canny} for edge detection.
